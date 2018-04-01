@@ -14,7 +14,7 @@ class Login extends React.Component {
 		axios
 			.post(apis.login, qs.stringify(data))
 			.then(data => {
-				if (data.code == 0) {
+				if (data.code === 0) {
 					localStorage.setItem('token', data.data.token);
 					browserHistory.push('/');
 				} else {
@@ -58,8 +58,10 @@ class Login extends React.Component {
 						登录
 					</Button>
 					<a
-						href="javascript:void(0)"
-						onClick={e => browserHistory.push('/apply/')}
+						onClick={e => {
+							e.preventDefault();
+							browserHistory.push('/apply');
+						}}
 						style={{marginLeft: '12px'}}
 					>
 						还没有帐号，马上注册
@@ -75,6 +77,7 @@ class Login extends React.Component {
 						<a
 							href="https://github.com/game-helper/hongbao2/issues/new"
 							target="_blank"
+							rel="noopener noreferrer"
 							style={{display: 'inline-block', margin: '12px 0'}}
 						>
 							反馈问题

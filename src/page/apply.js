@@ -26,13 +26,13 @@ class Apply extends React.Component {
 		axios
 			.post(apis.getRegisterCode, qs.stringify(data))
 			.then(data => {
-				if (data.code == 0) {
+				if (data.code === 0) {
 					this.setState({applyFinished: true});
 				} else {
-					if (data.code == 10004) {
-						this.state.mail = '';
+					if (data.code === 10004) {
+						this.setState({mail: ''});
 					}
-					this.state.applyFinished = false;
+					this.setState({applyFinished: false});
 					alert(data.message);
 				}
 				this.changeCaptcha();
@@ -66,7 +66,7 @@ class Apply extends React.Component {
 	};
 
 	validateCaptcha = captcha => {
-		if (captcha.length == 4) {
+		if (captcha.length === 4) {
 			this.setState({captchaError: false, captchaErrorHelp: '', captcha});
 			return true;
 		} else {
@@ -79,7 +79,6 @@ class Apply extends React.Component {
 		(dom.src = apis.getCaptcha + '?' + new Date().getTime());
 
 	renderForm() {
-		const {getFieldDecorator} = this.props.form;
 		let {mail, mailError, mailErrorHelp, captchaError, captchaErrorHelp, isLoading, captcha} = this.state;
 
 		return (
@@ -109,6 +108,7 @@ class Apply extends React.Component {
 						src={apis.getCaptcha}
 						onClick={e => this.changeCaptcha(e.target)}
 						style={{marginTop: '-1px', cursor: 'pointer'}}
+						alt="验证码"
 					/>
 				</FormItem>
 				<FormItem key={2}>
@@ -116,8 +116,10 @@ class Apply extends React.Component {
 						申请
 					</Button>
 					<a
-						href="javascript:void(0)"
-						onClick={e => browserHistory.push('/login/')}
+						onClick={e => {
+							e.preventDefault();
+							browserHistory.push('/login');
+						}}
 						style={{marginLeft: '12px'}}
 					>
 						已有帐号？立即登录
@@ -127,6 +129,7 @@ class Apply extends React.Component {
 					href="https://github.com/game-helper/hongbao2/issues/new"
 					target="_blank"
 					style={{display: 'inline-block', margin: '12px 0'}}
+					rel="noopener noreferrer"
 				>
 					有问题要反馈？点这里
 				</a>

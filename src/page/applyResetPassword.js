@@ -1,5 +1,4 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
 import {Button, Form, Input} from 'antd';
 import {axios, apis, qs} from '../api';
 
@@ -26,13 +25,13 @@ class ApplyResetPassword extends React.Component {
 		axios
 			.post(apis.resetPasswordMail, qs.stringify(data))
 			.then(data => {
-				if (data.code == 0) {
+				if (data.code === 0) {
 					this.setState({finished: true});
 				} else {
-					if (data.code == 10004) {
-						this.state.mail = '';
+					if (data.code === 10004) {
+						this.setState({mail: ''});
 					}
-					this.state.finished = false;
+					this.setState({finished: false});
 					alert(data.message);
 				}
 				this.changeCaptcha();
@@ -66,7 +65,7 @@ class ApplyResetPassword extends React.Component {
 	};
 
 	validateCaptcha = captcha => {
-		if (captcha.length == 4) {
+		if (captcha.length === 4) {
 			this.setState({captchaError: false, captchaErrorHelp: '', captcha});
 			return true;
 		} else {
@@ -79,7 +78,6 @@ class ApplyResetPassword extends React.Component {
 		(dom.src = apis.resetPasswordCaptcha + '?' + new Date().getTime());
 
 	renderForm() {
-		const {getFieldDecorator} = this.props.form;
 		let {mail, mailError, mailErrorHelp, captchaError, captchaErrorHelp, isLoading, captcha} = this.state;
 
 		return (
@@ -108,6 +106,7 @@ class ApplyResetPassword extends React.Component {
 						src={apis.resetPasswordCaptcha}
 						onClick={e => this.changeCaptcha(e.target)}
 						style={{marginTop: '-1px', cursor: 'pointer'}}
+						alt="验证码"
 					/>
 				</FormItem>
 				<FormItem key={2}>

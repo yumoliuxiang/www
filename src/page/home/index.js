@@ -1,6 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import {Alert, Breadcrumb, Button, Collapse, Form, Input, Popconfirm, Radio, Table, Tabs} from 'antd';
+import {Alert, Breadcrumb, Button, Popconfirm, Radio, Table, Tabs} from 'antd';
 import {axios, apis, qs} from '../../api';
 import ClipboardJS from 'clipboard';
 import dateFormat from '../../util/dateFormat';
@@ -8,10 +8,7 @@ import GetHongbaoForm from './getHongbaoForm';
 import ContributeForm from './contributeForm';
 
 const TabPane = Tabs.TabPane;
-const FormItem = Form.Item;
-const {TextArea} = Input;
 const RadioGroup = Radio.Group;
-const Panel = Collapse.Panel;
 
 export default class Home extends React.Component {
 	constructor() {
@@ -27,7 +24,7 @@ export default class Home extends React.Component {
 			historyList: [],
 			createTime: 15,
 			tab: localStorage.getItem('tab') || '1',
-			application: parseInt(localStorage.getItem('application') || 0),
+			application: parseInt(localStorage.getItem('application') || 0, 10),
 			carouselRecords: []
 		};
 	}
@@ -42,7 +39,7 @@ export default class Home extends React.Component {
 			this.zhuangbi();
 			this.getNotice();
 		} else {
-			browserHistory.push('/login/');
+			browserHistory.push('/login');
 		}
 	}
 
@@ -52,11 +49,11 @@ export default class Home extends React.Component {
 
 	getUserInfo = e => {
 		axios.get(apis.getUser).then(data => {
-			if (data.code == 0) {
+			if (data.code === 0) {
 				this.setState({user: data.data});
-			} else if (data.code == 10000) {
+			} else if (data.code === 10000) {
 				localStorage.clear();
-				browserHistory.push('/login/');
+				browserHistory.push('/login');
 			} else {
 				alert(data.message);
 			}
@@ -65,9 +62,9 @@ export default class Home extends React.Component {
 
 	getCookieList = e => {
 		axios.get(apis.cookie).then(data => {
-			if (data.code == 0) {
+			if (data.code === 0) {
 				let cookies = data.data;
-				cookies.map((c, i) => {
+				cookies.forEach((c, i) => {
 					c.time = dateFormat(new Date(c.gmtCreate));
 					c.key = i;
 					c.nickname = c.nickname || '--';
@@ -90,10 +87,12 @@ export default class Home extends React.Component {
 	refresh = id => {
 		axios.post(apis.refresh, qs.stringify({receivingId: id})).then(res => {
 			let {data} = res;
-			if (data.status == 0) {
+			if (data.status === 0) {
 				setTimeout(e => this.refresh(id), 10000);
 			} else {
-				this.state.historyList[0] = data;
+				const {historyList} = this.state;
+				historyList[0] = data;
+				this.setState({historyList});
 				this.getAvailableCount();
 			}
 		});
@@ -102,7 +101,7 @@ export default class Home extends React.Component {
 	logout = e => {
 		axios.get(apis.logout).then(data => {
 			localStorage.clear();
-			browserHistory.push('/login/');
+			browserHistory.push('/login');
 		});
 	};
 
@@ -112,9 +111,9 @@ export default class Home extends React.Component {
 
 	deleteCookie = id => {
 		axios.post(apis.deleteCookie, qs.stringify({cookieId: id})).then(data => {
-			if (data.code == 0) {
+			if (data.code === 0) {
 				//前端删除
-				let cookies = this.state.cookies.filter(o => o.id != id);
+				let cookies = this.state.cookies.filter(o => o.id !== id);
 				this.setState({cookies});
 				//刷新
 				this.getAvailableCount();
@@ -128,7 +127,7 @@ export default class Home extends React.Component {
 	renderTable() {
 		//根据当前application过滤
 		let cookies = this.state.cookies
-			.filter(o => o.application == this.state.application)
+			.filter(o => o.application === this.state.application)
 			.sort((a, b) => b.gmtCreate - a.gmtCreate);
 
 		let onConfirm = record => {
@@ -136,7 +135,7 @@ export default class Home extends React.Component {
 		};
 
 		let renderHeadImg = (url, record)=>(
-			url ? <img src={url} width='50' height='50' /> : '--'
+			url ? <img src={url} width='50' height='50' alt="头像" /> : '--'
 		);
 
 		let renderTime = (time, record)=> (
@@ -172,8 +171,9 @@ export default class Home extends React.Component {
 	};
 
 	getHongbaoCallback = data => {
-		this.state.historyList = [data].concat(this.state.historyList);
-		this.setState({});
+		let {historyList} = this.state;
+		historyList = [data].concat(historyList);
+		this.setState({historyList});
 		this.refresh(data.id);
 	};
 
@@ -215,17 +215,20 @@ export default class Home extends React.Component {
 					</h3> : <h3>您好</h3>}
 				<Breadcrumb>
 					<Breadcrumb.Item>
-						<a href="https://github.com/game-helper/hongbao2/issues/new" target="_blank" style={{ display: 'inline-block', margin: '12px 0' }}>
+						<a href="https://github.com/game-helper/hongbao2/issues/new" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', margin: '12px 0' }}>
 							反馈问题
 						</a>
 					</Breadcrumb.Item>
 					<Breadcrumb.Item>
-						<a href="https://github.com/game-helper/donate" target="_blank" style={{ display: 'inline-block', margin: '12px 0' }}>
+						<a href="https://github.com/game-helper/donate" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', margin: '12px 0' }}>
 							捐赠我们
 						</a>
 					</Breadcrumb.Item>
 					<Breadcrumb.Item>
-						<a href="javascript:void(0)" onClick={this.logout}>
+						<a onClick={e => {
+							e.preventDefault();
+							this.logout();
+						}}>
 							退出登录
 						</a>
 					</Breadcrumb.Item>
@@ -294,7 +297,7 @@ export default class Home extends React.Component {
 						{this.renderTable()}
 					</TabPane>
 					<TabPane tab="加群" key="4" style={{ textAlign: 'center' }}>
-						<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=716520d506845906eb56c91c53e3213ceaddbd99f704c4afa6c1761b388311db">
+						<a target="_blank" rel="noopener noreferrer" href="//shang.qq.com/wpa/qunwpa?idkey=716520d506845906eb56c91c53e3213ceaddbd99f704c4afa6c1761b388311db">
 							点击加入 QQ 3 群：617166836
 						</a>
 						<div style={{ margin: '12px 0 6px 0' }}>
@@ -311,7 +314,7 @@ export default class Home extends React.Component {
 	renderAlipayHongbao = e => {
 		return (
 			<div className="alihongbao-pc">
-				<img src={require('../../static/alipayhongbao.png')} width="240" />
+				<img src={require('../../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
 				<div>支付宝天天领红包</div>
 			</div>
 		);

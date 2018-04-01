@@ -19,8 +19,8 @@ class GetHongbaoForm extends React.Component {
 		axios
 			.post(apis.getHongbao, qs.stringify(params))
 			.then(data => {
-				if (data.code == 0) {
-					this.props.callback(data.data);	
+				if (data.code === 0) {
+					this.props.callback(data.data);
 				} else {
 					alert(data.message);
 				}
@@ -34,7 +34,7 @@ class GetHongbaoForm extends React.Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				this.getHongbao(values);
-				this.state.mobile = values.phone;
+				this.setState({mobile: values.phone});
 				localStorage.setItem('mobile', values.phone);
 			}
 		});
@@ -69,13 +69,13 @@ class GetHongbaoForm extends React.Component {
 
 		let {historyList} = this.props;
 
-		historyList.map((o, i) => {
+		historyList.forEach((o, i) => {
 			o.time = dateFormat(new Date(o.gmtCreate));
-			if (o.status == 1) {
+			if (o.status === 1) {
 				o.message = '领取成功';
-			} else if (o.status == 0) {
+			} else if (o.status === 0) {
 				o.message = `正在领取...`;
-			} else if (o.status == 2) {
+			} else if (o.status === 2) {
 				o.price = 0;
 			}
 			o.key = i;
@@ -87,7 +87,7 @@ class GetHongbaoForm extends React.Component {
 	render() {
 		const {getFieldDecorator} = this.props.form;
 
-		let disableBtn = this.props.historyList.some(o => o.status == 0);
+		let disableBtn = this.props.historyList.some(o => o.status === 0);
 
 		return (
 			<Form onSubmit={this.handleSubmit} className="login-form">

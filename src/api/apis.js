@@ -20,4 +20,7 @@ const apis = {
 	getNotice: 'notice.json' // 为了方便随时更新公告，直接在 JSON 中维护
 };
 
-export default Object.keys(apis).reduce((obj, key) => ((obj[key] = domain + apis[key]), obj), {});
+export default Object.keys(apis).reduce((obj, key) => {
+	obj[key] = domain + apis[key];
+	return obj;
+}, {});

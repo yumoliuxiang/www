@@ -24,7 +24,7 @@ class ContributeForm extends React.Component {
 				};
 				axios.post(apis.cookie, qs.stringify(params))
 				.then(data => {
-					if (data.code == 0) {
+					if (data.code === 0) {
 						alert('贡献成功！');
 						this.props.callback();
 					} else {

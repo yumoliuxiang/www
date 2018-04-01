@@ -18,9 +18,9 @@ axios.interceptors.response.use(
 
 		if (codes.includes(data.code)) {
 			return data;
-		} else if (data.code == 10000) {
+		} else if (data.code === 10000) {
 			localStorage.clear();
-			browserHistory.push('/login/');
+			browserHistory.push('/login');
 		} else {
 			alert(data.message);
 			return new Promise(() => {});

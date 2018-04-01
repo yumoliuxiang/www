@@ -26,7 +26,7 @@ class ResetPassword extends React.Component {
 		axios
 			.post(apis.resetPassword, qs.stringify(data))
 			.then(data => {
-				if (data.code == 0) {
+				if (data.code === 0) {
 					alert('重置成功');
 					browserHistory.push('/');
 				} else {
@@ -60,7 +60,7 @@ class ResetPassword extends React.Component {
 	validateRepeatPwd = repeatPwd => {
 		let {password} = this.state;
 
-		if (repeatPwd != password) {
+		if (repeatPwd !== password) {
 			this.setState({repeatPwdError: true, repeatPwdErrorHelp: '两次输入的密码不一致'});
 			return false;
 		} else {
