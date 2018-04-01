@@ -293,7 +293,10 @@ export default class Home extends React.Component {
 						<ContributeForm callback={this.contributeCallback} application={application} />
 						{this.renderTable()}
 					</TabPane>
-					<TabPane tab="加群" key="4" style={{ textAlign: 'center' }}>
+					<TabPane tab="排行榜" key="4">
+						<p style={{textAlign: 'center'}}>开发中, 敬请期待!</p>
+					</TabPane>
+					<TabPane tab="加群" key="5" style={{ textAlign: 'center' }}>
 						<a target="_blank" rel="noopener noreferrer" href="//shang.qq.com/wpa/qunwpa?idkey=716520d506845906eb56c91c53e3213ceaddbd99f704c4afa6c1761b388311db">
 							点击加入 QQ 3 群：617166836
 						</a>
