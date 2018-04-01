@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - '9'
+
+cache:
+  directories:
+    - node_modules
+
+script:
+  - npm run build
+
+after_success:
+  - if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    cd build;
+    git init;
+    git config user.name 'Travis CI';
+    git config user.email 'i@cooljser.com';
+    git add .;
+    git commit -m 'build';
+    git push https://${GH_TOKEN}@github.com/game-helper/hongbao2-web.git master:dist -f;
+    curl ${PUBLISH_URL};
+    fi
+
+branches:
+  only:
+    - master
