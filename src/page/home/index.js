@@ -6,6 +6,7 @@ import ClipboardJS from 'clipboard';
 import dateFormat from '../../util/dateFormat';
 import GetHongbaoForm from './getHongbaoForm';
 import ContributeForm from './contributeForm';
+import Carousel from './carousel';
 
 const TabPane = Tabs.TabPane;
 const RadioGroup = Radio.Group;
@@ -189,20 +190,16 @@ export default class Home extends React.Component {
 
 	renderCarousel = e => {
 		let {carouselRecords = []} = this.state;
-		let renderBox = carouselRecords.map((o, i) => (
-			<li key={i}>
+
+		let data = carouselRecords.map((o, i) => (
+			<div key={i} style={{color: '#5bab60', fontSize: '16px'}}>
 				{o.mail} 在 {dateFormat(new Date(o.gmtModified), 'HH:mm:ss')} 领到
 				<span style={{color: '#dd2323'}}>&nbsp;{o.price}&nbsp;</span>
 				元{o.application ? '饿了么' : '美团'}大红包
-			</li>
+			</div>
 		));
 
-		return (
-			<div className="scrollWrap">
-				<ul className="box">{renderBox}</ul>
-				<ul className="box">{renderBox}</ul>
-			</div>
-		);
+		return <Carousel data={data} />
 	};
 
 	render() {

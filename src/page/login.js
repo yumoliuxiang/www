@@ -69,7 +69,7 @@ class Login extends React.Component {
 				</FormItem>
 				<Breadcrumb>
 					<Breadcrumb.Item>
-						<a href="/applyResetPassword/" style={{display: 'inline-block', margin: '12px 0'}}>
+						<a href="/applyResetPassword" style={{display: 'inline-block', margin: '12px 0'}}>
 							重置密码
 						</a>
 					</Breadcrumb.Item>
