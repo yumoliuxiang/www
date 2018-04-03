@@ -7,6 +7,7 @@ import dateFormat from '../../util/dateFormat';
 import GetHongbaoForm from './getHongbaoForm';
 import ContributeForm from './contributeForm';
 import Carousel from './carousel';
+import Rank from './rank'
 
 const TabPane = Tabs.TabPane;
 const RadioGroup = Radio.Group;
@@ -26,7 +27,8 @@ export default class Home extends React.Component {
 			createTime: 15,
 			tab: localStorage.getItem('tab') || '1',
 			application: parseInt(localStorage.getItem('application') || 0, 10),
-			carouselRecords: []
+			carouselRecords: [],
+			rankData: {}
 		};
 	}
 
@@ -39,9 +41,14 @@ export default class Home extends React.Component {
 			this.getHongbaoHistory();
 			this.zhuangbi();
 			this.getNotice();
+			this.getRank();
 		} else {
 			browserHistory.push('/login');
 		}
+	}
+
+	getRank = e => {
+		axios.get(apis.getRank).then(data => this.setState({rankData: data.data}));
 	}
 
 	getNotice = e => {
@@ -293,8 +300,8 @@ export default class Home extends React.Component {
 						<ContributeForm callback={this.contributeCallback} application={application} />
 						{this.renderTable()}
 					</TabPane>
-					<TabPane tab="排行榜" key="4">
-						<p style={{textAlign: 'center'}}>开发中, 敬请期待!</p>
+					<TabPane tab="排行" key="4">
+						<Rank data={this.state.rankData} />
 					</TabPane>
 					<TabPane tab="加群" key="5" style={{ textAlign: 'center' }}>
 						<a target="_blank" rel="noopener noreferrer" href="//shang.qq.com/wpa/qunwpa?idkey=716520d506845906eb56c91c53e3213ceaddbd99f704c4afa6c1761b388311db">
