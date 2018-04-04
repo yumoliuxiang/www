@@ -5,10 +5,10 @@ const RadioGroup = Radio.Group;
 
 export default class Rank extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
-			value: 'meituan'
-		}
+			rank: localStorage.getItem('rank') || 'meituan'
+		};
 	}
 
 	render() {
@@ -17,21 +17,31 @@ export default class Rank extends React.Component {
 		(data.ele || []).forEach((item, index) => item.key = index);
 
 		const columns = [
-			{title: '排名', dataIndex: 'ranking'},
-			{title: 'uid', dataIndex: 'userId'},
-			{title: '贡献数量', dataIndex: 'count'}
+			{title: '排名', dataIndex: 'ranking', width: '33%'},
+			{title: 'uid', dataIndex: 'userId', width: '33%'},
+			{title: '贡献数量', dataIndex: 'count', width: '33%'}
 		];
 
 		return (
 			<div>
+				<div style={{ color: '#dd2323', marginBottom: '15px' }}>
+					排行榜玩法持续开发中，排名靠前的用户将享有特权
+				</div>
 				<div style={{paddingBottom: '15px'}}>
-					<RadioGroup onChange={e => this.setState({value: e.target.value})} value={this.state.value}>
-						<Radio value="meituan">美团贡献榜</Radio>
-						<Radio value="ele">饿了么贡献榜</Radio>
+					贡献排行榜：
+					<RadioGroup onChange={this.onChange} value={this.state.rank}>
+						<Radio value="meituan">美团</Radio>
+						<Radio value="ele">饿了么</Radio>
 					</RadioGroup>
 				</div>
-				<Table dataSource={data[this.state.value]} columns={columns} pagination={false} />
+				<Table dataSource={data[this.state.rank]} columns={columns} pagination={false} />
 			</div>
 		);
+	}
+
+	onChange = e => {
+		const rank = e.target.value;
+		this.setState({rank});
+		localStorage.setItem('rank', rank);
 	}
 }
