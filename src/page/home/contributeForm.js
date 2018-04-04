@@ -77,7 +77,7 @@ class ContributeForm extends React.Component {
 					</li>
 					<li>
 						<a href="/tutorial/ele.html" target="_blank">
-							[贡献 QQ] 如何贡献饿了么 QQ cookie
+							[贡献 QQ] 如何贡献饿了么 QQ cookie（已失效）
 						</a>
 					</li>
 				</ul>
