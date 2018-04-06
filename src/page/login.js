@@ -8,6 +8,7 @@ class Login extends React.Component {
 	constructor() {
 		super();
 		this.state = {};
+		document.body.classList.remove('is-home');
 	}
 
 	login = data => {
@@ -69,7 +70,10 @@ class Login extends React.Component {
 				</FormItem>
 				<Breadcrumb>
 					<Breadcrumb.Item>
-						<a href="/applyResetPassword" style={{display: 'inline-block', margin: '12px 0'}}>
+						<a onClick={e => {
+							e.preventDefault();
+							browserHistory.push('applyResetPassword');
+						}} style={{display: 'inline-block', margin: '12px 0'}}>
 							重置密码
 						</a>
 					</Breadcrumb.Item>

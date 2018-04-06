@@ -11,30 +11,34 @@ export default class Carousel extends React.Component {
 
         this.boxDom = null;
         this.innerDom = null;
-		
+
         this.state = {};
     }
 
     componentDidMount = e=>{
         setTimeout(e=>{
-    		raf(this.run);	
+    		raf(this.run);
     	}, this.props.interval)
     }
 
-    run = e=>{
-        if (this.boxDom.scrollTop >= this.innerDom.scrollHeight) {
-        	this.boxDom.scrollTop = 0;
-        } else {
-        	this.boxDom.scrollTop++;
-        }
+    run = e => {
+		try {
+			if (this.boxDom.scrollTop >= this.innerDom.scrollHeight) {
+				this.boxDom.scrollTop = 0;
+			} else {
+				this.boxDom.scrollTop++;
+			}
 
-        if (this.boxDom.scrollTop % 30) {
-			raf(this.run);
-        } else {
-        	setTimeout(e=>{
-        		raf(this.run);
-	        }, this.props.interval);	
-        }
+			if (this.boxDom.scrollTop % 30) {
+				raf(this.run);
+			} else {
+				setTimeout(e => {
+					raf(this.run);
+				}, this.props.interval);
+			}
+		} catch (e) {
+			// 在 home 跳到其它页时，会报错
+		}
     }
 
     renderBody() {
@@ -46,8 +50,8 @@ export default class Carousel extends React.Component {
                 <div ref={dom=>this.innerDom = dom}>
                     {
                     	data.map((item, index)=>(
-                    		<div style={{height: '30px', lineHeight:'30px'}} 
-                    			className="marquee-vertical-txt" 
+                    		<div style={{height: '30px', lineHeight:'30px'}}
+                    			className="marquee-vertical-txt"
                     			key={index}>
                     			{item}
                     		</div>
@@ -57,8 +61,8 @@ export default class Carousel extends React.Component {
                 <div>
                     {
                     	data.map((item, index)=>(
-                    		<div style={{height: '30px', lineHeight:'30px'}} 
-                    			className="marquee-vertical-txt" 
+                    		<div style={{height: '30px', lineHeight:'30px'}}
+                    			className="marquee-vertical-txt"
                     			key={index}>
                     			{item}
                     		</div>

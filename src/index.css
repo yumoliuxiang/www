@@ -1,17 +1,35 @@
 html {
 	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow-x: auto;
 }
 
 body {
 	min-width: 290px;
-	max-width: 480px;
+	width: 480px;
 	padding: 0 15px;
 	margin: 0 auto;
 }
 
+body.is-home {
+	width: 1020px;
+}
+
 #root {
-	padding-top: 30px;
+	padding-top: 20px;
+}
+
+.app {
+	display: flex;
+	justify-content: center;
+}
+
+.app-column {
+	position: relative;
+	width: 480px;
+}
+
+.app-column:first-child {
+	margin-right: 20px;
 }
 
 .ant-tabs-tabpane {
@@ -19,7 +37,7 @@ body {
 }
 
 input {
-	-webkit-box-shadow: 0 0 0px 1000px white inset !important;
+	-webkit-box-shadow: 0 0 0 1000px white inset !important;
 	-webkit-text-fill-color: rgba(0, 0, 0, 0.65) !important;
 	vertical-align: middle;
 }
@@ -74,13 +92,10 @@ textarea {
 }
 
 .alihongbao-pc {
-	position: fixed;
-	top: 200px;
-	left: 50%;
-	transform: translateX(calc(-50% - 400px));
 	border: 1px solid #ccc;
 	padding: 10px;
 	border-radius: 4px;
+	width: 262px;
 }
 
 .alihongbao-pc div {
@@ -88,14 +103,23 @@ textarea {
 	padding: 10px 10px 0;
 }
 
+.alihongbao-m {
+	display: none;
+}
+
 @media screen and (max-width: 768px) {
 	.alihongbao-pc {
 		display: none;
 	}
-}
 
-@media screen and (min-width: 1025px) {
-	.alihongbao-m {
-		display: none;
+	.alihongbao-m,
+	.app {
+		display: block;
+	}
+
+	body.is-home,
+	.app-column {
+		width: 100%;
 	}
 }
+

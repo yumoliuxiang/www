@@ -30,6 +30,7 @@ export default class Home extends React.Component {
 			carouselRecords: [],
 			rankData: {}
 		};
+		document.body.classList.add('is-home');
 	}
 
 	componentDidMount() {
@@ -212,7 +213,8 @@ export default class Home extends React.Component {
 	render() {
 		let {application, available, historyList} = this.state;
 
-		return <div style={{ position: 'relative' }}>
+		return <div className="app">
+			<div className="app-column">
 				{this.renderCarousel()}
 				{this.state.user.mail ? <h3>
 						您好 {this.state.user.mail} (uid: {this.state.user.id})
@@ -237,6 +239,7 @@ export default class Home extends React.Component {
 						</a>
 					</Breadcrumb.Item>
 				</Breadcrumb>
+
 				<Button className="alihongbao-m" type="primary">
 					支付宝天天领红包
 				</Button>
@@ -254,7 +257,11 @@ export default class Home extends React.Component {
 						} key={index} type="warning" />
 					)
 				}
-				<Tabs defaultActiveKey={this.state.tab} onChange={this.onTabChange}>
+
+				{this.renderAlipayHongbao()}
+			</div>
+
+			<Tabs className="app-column" defaultActiveKey={this.state.tab} onChange={this.onTabChange}>
 					<TabPane tab="规则" key="1">
 						<div>
 							<p>
@@ -310,19 +317,17 @@ export default class Home extends React.Component {
 						<div style={{ margin: '12px 0 6px 0' }}>
 							扫描下面二维码，邀请你进入微信群
 						</div>
-						<img style={{ width: '70%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} src={require('../../static/wechat.png')} alt="" />
+						<img style={{ width: '50%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} src={require('../../static/wechat.png')} alt="" />
 					</TabPane>
 				</Tabs>
-
-				{this.renderAlipayHongbao()}
-			</div>
+		</div>
 	}
 
 	renderAlipayHongbao = e => {
 		return (
 			<div className="alihongbao-pc">
 				<img src={require('../../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
-				<div>支付宝天天领红包</div>
+				<div>支付宝天天领红包<br />c7XYed92oO</div>
 			</div>
 		);
 	};
@@ -333,8 +338,8 @@ export default class Home extends React.Component {
 		});
 
 		clipboard.on('success', e => {
-			alert('打开支付宝即可领取红包（每天仅一次）');
 			e.clearSelection();
+			alert('打开支付宝即可领取红包（每天仅一次）');
 		});
 
 		clipboard.on('error', e => {
