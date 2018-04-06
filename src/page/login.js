@@ -72,7 +72,7 @@ class Login extends React.Component {
 					<Breadcrumb.Item>
 						<a onClick={e => {
 							e.preventDefault();
-							browserHistory.push('applyResetPassword');
+							browserHistory.push('/applyResetPassword');
 						}} style={{display: 'inline-block', margin: '12px 0'}}>
 							重置密码
 						</a>
