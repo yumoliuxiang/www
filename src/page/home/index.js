@@ -317,7 +317,7 @@ export default class Home extends React.Component {
 						<div style={{ margin: '12px 0 6px 0' }}>
 							扫描下面二维码，邀请你进入微信群
 						</div>
-						<img style={{ width: '50%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} src={require('../../static/wechat.png')} alt="" />
+						<img style={{ width: '50%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} src="https://note.youdao.com/yws/api/personal/file/58B17F3D8FEF477F9093D81814BDD4AA?method=download&shareKey=e4a1ab8f78b373e823eefd0cf6c5baaf" alt="" />
 					</TabPane>
 				</Tabs>
 		</div>
