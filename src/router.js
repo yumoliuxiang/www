@@ -8,19 +8,16 @@ import ApplyResetPassword from './page/applyResetPassword';
 import ResetPassword from './page/resetPassword';
 
 export default class App extends React.Component {
-	render() {
-		return (
-			<Router history={browserHistory}>
-				<Route path="apply" component={Apply} />
-				<Route path="login" component={Login} />
-				<Route path="register" component={Register} />
-				<Route
-					path="applyResetPassword"
-					component={ApplyResetPassword}
-				/>
-				<Route path="resetPassword" component={ResetPassword} />
-				<Route path="/" component={Home} />
-			</Router>
-		);
-	}
+  render() {
+    return (
+      <Router history={browserHistory}>
+        <Route path="apply" component={Apply} />
+        <Route path="login" component={Login} />
+        <Route path="register" component={Register} />
+        <Route path="applyResetPassword" component={ApplyResetPassword} />
+        <Route path="resetPassword" component={ResetPassword} />
+        <Route path="/" component={Home} />
+      </Router>
+    );
+  }
 }
