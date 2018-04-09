@@ -40,19 +40,32 @@ class ResetPassword extends React.Component {
 		e.preventDefault();
 		let {password, repeatPwd} = this.state;
 
-		if (this.validatePassword(password) && this.validateRepeatPwd(repeatPwd)) {
+		if (
+			this.validatePassword(password) &&
+			this.validateRepeatPwd(repeatPwd)
+		) {
 			this.resetPassword({password});
 		}
 	};
 
 	validatePassword = password => {
 		if (!password) {
-			this.setState({passwordError: true, passwordErrorHelp: '请输入密码'});
+			this.setState({
+				passwordError: true,
+				passwordErrorHelp: '请输入密码'
+			});
 		} else if (password.length < 4 || password.length > 16) {
-			this.setState({passwordError: true, passwordErrorHelp: '密码长度在6-16位之间'});
+			this.setState({
+				passwordError: true,
+				passwordErrorHelp: '密码长度在6-16位之间'
+			});
 			return false;
 		} else {
-			this.setState({passwordError: false, passwordErrorHelp: '', password});
+			this.setState({
+				passwordError: false,
+				passwordErrorHelp: '',
+				password
+			});
 			return true;
 		}
 	};
@@ -61,7 +74,10 @@ class ResetPassword extends React.Component {
 		let {password} = this.state;
 
 		if (repeatPwd !== password) {
-			this.setState({repeatPwdError: true, repeatPwdErrorHelp: '两次输入的密码不一致'});
+			this.setState({
+				repeatPwdError: true,
+				repeatPwdErrorHelp: '两次输入的密码不一致'
+			});
 			return false;
 		} else {
 			this.setState({repeatPwdError: false, repeatPwdErrorHelp: ''});
@@ -71,37 +87,58 @@ class ResetPassword extends React.Component {
 
 	render() {
 		const {getFieldDecorator} = this.props.form;
-		let {passwordError, passwordErrorHelp, repeatPwdError, repeatPwdErrorHelp} = this.state;
+		let {
+			passwordError,
+			passwordErrorHelp,
+			repeatPwdError,
+			repeatPwdErrorHelp
+		} = this.state;
 
 		return (
 			<Form onSubmit={this.handleSubmit} className="login-form">
 				<FormItem>
 					<h2>重置密码</h2>
 				</FormItem>
-				<FormItem key={2} validateStatus={passwordError ? 'error' : ''} help={passwordErrorHelp}>
+				<FormItem
+					key={2}
+					validateStatus={passwordError ? 'error' : ''}
+					help={passwordErrorHelp}
+				>
 					{getFieldDecorator('password', {
 						rules: [{required: true, message: '请输入密码'}]
 					})(
 						<Input
-							onChange={e => this.setState({password: e.target.value})}
+							onChange={e =>
+								this.setState({password: e.target.value})
+							}
 							type={'password'}
 							placeholder="请输入密码"
 						/>
 					)}
 				</FormItem>
-				<FormItem key={3} validateStatus={repeatPwdError ? 'error' : ''} help={repeatPwdErrorHelp}>
+				<FormItem
+					key={3}
+					validateStatus={repeatPwdError ? 'error' : ''}
+					help={repeatPwdErrorHelp}
+				>
 					{getFieldDecorator('repeatPwd', {
 						rules: [{required: true, message: '请输入密码'}]
 					})(
 						<Input
-							onChange={e => this.setState({repeatPwd: e.target.value})}
+							onChange={e =>
+								this.setState({repeatPwd: e.target.value})
+							}
 							type={'password'}
 							placeholder="请确认密码"
 						/>
 					)}
 				</FormItem>
 				<FormItem key={4}>
-					<Button type="primary" htmlType="submit" className="login-form-button">
+					<Button
+						type="primary"
+						htmlType="submit"
+						className="login-form-button"
+					>
 						确定
 					</Button>
 				</FormItem>

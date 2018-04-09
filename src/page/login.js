@@ -42,7 +42,9 @@ class Login extends React.Component {
 			<Form onSubmit={this.handleSubmit} className="login-form">
 				<FormItem>
 					<h2>登录</h2>
-					<span className={'subTitle'}>登录并贡献小号即可一键手气最佳红包</span>
+					<span className={'subTitle'}>
+						登录并贡献小号即可一键手气最佳红包
+					</span>
 				</FormItem>
 				<FormItem>
 					{getFieldDecorator('account', {
@@ -55,7 +57,11 @@ class Login extends React.Component {
 					})(<Input type="password" placeholder="请输入密码" />)}
 				</FormItem>
 				<FormItem>
-					<Button type="primary" htmlType="submit" className="login-form-button">
+					<Button
+						type="primary"
+						htmlType="submit"
+						className="login-form-button"
+					>
 						登录
 					</Button>
 					<a
@@ -70,10 +76,16 @@ class Login extends React.Component {
 				</FormItem>
 				<Breadcrumb>
 					<Breadcrumb.Item>
-						<a onClick={e => {
-							e.preventDefault();
-							browserHistory.push('/applyResetPassword');
-						}} style={{display: 'inline-block', margin: '12px 0'}}>
+						<a
+							onClick={e => {
+								e.preventDefault();
+								browserHistory.push('/applyResetPassword');
+							}}
+							style={{
+								display: 'inline-block',
+								margin: '12px 0'
+							}}
+						>
 							重置密码
 						</a>
 					</Breadcrumb.Item>
@@ -82,7 +94,10 @@ class Login extends React.Component {
 							href="https://github.com/game-helper/hongbao2/issues/new"
 							target="_blank"
 							rel="noopener noreferrer"
-							style={{display: 'inline-block', margin: '12px 0'}}
+							style={{
+								display: 'inline-block',
+								margin: '12px 0'
+							}}
 						>
 							反馈问题
 						</a>

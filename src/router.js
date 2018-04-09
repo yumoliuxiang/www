@@ -14,7 +14,10 @@ export default class App extends React.Component {
 				<Route path="apply" component={Apply} />
 				<Route path="login" component={Login} />
 				<Route path="register" component={Register} />
-				<Route path="applyResetPassword" component={ApplyResetPassword} />
+				<Route
+					path="applyResetPassword"
+					component={ApplyResetPassword}
+				/>
 				<Route path="resetPassword" component={ResetPassword} />
 				<Route path="/" component={Home} />
 			</Router>

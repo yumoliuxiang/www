@@ -22,8 +22,7 @@ class ContributeForm extends React.Component {
 					value: values.value,
 					application: this.props.application
 				};
-				axios.post(apis.cookie, qs.stringify(params))
-				.then(data => {
+				axios.post(apis.cookie, qs.stringify(params)).then(data => {
 					if (data.code === 0) {
 						alert('贡献成功！');
 						this.props.callback();
@@ -47,7 +46,9 @@ class ContributeForm extends React.Component {
 			<Form onSubmit={this.handleSubmit} className="login-form">
 				<FormItem>
 					{getFieldDecorator('value', {
-						rules: [{required: true, message: '请输入要贡献的 cookie'}]
+						rules: [
+							{required: true, message: '请输入要贡献的 cookie'}
+						]
 					})(
 						<TextArea
 							placeholder={
@@ -60,7 +61,12 @@ class ContributeForm extends React.Component {
 					)}
 				</FormItem>
 				<FormItem>
-					<Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
+					<Button
+						type="primary"
+						loading={isLoading}
+						htmlType="submit"
+						className="login-form-button"
+					>
 						确定
 					</Button>
 				</FormItem>
