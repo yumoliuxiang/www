@@ -89,7 +89,7 @@ class GetHongbaoForm extends React.Component {
     historyList.forEach((o, i) => {
       o.time = dateFormat(new Date(o.gmtCreate));
       if (o.status === 1) {
-        o.message = '领取成功';
+        o.message = '领取成功（请以实际到账金额为准）';
       } else if (o.status === 0) {
         o.message = `正在领取...`;
       } else if (o.status === 2) {
