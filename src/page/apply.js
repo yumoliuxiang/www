@@ -55,11 +55,7 @@ class Apply extends React.Component {
   };
 
   validatmail = mail => {
-    if (
-      /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(
-        mail
-      )
-    ) {
+    if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(mail)) {
       this.setState({mailError: false, mailErrorHelp: '', mail});
       return true;
     } else {
@@ -90,15 +86,7 @@ class Apply extends React.Component {
     (dom.src = apis.getCaptcha + '?' + new Date().getTime());
 
   renderForm() {
-    let {
-      mail,
-      mailError,
-      mailErrorHelp,
-      captchaError,
-      captchaErrorHelp,
-      isLoading,
-      captcha
-    } = this.state;
+    let {mail, mailError, mailErrorHelp, captchaError, captchaErrorHelp, isLoading, captcha} = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
@@ -106,11 +94,7 @@ class Apply extends React.Component {
           <h2>申请帐号</h2>
           <span className={'subTitle'}>登录并贡献小号即可一键手气最佳红包</span>
         </FormItem>
-        <FormItem
-          key={0}
-          validateStatus={mailError ? 'error' : ''}
-          help={mailErrorHelp}
-        >
+        <FormItem key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
           <Input
             name="mail"
             value={mail}
@@ -118,11 +102,7 @@ class Apply extends React.Component {
             onChange={e => this.setState({mail: e.target.value})}
           />
         </FormItem>
-        <FormItem
-          key={1}
-          validateStatus={captchaError ? 'error' : ''}
-          help={captchaErrorHelp}
-        >
+        <FormItem key={1} validateStatus={captchaError ? 'error' : ''} help={captchaErrorHelp}>
           <Input
             name="captcha"
             value={captcha}
@@ -139,12 +119,7 @@ class Apply extends React.Component {
           />
         </FormItem>
         <FormItem key={2}>
-          <Button
-            type="primary"
-            loading={isLoading}
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
             申请
           </Button>
           <a

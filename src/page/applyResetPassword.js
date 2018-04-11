@@ -54,11 +54,7 @@ class ApplyResetPassword extends React.Component {
   };
 
   validatmail = mail => {
-    if (
-      /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(
-        mail
-      )
-    ) {
+    if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(mail)) {
       this.setState({mailError: false, mailErrorHelp: '', mail});
       return true;
     } else {
@@ -89,26 +85,14 @@ class ApplyResetPassword extends React.Component {
     (dom.src = apis.resetPasswordCaptcha + '?' + new Date().getTime());
 
   renderForm() {
-    let {
-      mail,
-      mailError,
-      mailErrorHelp,
-      captchaError,
-      captchaErrorHelp,
-      isLoading,
-      captcha
-    } = this.state;
+    let {mail, mailError, mailErrorHelp, captchaError, captchaErrorHelp, isLoading, captcha} = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormItem>
           <h2>申请重置密码</h2>
         </FormItem>
-        <FormItem
-          key={0}
-          validateStatus={mailError ? 'error' : ''}
-          help={mailErrorHelp}
-        >
+        <FormItem key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
           <Input
             name="mail"
             value={mail}
@@ -116,11 +100,7 @@ class ApplyResetPassword extends React.Component {
             onChange={e => this.setState({mail: e.target.value})}
           />
         </FormItem>
-        <FormItem
-          key={1}
-          validateStatus={captchaError ? 'error' : ''}
-          help={captchaErrorHelp}
-        >
+        <FormItem key={1} validateStatus={captchaError ? 'error' : ''} help={captchaErrorHelp}>
           <Input
             name="captcha"
             value={captcha}
@@ -137,12 +117,7 @@ class ApplyResetPassword extends React.Component {
           />
         </FormItem>
         <FormItem key={2}>
-          <Button
-            type="primary"
-            loading={isLoading}
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
             申请重置密码
           </Button>
         </FormItem>

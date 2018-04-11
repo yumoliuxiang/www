@@ -45,28 +45,17 @@ export default class Carousel extends React.Component {
     let {data = []} = this.props;
 
     return (
-      <div
-        style={{width: '100%', height: '100%', overflow: 'hidden'}}
-        ref={dom => (this.boxDom = dom)}
-      >
+      <div style={{width: '100%', height: '100%', overflow: 'hidden'}} ref={dom => (this.boxDom = dom)}>
         <div ref={dom => (this.innerDom = dom)}>
           {data.map((item, index) => (
-            <div
-              style={{height: '30px', lineHeight: '30px'}}
-              className="marquee-vertical-txt"
-              key={index}
-            >
+            <div style={{height: '30px', lineHeight: '30px'}} className="marquee-vertical-txt" key={index}>
               {item}
             </div>
           ))}
         </div>
         <div>
           {data.map((item, index) => (
-            <div
-              style={{height: '30px', lineHeight: '30px'}}
-              className="marquee-vertical-txt"
-              key={index}
-            >
+            <div style={{height: '30px', lineHeight: '30px'}} className="marquee-vertical-txt" key={index}>
               {item}
             </div>
           ))}
@@ -76,10 +65,6 @@ export default class Carousel extends React.Component {
   }
 
   render() {
-    return (
-      <div style={{width: '100%', height: '30px', overflow: 'hidden'}}>
-        {this.renderBody()}
-      </div>
-    );
+    return <div style={{width: '100%', height: '30px', overflow: 'hidden'}}>{this.renderBody()}</div>;
   }
 }

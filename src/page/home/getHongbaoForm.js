@@ -118,9 +118,7 @@ class GetHongbaoForm extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <div style={{color: '#dd2323', paddingBottom: '10px'}}>
-          请先仔细阅读规则再来领取，以免浪费次数
-        </div>
+        <div style={{color: '#dd2323', paddingBottom: '10px'}}>请先仔细阅读规则再来领取，以免浪费次数</div>
         <FormItem>
           {getFieldDecorator('phone', {
             rules: [
@@ -130,12 +128,7 @@ class GetHongbaoForm extends React.Component {
               }
             ],
             initialValue: this.state.mobile
-          })(
-            <Input
-              placeholder="请输入要领取最大红包的手机号码"
-              maxLength={11}
-            />
-          )}
+          })(<Input placeholder="请输入要领取最大红包的手机号码" maxLength={11} />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('url', {
@@ -153,19 +146,10 @@ class GetHongbaoForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          <Button
-            type="primary"
-            disabled={disableBtn}
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" disabled={disableBtn} htmlType="submit" className="login-form-button">
             领取
           </Button>
-          {disableBtn && (
-            <span style={{color: '#dd2323', marginLeft: '12px'}}>
-              请等待上一个红包领取完成
-            </span>
-          )}
+          {disableBtn && <span style={{color: '#dd2323', marginLeft: '12px'}}>请等待上一个红包领取完成</span>}
         </FormItem>
         {this.renderHistoryTable()}
         {this.renderDescription()}
@@ -189,8 +173,7 @@ class GetHongbaoForm extends React.Component {
           <Panel header="如何复制红包链接？" key="3">
             1. 分享到 QQ，选择 “我的电脑”，PC 版 QQ 复制链接。<br />
             2. 分享到微信，PC 版微信右键用浏览器打开，复制链接。<br />
-            3. 长按微信分享的卡片 - 点击更多 - 发送邮件 -
-            复制链接。（如果看不到链接，在微信的设置 - 通用 - 功能 -
+            3. 长按微信分享的卡片 - 点击更多 - 发送邮件 - 复制链接。（如果看不到链接，在微信的设置 - 通用 - 功能 -
             开启邮箱提醒）
           </Panel>
         </Collapse>

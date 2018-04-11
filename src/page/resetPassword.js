@@ -84,23 +84,14 @@ class ResetPassword extends React.Component {
 
   render() {
     const {getFieldDecorator} = this.props.form;
-    let {
-      passwordError,
-      passwordErrorHelp,
-      repeatPwdError,
-      repeatPwdErrorHelp
-    } = this.state;
+    let {passwordError, passwordErrorHelp, repeatPwdError, repeatPwdErrorHelp} = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           <h2>重置密码</h2>
         </FormItem>
-        <FormItem
-          key={2}
-          validateStatus={passwordError ? 'error' : ''}
-          help={passwordErrorHelp}
-        >
+        <FormItem key={2} validateStatus={passwordError ? 'error' : ''} help={passwordErrorHelp}>
           {getFieldDecorator('password', {
             rules: [{required: true, message: '请输入密码'}]
           })(
@@ -111,11 +102,7 @@ class ResetPassword extends React.Component {
             />
           )}
         </FormItem>
-        <FormItem
-          key={3}
-          validateStatus={repeatPwdError ? 'error' : ''}
-          help={repeatPwdErrorHelp}
-        >
+        <FormItem key={3} validateStatus={repeatPwdError ? 'error' : ''} help={repeatPwdErrorHelp}>
           {getFieldDecorator('repeatPwd', {
             rules: [{required: true, message: '请输入密码'}]
           })(
@@ -127,11 +114,7 @@ class ResetPassword extends React.Component {
           )}
         </FormItem>
         <FormItem key={4}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" htmlType="submit" className="login-form-button">
             确定
           </Button>
         </FormItem>

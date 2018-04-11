@@ -59,12 +59,7 @@ class ContributeForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          <Button
-            type="primary"
-            loading={isLoading}
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
             确定
           </Button>
         </FormItem>
