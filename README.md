@@ -22,7 +22,7 @@ npm run dev
 npm run build
 ```
 
-将 build 之后生成的 dist 目录提交到网站根目录
+将生成的 build/ 目录提交到网站根目录
 
 ## 捐赠
 
