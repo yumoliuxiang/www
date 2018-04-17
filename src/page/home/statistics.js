@@ -41,7 +41,6 @@ export default class Rank extends React.Component {
                 color: '#666',
                 formatter: value => {
                   return fmtDate(new Date(value), 'MM-dd');
-                  return value;
                 }
               },
               splitLine: {
