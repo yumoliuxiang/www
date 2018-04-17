@@ -49,10 +49,10 @@ export default class Rank extends React.Component {
               data: ele.map(o => o.date).reverse()
             },
             yAxis: {
-              name: '总金额(元)',
+              name: '总金额(千元)',
               nameTextStyle: {
                 color: '#666',
-                padding: [0, 20, 0, 0]
+                padding: [0, 10, 0, 0]
               },
               type: 'value',
               axisTick: {
@@ -64,7 +64,8 @@ export default class Rank extends React.Component {
                 }
               },
               axisLabel: {
-                color: '#666'
+                color: '#666',
+                formatter: value => Number(value / 1000).toFixed(0)
               },
               splitLine: {
                 lineStyle: {
