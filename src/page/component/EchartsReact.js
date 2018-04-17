@@ -2,7 +2,7 @@ import React from 'react';
 import ec from 'echarts';
 import deep from 'deep';
 
-var EcharsReact = React.createClass({
+class EcharsReact extends React.Component {
   render() {
     return (
       <div
@@ -13,20 +13,20 @@ var EcharsReact = React.createClass({
         onClick={this.props.onContainerClick}
       />
     );
-  },
+  }
 
   mousedown(e) {
     this.mousex = e.offsetX;
     this.mousey = e.offsetY;
-  },
+  }
   mouseup(e) {
     var cp = (a, b) => a + 15 < b || a - 15 > b;
     this.clickmoved = cp(e.offsetX, this.mousex) || cp(e.offsetY, this.mousey);
-  },
+  }
   click(e) {
     !this.clickmoved && this.props.onClick && this.props.onClick(e);
-  },
-  componentDidMount() {
+  }
+  componentDidMount = e => {
     this.echart = ec.init(this.refs.me);
     this.props.getRef && this.props.getRef(this.echart);
 
@@ -72,7 +72,8 @@ var EcharsReact = React.createClass({
       .map(eventName => this.echart.on(eventName, o => this.props[eventName](o)));
     window.addEventListener('resize', this.resize);
     setTimeout(this.resize, 360);
-  },
+    this.mounted = true;
+  };
 
   shouldComponentUpdate(nextProps) {
     var echart = this.echart;
@@ -86,16 +87,17 @@ var EcharsReact = React.createClass({
     }
 
     return false;
-  },
+  }
 
-  componentWillUnmount() {
+  componentWillUnmount = e => {
     window.removeEventListener('resize', this.resize);
     this.echart.dispose();
-  },
+    this.mounted = false;
+  };
 
   resize() {
-    if (this.isMounted()) this.echart.resize();
+    if (this.mounted) this.echart.resize();
   }
-});
+}
 EcharsReact.echarts = ec;
 export default EcharsReact;
