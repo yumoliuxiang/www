@@ -152,6 +152,7 @@ class GetHongbaoForm extends React.Component {
           </Button>
           {disableBtn && <span style={{color: '#dd2323', marginLeft: '12px'}}>请等待上一个红包领取完成</span>}
         </FormItem>
+        <p style={{color: '#dd2323'}}>最近3天领取记录如下：</p>
         {this.renderHistoryTable()}
         {this.renderDescription()}
       </Form>

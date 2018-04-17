@@ -8,6 +8,7 @@ import GetHongbaoForm from './getHongbaoForm';
 import ContributeForm from './contributeForm';
 import Carousel from './carousel';
 import Rank from './rank';
+import Statistics from './statistics';
 
 const TabPane = Tabs.TabPane;
 const RadioGroup = Radio.Group;
@@ -28,7 +29,8 @@ export default class Home extends React.Component {
       tab: localStorage.getItem('tab') || '1',
       application: parseInt(localStorage.getItem('application') || 0, 10),
       carouselRecords: [],
-      rankData: {}
+      rankData: {},
+      trendData: {}
     };
     document.body.classList.add('is-home');
   }
@@ -43,10 +45,15 @@ export default class Home extends React.Component {
       this.zhuangbi();
       this.getNotice();
       this.getRank();
+      this.getTrend();
     } else {
       browserHistory.push('/login');
     }
   }
+
+  getTrend = e => {
+    axios.get(apis.getTrend).then(data => this.setState({trendData: data.data}));
+  };
 
   getRank = e => {
     axios.get(apis.getRank).then(data => this.setState({rankData: data.data}));
@@ -380,7 +387,10 @@ export default class Home extends React.Component {
           <TabPane tab="排行" key="4">
             <Rank data={this.state.rankData} />
           </TabPane>
-          <TabPane tab="加群" key="5" style={{textAlign: 'center'}}>
+          <TabPane tab="统计" key="5">
+            <Statistics data={this.state.trendData} />
+          </TabPane>
+          <TabPane tab="加群" key="6" style={{textAlign: 'center'}}>
             <a
               target="_blank"
               rel="noopener noreferrer"
