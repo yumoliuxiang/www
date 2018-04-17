@@ -53,7 +53,7 @@ export default class Rank extends React.Component {
               name: '总金额(元)',
               nameTextStyle: {
                 color: '#666',
-                padding: [0, 35, 0, 0]
+                padding: [0, 20, 0, 0]
               },
               type: 'value',
               axisTick: {
@@ -78,9 +78,10 @@ export default class Rank extends React.Component {
                 data: ele.map(o => o.totalPrice).reverse(),
                 smooth: true,
                 showSymbol: false,
+                symbolSize: 0,
                 hoverAnimation: false,
                 lineStyle: {
-                  color: 'rgba(0,141,225)'
+                  color: 'rgb(0,141,225)'
                 },
                 type: 'line'
               },
@@ -88,9 +89,10 @@ export default class Rank extends React.Component {
                 data: meituan.map(o => o.totalPrice).reverse(),
                 smooth: true,
                 showSymbol: false,
+                symbolSize: 0,
                 hoverAnimation: false,
                 lineStyle: {
-                  color: 'rgba(255,209,97)'
+                  color: 'rgb(255,209,97)'
                 },
                 type: 'line'
               }
