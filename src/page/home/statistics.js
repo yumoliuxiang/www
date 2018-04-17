@@ -15,7 +15,8 @@ export default class Rank extends React.Component {
           option={{
             grid: {
               top: 30,
-              bottom: 24
+              bottom: 24,
+              right: 0
             },
             tooltip: {
               show: true,
@@ -51,8 +52,7 @@ export default class Rank extends React.Component {
             yAxis: {
               name: '总金额(千元)',
               nameTextStyle: {
-                color: '#666',
-                padding: [0, 10, 0, 0]
+                color: '#666'
               },
               type: 'value',
               axisTick: {
