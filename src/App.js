@@ -1,11 +1,13 @@
 import React from 'react';
 import {Router, Route, browserHistory} from 'react-router';
-import Apply from './page/apply';
-import Register from './page/register';
-import Login from './page/login';
-import Home from './page/home';
-import ApplyResetPassword from './page/applyResetPassword';
-import ResetPassword from './page/resetPassword';
+import 'antd/dist/antd.css';
+import './App.css';
+import Apply from './page/Apply';
+import Register from './page/Register';
+import Login from './page/Login';
+import Home from './page/Home';
+import ApplyResetPassword from './page/ApplyResetPassword';
+import ResetPassword from './page/ResetPassword';
 
 export default class App extends React.Component {
   render() {

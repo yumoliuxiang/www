@@ -1,8 +1,8 @@
 import React from 'react';
-import Echarts from '../component/EchartsReact';
-import fmtDate from '../../util/dateFormat';
+import Echarts from '../../component/EchartsReact';
+import dateFormat from '../../util/dateFormat';
 
-export default class Rank extends React.Component {
+export default class Statistics extends React.Component {
   render() {
     let {ele = [], meituan = []} = this.props.data;
 
@@ -23,7 +23,7 @@ export default class Rank extends React.Component {
               trigger: 'axis',
               formatter: params => {
                 let [ele, meituan] = params;
-                return `${fmtDate(new Date(ele.name), 'yyyy-MM-dd')}<br/>
+                return `${dateFormat(new Date(ele.name), 'yyyy-MM-dd')}<br/>
                     饿了么: ${ele.value} 元<br/>
                     美&nbsp;&nbsp;&nbsp;团: ${meituan.value} 元`;
               }
@@ -41,7 +41,7 @@ export default class Rank extends React.Component {
               axisLabel: {
                 color: '#666',
                 formatter: value => {
-                  return fmtDate(new Date(value), 'MM-dd');
+                  return dateFormat(new Date(value), 'MM-dd');
                 }
               },
               splitLine: {

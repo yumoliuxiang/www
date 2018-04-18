@@ -4,11 +4,11 @@ import {Alert, Breadcrumb, Button, Popconfirm, Radio, Table, Tabs} from 'antd';
 import {axios, apis, qs} from '../../api';
 import ClipboardJS from 'clipboard';
 import dateFormat from '../../util/dateFormat';
-import GetHongbaoForm from './getHongbaoForm';
-import ContributeForm from './contributeForm';
-import Carousel from './carousel';
-import Rank from './rank';
-import Statistics from './statistics';
+import GetHongbaoForm from './GetHongbaoForm';
+import ContributeForm from './ContributeForm';
+import Carousel from './Carousel';
+import Rank from './Rank';
+import Statistics from './Statistics';
 
 const TabPane = Tabs.TabPane;
 const RadioGroup = Radio.Group;

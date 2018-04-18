@@ -72,6 +72,10 @@ textarea {
   padding: 16px 8px;
 }
 
+.ant-tabs-nav .ant-tabs-tab {
+  margin-right: 10px;
+}
+
 .ant-breadcrumb a {
   color: #40a9ff;
 }

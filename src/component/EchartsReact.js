@@ -19,13 +19,16 @@ class EcharsReact extends React.Component {
     this.mousex = e.offsetX;
     this.mousey = e.offsetY;
   }
+
   mouseup(e) {
-    var cp = (a, b) => a + 15 < b || a - 15 > b;
+    const cp = (a, b) => a + 15 < b || a - 15 > b;
     this.clickmoved = cp(e.offsetX, this.mousex) || cp(e.offsetY, this.mousey);
   }
+
   click(e) {
     !this.clickmoved && this.props.onClick && this.props.onClick(e);
   }
+
   componentDidMount = e => {
     this.echart = ec.init(this.refs.me);
     this.props.getRef && this.props.getRef(this.echart);
@@ -76,7 +79,7 @@ class EcharsReact extends React.Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    var echart = this.echart;
+    const echart = this.echart;
 
     if (!deep.equals(this.props.style, nextProps.style)) {
       echart.resize();
@@ -99,5 +102,6 @@ class EcharsReact extends React.Component {
     if (this.mounted) this.echart.resize();
   }
 }
+
 EcharsReact.echarts = ec;
 export default EcharsReact;
