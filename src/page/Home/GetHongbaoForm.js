@@ -54,7 +54,12 @@ class GetHongbaoForm extends React.Component {
 
     let renderStatus = (text, r) => {
       let color = {0: '', 1: '#5bab60', 2: '#dd2323'}[r.status];
-      return <span style={{color}}>{text}</span>;
+      return (
+        <div>
+          <div>{r.phone}</div>
+          <div style={{color}}>{text}</div>
+        </div>
+      );
     };
 
     let renderPrice = (price, r) => {
