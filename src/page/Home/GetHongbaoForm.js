@@ -56,7 +56,9 @@ class GetHongbaoForm extends React.Component {
       let color = {0: '', 1: '#5bab60', 2: '#dd2323'}[r.status];
       return (
         <div>
-          <div>{r.phone}</div>
+          <div>
+            {r.application === 0 ? '美' : '饿'} {r.phone.replace(/(\d{3})(\d{4})(\d{3})/, '$1****$3')}
+          </div>
           <div style={{color}}>{text}</div>
         </div>
       );
