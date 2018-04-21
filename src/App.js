@@ -1,6 +1,5 @@
 import React from 'react';
 import {Router, Route, browserHistory} from 'react-router';
-import 'antd/dist/antd.css';
 import './App.css';
 import AsyncComponent from './component/AsyncComponent';
 

@@ -4,7 +4,6 @@
   "dependencies": {
     "antd": "^3.2.3",
     "axios": "^0.18.0",
-    "babel-polyfill": "^6.26.0",
     "clipboard": "^2.0.0",
     "deep": "0.0.2",
     "echarts": "^4.0.4",
