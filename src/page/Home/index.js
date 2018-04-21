@@ -53,12 +53,12 @@ export default class Home extends React.Component {
   }
 
   render() {
-    let {application, historyList} = this.state;
+    const {application, historyList, tab, carouselRecords, cookies, rankData, trendData} = this.state;
 
     return (
       <div className="app">
         <div className="app-column">
-          <CarouselComponent data={this.state.carouselRecords} />
+          <CarouselComponent data={carouselRecords} />
           {this.renderHello()}
           {this.renderBreadcrumb()}
           <AlipayComponent.Button />
@@ -67,7 +67,7 @@ export default class Home extends React.Component {
           <AlipayComponent.Image />
         </div>
 
-        <Tabs className="app-column" defaultActiveKey={this.state.tab} onChange={this.onTabChange}>
+        <Tabs className="app-column" defaultActiveKey={tab} onChange={this.onTabChange}>
           <Tabs.TabPane tab="规则" key="1">
             <Rules />
           </Tabs.TabPane>
@@ -79,15 +79,15 @@ export default class Home extends React.Component {
               contributeCallback={this.contributeCallback}
               onApplicationChange={this.onApplicationChange}
               application={application}
-              cookies={this.state.cookies}
+              cookies={cookies}
               deleteCookieCallback={this.deleteCookieCallback}
             />
           </Tabs.TabPane>
           <Tabs.TabPane tab="排行" key="4">
-            <Rank data={this.state.rankData} />
+            <Rank data={rankData} />
           </Tabs.TabPane>
           <Tabs.TabPane tab="统计" key="5">
-            <Statistics data={this.state.trendData} />
+            <Statistics data={trendData} />
           </Tabs.TabPane>
           <Tabs.TabPane tab="加群" key="6">
             <JoinGroup />
