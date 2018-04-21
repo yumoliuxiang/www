@@ -3,17 +3,14 @@ import {browserHistory} from 'react-router';
 import {Alert, Breadcrumb, Tabs} from 'antd';
 import {axios, apis, qs} from '../../api';
 import dateFormat from '../../util/dateFormat';
-import AsyncComponent from '../../component/AsyncComponent';
-import CarouselComponent from '../../component/CarouselComponent';
 import AlipayComponent from '../../component/AlipayComponent';
-
-// 根据 tab 页切割 js
-const GetHongbao = AsyncComponent(() => import('./GetHongbao'));
-const Contribute = AsyncComponent(() => import('./Contribute'));
-const Rules = AsyncComponent(() => import('./Rules'));
-const Rank = AsyncComponent(() => import('./Rank'));
-const Statistics = AsyncComponent(() => import('./Statistics'));
-const JoinGroup = AsyncComponent(() => import('./JoinGroup'));
+import CarouselComponent from '../../component/CarouselComponent';
+import GetHongbao from './GetHongbao';
+import Contribute from './Contribute';
+import Rules from './Rules';
+import Rank from './Rank';
+import Statistics from './Statistics';
+import JoinGroup from './JoinGroup';
 
 export default class Home extends React.Component {
   constructor() {
