@@ -2,7 +2,6 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {Form, Input, Button} from 'antd';
 import {axios, apis, qs} from '../api';
-const FormItem = Form.Item;
 
 class Register extends React.Component {
   constructor() {
@@ -88,10 +87,10 @@ class Register extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem>
+        <Form.Item>
           <h2>设置密码</h2>
-        </FormItem>
-        <FormItem key={2} validateStatus={passwordError ? 'error' : ''} help={passwordErrorHelp}>
+        </Form.Item>
+        <Form.Item key={2} validateStatus={passwordError ? 'error' : ''} help={passwordErrorHelp}>
           {getFieldDecorator('password', {
             rules: [{required: true, message: '请输入密码'}]
           })(
@@ -101,8 +100,8 @@ class Register extends React.Component {
               placeholder="请输入密码"
             />
           )}
-        </FormItem>
-        <FormItem key={3} validateStatus={repeatPwdError ? 'error' : ''} help={repeatPwdErrorHelp}>
+        </Form.Item>
+        <Form.Item key={3} validateStatus={repeatPwdError ? 'error' : ''} help={repeatPwdErrorHelp}>
           {getFieldDecorator('repeatPwd', {
             rules: [{required: true, message: '请输入密码'}]
           })(
@@ -112,12 +111,12 @@ class Register extends React.Component {
               placeholder="请确认密码"
             />
           )}
-        </FormItem>
-        <FormItem key={4}>
+        </Form.Item>
+        <Form.Item key={4}>
           <Button type="primary" htmlType="submit" className="login-form-button">
             完成注册
           </Button>
-        </FormItem>
+        </Form.Item>
       </Form>
     );
   }

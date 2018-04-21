@@ -3,8 +3,6 @@ import {browserHistory} from 'react-router';
 import {Button, Form, Input} from 'antd';
 import {axios, apis, qs} from '../api';
 
-const FormItem = Form.Item;
-
 class Apply extends React.Component {
   constructor() {
     super();
@@ -90,25 +88,25 @@ class Apply extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem>
+        <Form.Item>
           <h2>申请帐号</h2>
-          <span className={'subTitle'}>登录并贡献小号即可一键手气最佳红包</span>
-        </FormItem>
-        <FormItem key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
+          <span className={'sub-title'}>登录并贡献小号即可一键手气最佳红包</span>
+        </Form.Item>
+        <Form.Item key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
           <Input
             name="mail"
             value={mail}
             placeholder="请输入邮箱"
             onChange={e => this.setState({mail: e.target.value})}
           />
-        </FormItem>
-        <FormItem key={1} validateStatus={captchaError ? 'error' : ''} help={captchaErrorHelp}>
+        </Form.Item>
+        <Form.Item key={1} validateStatus={captchaError ? 'error' : ''} help={captchaErrorHelp}>
           <Input
             name="captcha"
             value={captcha}
             placeholder="请输入验证码"
             onChange={e => this.setState({captcha: e.target.value})}
-            style={{width: '225px'}}
+            style={{width: '185px'}}
           />
           <img
             id="captchaCode"
@@ -117,8 +115,8 @@ class Apply extends React.Component {
             style={{marginTop: '-1px', cursor: 'pointer'}}
             alt="验证码"
           />
-        </FormItem>
-        <FormItem key={2}>
+        </Form.Item>
+        <Form.Item key={2}>
           <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
             申请
           </Button>
@@ -131,7 +129,7 @@ class Apply extends React.Component {
           >
             已有帐号？立即登录
           </a>
-        </FormItem>
+        </Form.Item>
         <a
           href="https://github.com/game-helper/hongbao2/issues/new"
           target="_blank"

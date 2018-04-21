@@ -5,13 +5,14 @@ html {
 
 body {
   min-width: 290px;
-  width: 480px;
+  max-width: 480px;
   padding: 0 15px;
   margin: 0 auto;
 }
 
 body.is-home {
   width: 1020px;
+  max-width: 100%;
 }
 
 #root {
@@ -84,7 +85,7 @@ textarea {
   text-decoration: underline;
 }
 
-.subTitle {
+.sub-title {
   color: #ccc;
 }
 

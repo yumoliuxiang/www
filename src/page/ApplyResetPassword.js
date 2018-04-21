@@ -2,8 +2,6 @@ import React from 'react';
 import {Button, Form, Input} from 'antd';
 import {axios, apis, qs} from '../api';
 
-const FormItem = Form.Item;
-
 class ApplyResetPassword extends React.Component {
   constructor() {
     super();
@@ -89,24 +87,24 @@ class ApplyResetPassword extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormItem>
+        <Form.Item>
           <h2>申请重置密码</h2>
-        </FormItem>
-        <FormItem key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
+        </Form.Item>
+        <Form.Item key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
           <Input
             name="mail"
             value={mail}
             placeholder="请输入邮箱"
             onChange={e => this.setState({mail: e.target.value})}
           />
-        </FormItem>
-        <FormItem key={1} validateStatus={captchaError ? 'error' : ''} help={captchaErrorHelp}>
+        </Form.Item>
+        <Form.Item key={1} validateStatus={captchaError ? 'error' : ''} help={captchaErrorHelp}>
           <Input
             name="captcha"
             value={captcha}
             placeholder="请输入验证码"
             onChange={e => this.setState({captcha: e.target.value})}
-            style={{width: '225px'}}
+            style={{width: '185px'}}
           />
           <img
             id="captchaCode"
@@ -115,12 +113,12 @@ class ApplyResetPassword extends React.Component {
             style={{marginTop: '-1px', cursor: 'pointer'}}
             alt="验证码"
           />
-        </FormItem>
-        <FormItem key={2}>
+        </Form.Item>
+        <Form.Item key={2}>
           <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
             申请重置密码
           </Button>
-        </FormItem>
+        </Form.Item>
         {this.state.finished ? (
           <div style={{fontSize: '16px', color: '#dd2323'}}>
             邮件已发送，请点击链接重新设置密码！若长时间未收到邮件，请重新申请。

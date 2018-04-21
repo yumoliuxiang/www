@@ -1,18 +1,19 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import {Alert, Breadcrumb, Button, Popconfirm, Radio, Table, Tabs} from 'antd';
+import {Alert, Breadcrumb, Tabs} from 'antd';
 import {axios, apis, qs} from '../../api';
-import ClipboardJS from 'clipboard';
 import dateFormat from '../../util/dateFormat';
-import GetHongbaoForm from './GetHongbaoForm';
-import ContributeForm from './ContributeForm';
-import Rules from './Rules';
-import Carousel from './Carousel';
-import Rank from './Rank';
-import Statistics from './Statistics';
+import AsyncComponent from '../../component/AsyncComponent';
+import CarouselComponent from '../../component/CarouselComponent';
+import AlipayComponent from '../../component/AlipayComponent';
 
-const TabPane = Tabs.TabPane;
-const RadioGroup = Radio.Group;
+// 根据 tab 页切割 js
+const GetHongbao = AsyncComponent(() => import('./GetHongbao'));
+const Contribute = AsyncComponent(() => import('./Contribute'));
+const Rules = AsyncComponent(() => import('./Rules'));
+const Rank = AsyncComponent(() => import('./Rank'));
+const Statistics = AsyncComponent(() => import('./Statistics'));
+const JoinGroup = AsyncComponent(() => import('./JoinGroup'));
 
 export default class Home extends React.Component {
   constructor() {
@@ -38,7 +39,6 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      this.aliHongbao();
       this.getUserInfo();
       this.getCookieList();
       this.getAvailableCount();
@@ -51,6 +51,59 @@ export default class Home extends React.Component {
       browserHistory.push('/login');
     }
   }
+
+  render() {
+    let {application, historyList} = this.state;
+
+    return (
+      <div className="app">
+        <div className="app-column">
+          <CarouselComponent data={this.state.carouselRecords} />
+          {this.renderHello()}
+          {this.renderBreadcrumb()}
+          <AlipayComponent.Button />
+          {this.renderAvailable()}
+          {this.renderNotice()}
+          <AlipayComponent.Image />
+        </div>
+
+        <Tabs className="app-column" defaultActiveKey={this.state.tab} onChange={this.onTabChange}>
+          <Tabs.TabPane tab="规则" key="1">
+            <Rules />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="领取" key="2">
+            <GetHongbao historyList={historyList} callback={this.getHongbaoCallback} />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="贡献" key="3">
+            <Contribute
+              contributeCallback={this.contributeCallback}
+              onApplicationChange={this.onApplicationChange}
+              application={application}
+              cookies={this.state.cookies}
+              deleteCookieCallback={this.deleteCookieCallback}
+            />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="排行" key="4">
+            <Rank data={this.state.rankData} />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="统计" key="5">
+            <Statistics data={this.state.trendData} />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="加群" key="6">
+            <JoinGroup />
+          </Tabs.TabPane>
+        </Tabs>
+      </div>
+    );
+  }
+
+  deleteCookieCallback = id => {
+    //前端删除
+    let cookies = this.state.cookies.filter(o => o.id !== id);
+    this.setState({cookies});
+    //刷新
+    this.getAvailableCount();
+  };
 
   getTrend = e => {
     axios.get(apis.getTrend).then(data => this.setState({trendData: data.data}));
@@ -126,94 +179,6 @@ export default class Home extends React.Component {
     axios.get(apis.zhuangbi).then(res => this.setState({carouselRecords: res.data}));
   };
 
-  deleteCookie = id => {
-    axios.post(apis.deleteCookie, qs.stringify({cookieId: id})).then(data => {
-      if (data.code === 0) {
-        //前端删除
-        let cookies = this.state.cookies.filter(o => o.id !== id);
-        this.setState({cookies});
-        //刷新
-        this.getAvailableCount();
-        alert('删除成功');
-      } else {
-        alert(data.message);
-      }
-    });
-  };
-
-  renderTable() {
-    //根据当前application过滤
-    let cookies = this.state.cookies
-      .filter(o => o.application === this.state.application)
-      .sort((a, b) => b.gmtCreate - a.gmtCreate);
-
-    let onConfirm = record => {
-      this.deleteCookie(record.id);
-    };
-
-    let renderHeadImg = (url, record) => (url ? <img src={url} width="50" height="50" alt="头像" /> : '--');
-
-    let renderTime = (time, record) => (
-      <div
-        style={{
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis'
-        }}
-      >
-        <p>{time}</p>
-        <p>{record.nickname}</p>
-      </div>
-    );
-
-    let renderDeleteBtn = (text, record) => (
-      <Popconfirm
-        title="删除将扣除 5 次消耗，确定要删除吗？"
-        onConfirm={e => onConfirm(record)}
-        onCancel={e => e}
-        okText="确定"
-        cancelText="取消"
-      >
-        <Button size="small">删除</Button>
-      </Popconfirm>
-    );
-
-    const columns = [
-      {
-        title: '头像',
-        dataIndex: 'headImgUrl',
-        key: 'headImgUrl',
-        width: 60,
-        render: renderHeadImg
-      },
-      {
-        title: '贡献时间、昵称',
-        dataIndex: 'time',
-        key: 'time',
-        render: renderTime
-      },
-      {
-        title: '操作',
-        dataIndex: 'operate',
-        key: 'operate',
-        width: 60,
-        render: renderDeleteBtn
-      }
-    ];
-
-    return (
-      <Table
-        dataSource={cookies}
-        columns={columns}
-        pagination={{
-          pageSize: 5,
-          size: 'small',
-          total: cookies.length
-        }}
-      />
-    );
-  }
-
   onTabChange = tab => {
     localStorage.setItem('tab', tab);
   };
@@ -235,187 +200,95 @@ export default class Home extends React.Component {
     localStorage.setItem('application', e.target.value);
   };
 
-  renderCarousel = e => {
-    let {carouselRecords = []} = this.state;
+  renderHello = e => {
+    return this.state.user.mail ? (
+      <h3>
+        您好 {this.state.user.mail} (uid: {this.state.user.id})
+      </h3>
+    ) : (
+      <h3>您好</h3>
+    );
+  };
 
-    let data = carouselRecords.map((o, i) => (
-      <div key={i} style={{color: '#5bab60', fontSize: '16px'}}>
-        {o.mail} 在 {dateFormat(new Date(o.gmtModified), 'HH:mm:ss')} 领到
-        <span style={{color: '#dd2323'}}>&nbsp;{o.price}&nbsp;</span>
-        元{o.application ? '饿了么' : '美团'}大红包
-      </div>
+  renderBreadcrumb = e => {
+    return (
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a
+            href="https://github.com/game-helper/hongbao2/issues/new"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              margin: '12px 0'
+            }}
+          >
+            反馈问题
+          </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a
+            href="https://github.com/game-helper/donate"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              margin: '12px 0'
+            }}
+          >
+            捐赠我们
+          </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a
+            onClick={e => {
+              e.preventDefault();
+              this.logout();
+            }}
+          >
+            退出登录
+          </a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
+  };
+
+  renderAvailable = e => {
+    return this.state.user.mail ? (
+      <Alert
+        style={{margin: '15px 0'}}
+        message={
+          '今日剩余可消耗：美团 ' +
+          this.state.available.meituan +
+          '/' +
+          this.state.cookies.filter(o => o.application === 0).length * 5 +
+          ' 次，饿了么 ' +
+          this.state.available.ele +
+          '/' +
+          this.state.cookies.filter(o => o.application === 1).length * 5 +
+          ' 次'
+        }
+        type="info"
+      />
+    ) : (
+      <Alert style={{margin: '15px 0'}} message="数据加载中，长时间没有响应请刷新页面" type="info" />
+    );
+  };
+
+  renderNotice = e => {
+    return this.state.noticeList.map((notice, index) => (
+      <Alert
+        style={{margin: '15px 0'}}
+        message={
+          <div
+            dangerouslySetInnerHTML={(__html => ({
+              __html
+            }))(notice)}
+          />
+        }
+        key={index}
+        type="warning"
+      />
     ));
-
-    return <Carousel data={data} />;
-  };
-
-  render() {
-    let {application, available, historyList} = this.state;
-
-    return (
-      <div className="app">
-        <div className="app-column">
-          {this.renderCarousel()}
-          {this.state.user.mail ? (
-            <h3>
-              您好 {this.state.user.mail} (uid: {this.state.user.id})
-            </h3>
-          ) : (
-            <h3>您好</h3>
-          )}
-          <Breadcrumb>
-            <Breadcrumb.Item>
-              <a
-                href="https://github.com/game-helper/hongbao2/issues/new"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-block',
-                  margin: '12px 0'
-                }}
-              >
-                反馈问题
-              </a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a
-                href="https://github.com/game-helper/donate"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-block',
-                  margin: '12px 0'
-                }}
-              >
-                捐赠我们
-              </a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a
-                onClick={e => {
-                  e.preventDefault();
-                  this.logout();
-                }}
-              >
-                退出登录
-              </a>
-            </Breadcrumb.Item>
-          </Breadcrumb>
-
-          <Button className="alihongbao-m" type="primary">
-            支付宝天天领红包
-          </Button>
-          {this.state.user.mail ? (
-            <Alert
-              style={{margin: '15px 0'}}
-              message={
-                '今日剩余可消耗：美团 ' +
-                available.meituan +
-                '/' +
-                this.state.cookies.filter(o => o.application === 0).length * 5 +
-                ' 次，饿了么 ' +
-                available.ele +
-                '/' +
-                this.state.cookies.filter(o => o.application === 1).length * 5 +
-                ' 次'
-              }
-              type="info"
-            />
-          ) : (
-            <Alert style={{margin: '15px 0'}} message="数据加载中，长时间没有响应请刷新页面" type="info" />
-          )}
-          {this.state.noticeList.map((notice, index) => (
-            <Alert
-              style={{margin: '15px 0'}}
-              message={
-                <div
-                  dangerouslySetInnerHTML={(__html => ({
-                    __html
-                  }))(notice)}
-                />
-              }
-              key={index}
-              type="warning"
-            />
-          ))}
-
-          {this.renderAlipayHongbao()}
-        </div>
-
-        <Tabs className="app-column" defaultActiveKey={this.state.tab} onChange={this.onTabChange}>
-          <TabPane tab="规则" key="1">
-            <Rules />
-          </TabPane>
-          <TabPane tab="领取" key="2">
-            <GetHongbaoForm historyList={historyList} callback={this.getHongbaoCallback} />
-          </TabPane>
-          <TabPane tab="贡献" key="3">
-            <div style={{color: '#dd2323', marginBottom: '15px'}}>
-              贡献每一个微信需要完全退出 PC 微信进程再登录小号<br />贡献每一个 QQ 需要清除浏览器 cookie
-              或打开隐身（无痕）模式再登录小号
-            </div>
-            <RadioGroup onChange={this.onApplicationChange} value={application} style={{marginBottom: '12px'}}>
-              <Radio value={0}>美团</Radio>
-              <Radio value={1}>饿了么</Radio>
-            </RadioGroup>
-            <ContributeForm callback={this.contributeCallback} application={application} />
-            {this.renderTable()}
-          </TabPane>
-          <TabPane tab="排行" key="4">
-            <Rank data={this.state.rankData} />
-          </TabPane>
-          <TabPane tab="统计" key="5">
-            <Statistics data={this.state.trendData} />
-          </TabPane>
-          <TabPane tab="加群" key="6" style={{textAlign: 'center'}}>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="//shang.qq.com/wpa/qunwpa?idkey=716520d506845906eb56c91c53e3213ceaddbd99f704c4afa6c1761b388311db"
-            >
-              点击加入 QQ 3 群：617166836
-            </a>
-            <div style={{margin: '12px 0 6px 0'}}>扫描下面二维码，邀请你进入微信群</div>
-            <img
-              style={{
-                width: '250px',
-                padding: '10px'
-              }}
-              src={require('../../static/wechat.png')}
-              alt=""
-            />
-          </TabPane>
-        </Tabs>
-      </div>
-    );
-  }
-
-  renderAlipayHongbao = e => {
-    return (
-      <div className="alihongbao-pc">
-        <img src={require('../../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
-        <div>
-          支付宝天天领红包<br />c7XYed92oO
-        </div>
-      </div>
-    );
-  };
-
-  aliHongbao = e => {
-    const clipboard = new ClipboardJS('.alihongbao-m', {
-      text: () => 'c7XYed92oO'
-    });
-
-    clipboard.on('success', e => {
-      e.clearSelection();
-      alert('打开支付宝即可领取红包（每天仅一次）');
-    });
-
-    clipboard.on('error', e => {
-      if (window.confirm('您的设备不支持复制红包码，是否跳转到支付宝领取？')) {
-        window.location.href =
-          'https://render.alipay.com/p/f/fd-j6lzqrgm/guiderofmklvtvw.html?shareId=2088312106287923&campStr=p1j%2BdzkZl018zOczaHT4Z5CLdPVCgrEXq89JsWOx1gdt05SIDMPg3PTxZbdPw9dL&sign=CKWXOrsHM0zT9nWHWNo76TOAPo5xqhAzOvXHgBrflIc%3D&scene=offlinePaymentNewSns';
-      }
-    });
   };
 }

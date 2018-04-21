@@ -1,8 +1,10 @@
 import React from 'react';
-import ec from 'echarts';
+import echarts from 'echarts';
 import deep from 'deep';
 
-class EcharsReact extends React.Component {
+export default class EchartsComponent extends React.Component {
+  static echarts = echarts;
+
   render() {
     return (
       <div
@@ -30,7 +32,7 @@ class EcharsReact extends React.Component {
   }
 
   componentDidMount = e => {
-    this.echart = ec.init(this.refs.me);
+    this.echart = echarts.init(this.refs.me);
     this.props.getRef && this.props.getRef(this.echart);
 
     this.echart.setOption(this.props.option);
@@ -102,6 +104,3 @@ class EcharsReact extends React.Component {
     if (this.mounted) this.echart.resize();
   }
 }
-
-EcharsReact.echarts = ec;
-export default EcharsReact;

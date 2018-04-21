@@ -1,8 +1,6 @@
 import React from 'react';
-import AsyncComponent from '../../component/AsyncComponent';
 import dateFormat from '../../util/dateFormat';
-
-const Echarts = AsyncComponent(() => import('../../component/EchartsReact'));
+import Echarts from '../../component/EchartsComponent';
 
 export default class Statistics extends React.Component {
   render() {

@@ -1,7 +1,8 @@
 import React from 'react';
 import raf from 'raf';
+import dateFormat from '../util/dateFormat';
 
-export default class Carousel extends React.Component {
+export default class CarouselComponent extends React.Component {
   static defaultProps = {
     interval: 3000
   };
@@ -43,6 +44,14 @@ export default class Carousel extends React.Component {
 
   renderBody() {
     let {data = []} = this.props;
+
+    data = data.map((o, i) => (
+      <div key={i} style={{color: '#5bab60', fontSize: '16px'}}>
+        {o.mail} 在 {dateFormat(new Date(o.gmtModified), 'HH:mm:ss')} 领到
+        <span style={{color: '#dd2323'}}>&nbsp;{o.price}&nbsp;</span>
+        元{o.application ? '饿了么' : '美团'}大红包
+      </div>
+    ));
 
     return (
       <div style={{width: '100%', height: '100%', overflow: 'hidden'}} ref={dom => (this.boxDom = dom)}>

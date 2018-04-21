@@ -1,8 +1,6 @@
 import React from 'react';
 import {Radio, Table} from 'antd';
 
-const RadioGroup = Radio.Group;
-
 export default class Rank extends React.Component {
   constructor(props) {
     super(props);
@@ -27,10 +25,10 @@ export default class Rank extends React.Component {
         <div style={{color: '#dd2323', marginBottom: '15px'}}>排行榜玩法持续开发中，排名靠前的用户将享有特权</div>
         <div style={{paddingBottom: '15px'}}>
           贡献排行榜：
-          <RadioGroup onChange={this.onChange} value={this.state.rank}>
+          <Radio.Group onChange={this.onChange} value={this.state.rank}>
             <Radio value="meituan">美团</Radio>
             <Radio value="ele">饿了么</Radio>
-          </RadioGroup>
+          </Radio.Group>
         </div>
         <Table dataSource={data[this.state.rank]} columns={columns} pagination={false} />
       </div>

@@ -16,7 +16,7 @@ after_success:
     git init;
     git config user.name 'Travis CI';
     git config user.email 'i@cooljser.com';
-    echo '*.map' > .gitignore;
+    echo '*.map\nservice-worker.js' > .gitignore;
     git add .;
     git commit -m 'build';
     git push https://${GH_TOKEN}@github.com/game-helper/hongbao2-web.git master:dist -f;
