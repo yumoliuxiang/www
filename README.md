@@ -7,6 +7,8 @@
 
 https://www.mtdhb.com 网页端
 
+> 注意：fork 本项目搭网站的朋友，请自行反向代理 https://api.mtdhb.com 域名，API 不再支持跨域调用
+
 ## 开发
 
 环境要求 Node.js 9.x
