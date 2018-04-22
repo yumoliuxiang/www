@@ -53,8 +53,8 @@ export default class Home extends React.Component {
     const {application, historyList, tab, carouselRecords, cookies, rankData, trendData} = this.state;
 
     return (
-      <div className="app">
-        <div className="app-column">
+      <div className="home-box">
+        <div className="home-item">
           <CarouselComponent data={carouselRecords} />
           {this.renderHello()}
           {this.renderBreadcrumb()}
@@ -63,8 +63,7 @@ export default class Home extends React.Component {
           {this.renderNotice()}
           <AlipayComponent.Image />
         </div>
-
-        <Tabs className="app-column" defaultActiveKey={tab} onChange={this.onTabChange}>
+        <Tabs className="home-item" defaultActiveKey={tab} onChange={this.onTabChange}>
           <Tabs.TabPane tab="规则" key="1">
             <Rules />
           </Tabs.TabPane>

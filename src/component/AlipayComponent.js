@@ -9,14 +9,14 @@ class Button extends React.Component {
 
   render() {
     return (
-      <AntdButton className="alihongbao-m" type="primary">
+      <AntdButton className="alipay-m" type="primary">
         支付宝天天领红包
       </AntdButton>
     );
   }
 
   aliHongbao() {
-    const clipboard = new ClipboardJS('.alihongbao-m', {
+    const clipboard = new ClipboardJS('.alipay-m', {
       text: () => 'c7XYed92oO'
     });
 
@@ -37,7 +37,7 @@ class Button extends React.Component {
 class Image extends React.Component {
   render() {
     return (
-      <div className="alihongbao-pc">
+      <div className="alipay-pc">
         <img src={require('../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
         <div>
           支付宝天天领红包<br />c7XYed92oO

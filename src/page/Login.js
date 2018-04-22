@@ -41,7 +41,7 @@ class Login extends React.Component {
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
           <h2>登录</h2>
-          <span className={'sub-title'}>登录并贡献小号即可一键手气最佳红包</span>
+          <span className="login-title">登录并贡献小号即可一键手气最佳红包</span>
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('account', {
