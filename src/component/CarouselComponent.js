@@ -1,6 +1,6 @@
 import React from 'react';
 import raf from 'raf';
-import dateFormat from '../util/dateFormat';
+import moment from 'moment';
 
 export default class CarouselComponent extends React.Component {
   static defaultProps = {
@@ -47,7 +47,7 @@ export default class CarouselComponent extends React.Component {
 
     data = data.map((o, i) => (
       <div key={i} style={{color: '#5bab60', fontSize: '16px'}}>
-        {o.mail} 在 {dateFormat(new Date(o.gmtModified), 'HH:mm:ss')} 领到
+        {o.mail} 在 {moment(new Date(o.gmtModified)).format('HH:mm:ss')} 领到
         <span style={{color: '#dd2323'}}>&nbsp;{o.price}&nbsp;</span>
         元{o.application ? '饿了么' : '美团'}大红包
       </div>

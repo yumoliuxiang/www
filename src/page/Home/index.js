@@ -2,9 +2,10 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {Alert, Breadcrumb, Tabs} from 'antd';
 import {axios, apis, qs} from '../../api';
-import dateFormat from '../../util/dateFormat';
+import moment from 'moment';
 import AlipayComponent from '../../component/AlipayComponent';
 import CarouselComponent from '../../component/CarouselComponent';
+import NoticeComponent from '../../component/NoticeComponent';
 import GetHongbao from './GetHongbao';
 import Contribute from './Contribute';
 import Rules from './Rules';
@@ -41,7 +42,6 @@ export default class Home extends React.Component {
       this.getAvailableCount();
       this.getHongbaoHistory();
       this.zhuangbi();
-      this.getNotice();
       this.getRank();
       this.getTrend();
     } else {
@@ -60,7 +60,7 @@ export default class Home extends React.Component {
           {this.renderBreadcrumb()}
           <AlipayComponent.Button />
           {this.renderAvailable()}
-          {this.renderNotice()}
+          <NoticeComponent />
           <AlipayComponent.Image />
         </div>
         <Tabs className="home-item" defaultActiveKey={tab} onChange={this.onTabChange}>
@@ -109,10 +109,6 @@ export default class Home extends React.Component {
     axios.get(apis.getRank).then(data => this.setState({rankData: data.data}));
   };
 
-  getNotice = e => {
-    axios.get(apis.getNotice).then(data => this.setState({noticeList: data.data}));
-  };
-
   getUserInfo = e => {
     axios.get(apis.getUser).then(data => {
       if (data.code === 0) {
@@ -131,7 +127,7 @@ export default class Home extends React.Component {
       if (data.code === 0) {
         let cookies = data.data;
         cookies.forEach((c, i) => {
-          c.time = dateFormat(new Date(c.gmtCreate));
+          c.time = moment(new Date(c.gmtCreate)).format('YYYY-MM-DD HH:mm:ss');
           c.key = i;
           c.nickname = c.nickname || '--';
         });
@@ -269,22 +265,5 @@ export default class Home extends React.Component {
     ) : (
       <Alert style={{margin: '15px 0'}} message="数据加载中，长时间没有响应请刷新页面" type="info" />
     );
-  };
-
-  renderNotice = e => {
-    return this.state.noticeList.map((notice, index) => (
-      <Alert
-        style={{margin: '15px 0'}}
-        message={
-          <div
-            dangerouslySetInnerHTML={(__html => ({
-              __html
-            }))(notice)}
-          />
-        }
-        key={index}
-        type="warning"
-      />
-    ));
   };
 }

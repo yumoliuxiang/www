@@ -1,12 +1,15 @@
 import React from 'react';
 import {Form, Input, Button, Breadcrumb} from 'antd';
-import {axios, apis, qs} from '../api';
 import {browserHistory} from 'react-router';
+import {axios, apis, qs} from '../api';
+import NoticeComponent from '../component/NoticeComponent';
 
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      noticeList: []
+    };
     document.body.classList.remove('is-home');
   }
 
@@ -96,6 +99,7 @@ class Login extends React.Component {
             </a>
           </Breadcrumb.Item>
         </Breadcrumb>
+        <NoticeComponent />
       </Form>
     );
   }

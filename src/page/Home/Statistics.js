@@ -1,5 +1,5 @@
 import React from 'react';
-import dateFormat from '../../util/dateFormat';
+import moment from 'moment';
 import Echarts from '../../component/EchartsComponent';
 
 export default class Statistics extends React.Component {
@@ -23,7 +23,7 @@ export default class Statistics extends React.Component {
               trigger: 'axis',
               formatter: params => {
                 let [ele, meituan] = params;
-                return `${dateFormat(new Date(ele.name), 'yyyy-MM-dd')}<br/>
+                return `${moment(new Date(ele.name)).format('YYYY-MM-DD')}<br/>
                     饿了么: ${ele.value} 元<br/>
                     美&nbsp;&nbsp;&nbsp;团: ${meituan.value} 元`;
               }
@@ -41,7 +41,7 @@ export default class Statistics extends React.Component {
               axisLabel: {
                 color: '#666',
                 formatter: value => {
-                  return dateFormat(new Date(value), 'MM-dd');
+                  return moment(new Date(value)).format('MM-DD');
                 }
               },
               splitLine: {
@@ -50,7 +50,7 @@ export default class Statistics extends React.Component {
               data: ele.map(o => o.date).reverse()
             },
             yAxis: {
-              name: '总金额(千元)',
+              name: '总金额（千元）',
               nameTextStyle: {
                 color: '#666'
               },

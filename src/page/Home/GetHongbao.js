@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Collapse, Form, Input, Table} from 'antd';
 import {axios, apis, qs} from '../../api';
-import dateFormat from '../../util/dateFormat';
+import moment from 'moment';
 
 class GetHongbao extends React.Component {
   constructor(props) {
@@ -90,7 +90,7 @@ class GetHongbao extends React.Component {
     let {historyList} = this.props;
 
     historyList.forEach((o, i) => {
-      o.time = dateFormat(new Date(o.gmtCreate));
+      o.time = moment(new Date(o.gmtCreate)).format('YYYY-MM-DD HH:mm:ss');
       if (o.status === 1) {
         o.message = '领取成功（请以实际到账金额为准）';
         o.price = o.price <= 0 ? '未知' : o.price;
