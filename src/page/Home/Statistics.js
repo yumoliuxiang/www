@@ -10,6 +10,7 @@ export default class Statistics extends React.Component {
 
     return (
       <div>
+        <div>成功领取最大红包的总金额（单位：千元）</div>
         <Echarts
           style={{height: '300px', width: '100%'}}
           option={{
@@ -50,7 +51,7 @@ export default class Statistics extends React.Component {
               data: ele.map(o => o.date).reverse()
             },
             yAxis: {
-              name: '总金额（千元）',
+              // name: '　　　　　　　　　　　　成功领取最大红包的总金额（千元）',
               nameTextStyle: {
                 color: '#666'
               },
