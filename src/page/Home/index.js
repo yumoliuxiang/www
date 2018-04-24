@@ -207,7 +207,7 @@ export default class Home extends React.Component {
       <Breadcrumb>
         <Breadcrumb.Item>
           <a
-            href="https://github.com/game-helper/hongbao2/issues/new"
+            href="https://github.com/game-helper/hongbao2/issues"
             target="_blank"
             rel="noopener noreferrer"
             style={{
