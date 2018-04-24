@@ -220,7 +220,7 @@ export default class Home extends React.Component {
         </Breadcrumb.Item>
         <Breadcrumb.Item>
           <a
-            href="https://github.com/game-helper/donate"
+            href="https://github.com/game-helper/donate/blob/master/README.md"
             target="_blank"
             rel="noopener noreferrer"
             style={{
