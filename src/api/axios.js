@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
   config => {
-    config.headers.common['User-Token'] = localStorage.getItem('token');
+    config.headers.common['X-User-Token'] = localStorage.getItem('token');
     return config;
   },
   err => Promise.reject(err)
