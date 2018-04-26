@@ -23,10 +23,16 @@ export default class Statistics extends React.Component {
               show: true,
               trigger: 'axis',
               formatter: params => {
-                let [ele, meituan] = params;
-                return `${moment(new Date(ele.name)).format('YYYY-MM-DD')}<br/>
-                    饿了么: ${ele.value} 元<br/>
-                    美&nbsp;&nbsp;&nbsp;团: ${meituan.value} 元`;
+                try {
+                  const name = params[0].name;
+                  const e = ele.find(o => o.date === name);
+                  const m = meituan.find(o => o.date === name);
+                  return `${moment(new Date(name)).format('YYYY-MM-DD')}<br />
+                    饿 ${e.totalPrice}元/${e.count}个 平均${(e.totalPrice / e.count).toFixed(1)}元<br/>
+                    美 ${m.totalPrice}元/${m.count}个 平均${(m.totalPrice / m.count).toFixed(1)}元`;
+                } catch (e) {
+                  return '数据出错，请联系管理员修复';
+                }
               }
             },
             xAxis: {
@@ -51,7 +57,7 @@ export default class Statistics extends React.Component {
               data: ele.map(o => o.date).reverse()
             },
             yAxis: {
-              // name: '　　　　　　　　　　　　成功领取最大红包的总金额（千元）',
+              // name: '成功领取最大红包的总金额（千元）',
               nameTextStyle: {
                 color: '#666'
               },

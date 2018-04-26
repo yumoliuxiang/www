@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, browserHistory, withRouter} from 'react-router';
 import './App.css';
 import Apply from './page/Apply';
 import Register from './page/Register';
@@ -8,7 +8,16 @@ import Home from './page/Home';
 import ApplyResetPassword from './page/ApplyResetPassword';
 import ResetPassword from './page/ResetPassword';
 
-export default class App extends React.Component {
+class App extends React.Component {
+  componentDidMount() {
+    // TODO
+    // this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
+  }
+
+  routerWillLeave = nextLocation => {
+    console.log(nextLocation);
+  };
+
   render() {
     return (
       <Router history={browserHistory}>
@@ -22,3 +31,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default withRouter(App);
