@@ -12,6 +12,7 @@ import Rules from './Rules';
 import Rank from './Rank';
 import Statistics from './Statistics';
 import JoinGroup from './JoinGroup';
+import MiniProgram from './MiniProgram';
 
 export default class Home extends React.Component {
   constructor() {
@@ -85,7 +86,10 @@ export default class Home extends React.Component {
           <Tabs.TabPane tab="统计" key="5">
             <Statistics data={trendData} />
           </Tabs.TabPane>
-          <Tabs.TabPane tab="加群" key="6">
+          <Tabs.TabPane tab="小程序" key="6">
+            <MiniProgram />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="加群" key="7">
             <JoinGroup />
           </Tabs.TabPane>
         </Tabs>
