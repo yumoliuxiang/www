@@ -28,6 +28,7 @@ export default class MiniProgram extends React.Component {
         <p>
           进入之后，点击小程序内任意位置，会调起扫码功能<br />扫描以下二维码将自动登录您的账号
         </p>
+        <p style={{color: '#dd2323'}}>请注意不要泄露你的二维码和 token</p>
         <QRCode size={200} value={localStorage.getItem('token')} />
         <p />
         <p ref="copyToken" style={{color: '#1890ff', cursor: 'pointer'}}>
