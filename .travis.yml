@@ -19,7 +19,6 @@ after_success:
     git add .;
     git commit -m 'build';
     git push https://${GH_TOKEN}@github.com/game-helper/hongbao2-web.git master:dist -f;
-    curl ${PUBLISH_URL};
     fi
 
 branches:
