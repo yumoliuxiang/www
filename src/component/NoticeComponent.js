@@ -15,7 +15,16 @@ export default class NoticeComponent extends React.Component {
   }
 
   getNotice() {
-    axios.get(apis.getNotice).then(data => this.setState({noticeList: data.data}));
+    axios.get(apis.getNotice).then(data => {
+      let noticeList = data.data;
+      if (noticeList.length) {
+        // 做下接口兼容
+        if (typeof noticeList[0] === 'object') {
+          noticeList = noticeList.filter(notice => ['all', 'web'].includes(notice.type)).map(notice => notice.content);
+        }
+        this.setState({noticeList});
+      }
+    });
   }
 
   render() {
