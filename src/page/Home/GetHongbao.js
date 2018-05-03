@@ -32,12 +32,10 @@ class GetHongbao extends React.Component {
     e.preventDefault();
     if (this.state.isGetting) return;
 
-    this.state.isGetting = true;
-
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.getHongbao(values);
-        this.setState({mobile: values.phone});
+        this.setState({mobile: values.phone, isGetting: true});
         localStorage.setItem('mobile', values.phone);
       }
     });
