@@ -26,7 +26,7 @@ class ApplyResetPassword extends React.Component {
         if (data.code === 0) {
           this.setState({finished: true});
         } else {
-          if (data.code === 10004) {
+          if ([10004, 10017].includes(data.code)) {
             this.setState({mail: ''});
           }
           this.setState({finished: false});

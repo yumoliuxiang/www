@@ -17,11 +17,13 @@ axios.interceptors.response.use(
     //0: 正常
     //1：cookie 不正确或失效
     //4: cookie 不正确，请确保内容包含 ewxshinfo 和 ewxinfo
-    //10003： 验证码错误
+    //10003：验证码错误
     //10004：邮箱已被注册
     //10005：cookie 已存在
     //10012: 红包链接不正确
-    const codes = [0, 1, 4, 10003, 10004, 10005, 10012];
+    //10017: 邮箱不存在
+    const codes = [0, 1, 4, 10003, 10004, 10005, 10012, 10017];
+
     if (codes.includes(data.code)) {
       return data;
     }
