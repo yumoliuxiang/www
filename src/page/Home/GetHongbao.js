@@ -7,7 +7,9 @@ class GetHongbao extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mobile: localStorage.getItem('mobile') || ''
+      mobile: localStorage.getItem('mobile') || '',
+      // 正在领取中
+      isGetting: false
     };
   }
 
@@ -20,6 +22,7 @@ class GetHongbao extends React.Component {
         } else {
           alert(data.message);
         }
+        this.setState({isGetting: false});
         this.props.form.resetFields();
       })
       .catch(err => console.log(err));
@@ -27,6 +30,10 @@ class GetHongbao extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.isGetting) return;
+
+    this.state.isGetting = true;
+
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.getHongbao(values);
@@ -117,8 +124,7 @@ class GetHongbao extends React.Component {
 
   render() {
     const {getFieldDecorator} = this.props.form;
-
-    let disableBtn = this.props.historyList.some(o => o.status === 0);
+    let {isGetting} = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
@@ -150,10 +156,10 @@ class GetHongbao extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" disabled={disableBtn} htmlType="submit" className="login-form-button">
+          <Button type="primary" disabled={isGetting} htmlType="submit" className="login-form-button">
             领取
           </Button>
-          {disableBtn && <span style={{color: '#dd2323', marginLeft: '12px'}}>请等待上一个红包领取完成</span>}
+          {isGetting && <span style={{color: '#dd2323', marginLeft: '12px'}}>请等待上一个红包领取完成</span>}
         </Form.Item>
         <p style={{color: '#dd2323'}}>最近 3 天领取记录：</p>
         {this.renderHistoryTable()}
