@@ -211,7 +211,7 @@ export default class Home extends React.Component {
       <Breadcrumb>
         <Breadcrumb.Item>
           <a
-            href="https://github.com/game-helper/hongbao2/issues"
+            href="https://github.com/mtdhb/mtdhb/issues"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -224,7 +224,7 @@ export default class Home extends React.Component {
         </Breadcrumb.Item>
         <Breadcrumb.Item>
           <a
-            href="https://github.com/game-helper/donate/blob/master/README.md"
+            href="https://github.com/mtdhb/donate/blob/master/README.md"
             target="_blank"
             rel="noopener noreferrer"
             style={{

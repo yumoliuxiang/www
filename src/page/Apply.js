@@ -131,7 +131,7 @@ class Apply extends React.Component {
           </a>
         </Form.Item>
         <a
-          href="https://github.com/game-helper/hongbao2/issues"
+          href="https://github.com/mtdhb/mtdhb/issues"
           target="_blank"
           style={{display: 'inline-block', margin: '12px 0'}}
           rel="noopener noreferrer"

@@ -87,7 +87,7 @@ class Login extends React.Component {
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
-              href="https://github.com/game-helper/hongbao2/issues"
+              href="https://github.com/mtdhb/mtdhb/issues"
               target="_blank"
               rel="noopener noreferrer"
               style={{

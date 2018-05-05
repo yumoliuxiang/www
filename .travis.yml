@@ -18,7 +18,7 @@ after_success:
     git config user.email 'i@cooljser.com';
     git add .;
     git commit -m 'build';
-    git push https://${GH_TOKEN}@github.com/game-helper/hongbao2-web.git master:dist -f;
+    git push https://${GH_TOKEN}@github.com/mtdhb/www.git master:dist -f;
     fi
 
 branches:

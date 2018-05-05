@@ -1,9 +1,9 @@
-# hongbao2-web
+# www
 
 [![GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
-[![Build Status](https://travis-ci.org/game-helper/hongbao2-web.svg?branch=master)](https://travis-ci.org/game-helper/hongbao2-web)
+[![Build Status](https://travis-ci.org/mtdhb/www.svg?branch=master)](https://travis-ci.org/mtdhb/www)
 
-[返回主项目](https://github.com/game-helper/hongbao2)
+[返回主项目](https://github.com/mtdhb/mtdhb)
 
 https://www.mtdhb.com 网页端
 
@@ -28,4 +28,4 @@ npm run build
 
 ## 捐赠
 
-[如果我们的项目对您有帮助，欢迎捐赠](https://github.com/game-helper/donate)
+[如果我们的项目对您有帮助，欢迎捐赠](https://github.com/mtdhb/donate)
