@@ -154,7 +154,7 @@ export default class Home extends React.Component {
     axios.post(apis.refresh, qs.stringify({receivingId: id})).then(res => {
       let {data} = res;
       if (data.status === 0) {
-        setTimeout(e => this.refresh(id), 10000);
+        setTimeout(() => this.refresh(id), 5000);
       } else {
         const {historyList} = this.state;
         historyList[0] = data;
