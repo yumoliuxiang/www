@@ -8,7 +8,7 @@ export default class TalkComponent extends React.Component {
     const gitalk = new Gitalk({
       clientID: '6a4e797a25295987f8ee',
       clientSecret: '4930afa796bddfb2533f8537f0bd5bb8259cf8c6',
-      repo: 'www',
+      repo: 'mtdhb',
       owner: 'mtdhb',
       admin: ['zhuweiyou', 'huangdenghe', 'cooljser'],
       id: window.location.pathname, // Ensure uniqueness and length less than 50
