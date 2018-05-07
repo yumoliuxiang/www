@@ -13,7 +13,7 @@ export default class TalkComponent extends React.Component {
       admin: ['zhuweiyou', 'huangdenghe', 'cooljser'],
       id: window.location.pathname, // Ensure uniqueness and length less than 50
       distractionFreeMode: false, // Facebook-like distraction free mode
-      labels: ['评论'],
+      labels: ['留言'],
       createIssueManually: true,
       language: 'zh-CN'
     });
