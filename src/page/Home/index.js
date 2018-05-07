@@ -6,6 +6,7 @@ import moment from 'moment';
 import AlipayComponent from '../../component/AlipayComponent';
 import CarouselComponent from '../../component/CarouselComponent';
 import NoticeComponent from '../../component/NoticeComponent';
+import TalkComponent from '../../component/TalkComponent';
 import GetHongbao from './GetHongbao';
 import Contribute from './Contribute';
 import Rules from './Rules';
@@ -62,7 +63,7 @@ export default class Home extends React.Component {
           <AlipayComponent.Button />
           {this.renderAvailable()}
           <NoticeComponent />
-          <AlipayComponent.Image />
+          <TalkComponent />
         </div>
         <Tabs className="home-item" defaultActiveKey={tab} onChange={this.onTabChange}>
           <Tabs.TabPane tab="规则" key="1">

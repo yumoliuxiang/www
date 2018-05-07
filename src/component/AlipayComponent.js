@@ -2,6 +2,19 @@ import React from 'react';
 import {Button as AntdButton} from 'antd';
 import ClipboardJS from 'clipboard';
 
+class Image extends React.Component {
+  render() {
+    return (
+      <div className="alipay-pc">
+        <img src={require('../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
+        <div>
+          支付宝天天领红包<br />c7XYed92oO
+        </div>
+      </div>
+    );
+  }
+}
+
 class Button extends React.Component {
   componentDidMount() {
     this.aliHongbao();
@@ -9,9 +22,12 @@ class Button extends React.Component {
 
   render() {
     return (
-      <AntdButton className="alipay-m" type="primary">
-        支付宝天天领红包
-      </AntdButton>
+      <div className="alipay">
+        <AntdButton className="alipay-m" type="primary">
+          支付宝天天领红包
+        </AntdButton>
+        <Image />
+      </div>
     );
   }
 
@@ -31,19 +47,6 @@ class Button extends React.Component {
           'https://render.alipay.com/p/f/fd-j6lzqrgm/guiderofmklvtvw.html?shareId=2088312106287923&campStr=p1j%2BdzkZl018zOczaHT4Z5CLdPVCgrEXq89JsWOx1gdt05SIDMPg3PTxZbdPw9dL&sign=CKWXOrsHM0zT9nWHWNo76TOAPo5xqhAzOvXHgBrflIc%3D&scene=offlinePaymentNewSns';
       }
     });
-  }
-}
-
-class Image extends React.Component {
-  render() {
-    return (
-      <div className="alipay-pc">
-        <img src={require('../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
-        <div>
-          支付宝天天领红包<br />c7XYed92oO
-        </div>
-      </div>
-    );
   }
 }
 

@@ -90,11 +90,22 @@ textarea {
   color: #aaa;
 }
 
+.alipay {
+  position: relative;
+  background: #fff;
+  display: inline-block;
+}
+
 .alipay-pc {
+  position: absolute;
+  margin-top: 5px;
+  z-index: 50;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 4px;
   width: 262px;
+  background: #fff;
+  display: none;
 }
 
 .alipay-pc div {
@@ -102,16 +113,16 @@ textarea {
   padding: 10px 10px 0;
 }
 
-.alipay-m {
+.alipay:hover .alipay-pc {
+  display: block;
+}
+
+.gt-copyright,
+.gt-initing {
   display: none;
 }
 
 @media screen and (max-width: 768px) {
-  .alipay-pc {
-    display: none;
-  }
-
-  .alipay-m,
   .home-box {
     display: block;
   }
@@ -119,5 +130,9 @@ textarea {
   body.is-home,
   .home-item {
     width: 100%;
+  }
+
+  .gt-container {
+    display: none;
   }
 }
