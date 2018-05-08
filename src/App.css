@@ -117,27 +117,6 @@ textarea {
   display: block;
 }
 
-.gt-copyright {
-  display: none;
-}
-
-.gt-initing-text {
-  display: none;
-}
-
-.gt-container .gt-comments {
-  margin-bottom: 1.25em;
-}
-
-.gt-comment-admin .gt-comment-header:before {
-  content: '管理员';
-  padding: 2px 4px;
-  color: #fff;
-  background: #6190e8;
-  border-radius: 2px;
-  margin-right: 5px;
-}
-
 @media screen and (max-width: 768px) {
   .home-box {
     display: block;

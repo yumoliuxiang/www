@@ -10,9 +10,9 @@ export default class TalkComponent extends React.Component {
       clientSecret: '4930afa796bddfb2533f8537f0bd5bb8259cf8c6',
       repo: 'mtdhb',
       owner: 'mtdhb',
-      admin: ['zhuweiyou', 'huangdenghe', 'cooljser'],
-      id: window.location.pathname, // Ensure uniqueness and length less than 50
-      distractionFreeMode: false, // Facebook-like distraction free mode
+      admin: ['zhuweiyou', 'huangdenghe', 'cooljser', 'duminghong'],
+      id: window.location.pathname,
+      distractionFreeMode: false,
       labels: ['留言'],
       createIssueManually: true,
       language: 'zh-CN'
