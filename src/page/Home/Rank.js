@@ -1,5 +1,5 @@
 import React from 'react';
-import {Radio, Table} from 'antd';
+import {Radio, Table, Icon} from 'antd';
 
 export default class Rank extends React.Component {
   constructor(props) {
@@ -15,7 +15,12 @@ export default class Rank extends React.Component {
     (data.ele || []).forEach((item, index) => (item.key = index));
 
     const columns = [
-      {title: '排名', dataIndex: 'ranking', width: '33%'},
+      {
+        title: '排名',
+        dataIndex: 'ranking',
+        width: '33%',
+        render: value => (~~value === 1 ? <Icon type="trophy" /> : value)
+      },
       {title: 'uid', dataIndex: 'userId', width: '33%'},
       {title: '贡献数量', dataIndex: 'count', width: '33%'}
     ];
