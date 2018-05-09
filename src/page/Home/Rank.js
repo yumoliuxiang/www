@@ -19,7 +19,18 @@ export default class Rank extends React.Component {
         title: '排名',
         dataIndex: 'ranking',
         width: '33%',
-        render: value => (~~value === 1 ? <Icon type="trophy" /> : value)
+        render: value =>
+          ~~value < 4 ? (
+            <Icon
+              type="trophy"
+              style={{
+                fontSize: [0, 50, 40, 30][value],
+                color: ['', 'rgb(242,192,86)', 'rgb(192,192,192)', 'rgb(186,110,64)'][value]
+              }}
+            />
+          ) : (
+            value
+          )
       },
       {title: 'uid', dataIndex: 'userId', width: '33%'},
       {title: '贡献数量', dataIndex: 'count', width: '33%'}
