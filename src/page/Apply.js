@@ -90,7 +90,7 @@ class Apply extends React.Component {
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
           <h2>申请帐号</h2>
-          <span className="apply-title">每天大红包 · 一键领取手气最佳红包</span>
+          <span style={{color: '#aaa'}}>每天大红包 · 一键领取手气最佳红包</span>
         </Form.Item>
         <Form.Item key={0} validateStatus={mailError ? 'error' : ''} help={mailErrorHelp}>
           <Input

@@ -71,63 +71,8 @@ textarea {
   text-decoration: underline;
 }
 
-.home-box {
-  display: flex;
-  justify-content: center;
-}
-
-.home-item {
-  position: relative;
-  width: 480px;
-}
-
-.home-item:first-child {
-  margin-right: 20px;
-}
-
-.apply-title,
-.login-title {
-  color: #aaa;
-}
-
-.alipay {
-  position: relative;
-  background: #fff;
-  display: inline-block;
-}
-
-.alipay-pc {
-  position: absolute;
-  margin-top: 5px;
-  z-index: 50;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 4px;
-  width: 262px;
-  background: #fff;
-  display: none;
-}
-
-.alipay-pc div {
-  text-align: center;
-  padding: 10px 10px 0;
-}
-
-.alipay:hover .alipay-pc {
-  display: block;
-}
-
 @media screen and (max-width: 768px) {
-  .home-box {
-    display: block;
-  }
-
-  body.is-home,
-  .home-item {
+  body.is-home {
     width: 100%;
-  }
-
-  .gt-container {
-    display: none;
   }
 }

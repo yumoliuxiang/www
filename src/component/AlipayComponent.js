@@ -1,38 +1,59 @@
 import React from 'react';
-import {Button as AntdButton} from 'antd';
+import ReactDOM from 'react-dom';
+import {Button} from 'antd';
 import ClipboardJS from 'clipboard';
+import styled from 'styled-components';
 
-class Image extends React.Component {
-  render() {
-    return (
-      <div className="alipay-pc">
-        <img src={require('../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
-        <div>
-          支付宝天天领红包<br />c7XYed92oO
-        </div>
-      </div>
-    );
+const Image = styled.div`
+  position: absolute;
+  margin-top: 5px;
+  z-index: 50;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  width: 262px;
+  background: #fff;
+  display: none;
+
+  div {
+    text-align: center;
+    padding: 10px 10px 0;
   }
-}
+`;
 
-class Button extends React.Component {
+const Container = styled.div`
+  position: relative;
+  background: #fff;
+  display: inline-block;
+
+  &:hover ${Image} {
+    display: block;
+  }
+`;
+
+export default class AlipayComponent extends React.Component {
   componentDidMount() {
     this.aliHongbao();
   }
 
   render() {
     return (
-      <div className="alipay">
-        <AntdButton className="alipay-m" type="primary">
+      <Container>
+        <Button type="primary" ref="button">
           支付宝天天领红包
-        </AntdButton>
-        <Image />
-      </div>
+        </Button>
+        <Image>
+          <img src={require('../static/alipayhongbao.png')} width="240" alt="支付宝天天领红包" />
+          <div>
+            支付宝天天领红包<br />c7XYed92oO
+          </div>
+        </Image>
+      </Container>
     );
   }
 
   aliHongbao() {
-    const clipboard = new ClipboardJS('.alipay-m', {
+    const clipboard = new ClipboardJS(ReactDOM.findDOMNode(this.refs.button), {
       text: () => 'c7XYed92oO'
     });
 
@@ -49,8 +70,3 @@ class Button extends React.Component {
     });
   }
 }
-
-export default {
-  Button,
-  Image
-};

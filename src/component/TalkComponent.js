@@ -2,6 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'gitalk/dist/gitalk.css';
 import Gitalk from 'gitalk';
+import {injectGlobal} from 'styled-components';
+
+injectGlobal`
+  @media screen and (max-width: 768px) {
+    .gt-container {
+      display: none;
+    }
+  }
+`;
 
 export default class TalkComponent extends React.Component {
   componentDidMount() {
