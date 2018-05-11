@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import QRCode from 'qrcode.react';
-import ClipboardJS from 'clipboard';
+import Clipboard from 'clipboard';
 
 export default class MiniProgram extends React.Component {
   componentDidMount() {
-    const clipboard = new ClipboardJS(ReactDOM.findDOMNode(this.refs.copyToken), {
+    const clipboard = new Clipboard(ReactDOM.findDOMNode(this.refs.copyToken), {
       text: () => localStorage.getItem('token')
     });
 
