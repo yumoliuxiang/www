@@ -2,7 +2,7 @@ import React from 'react';
 import echarts from 'echarts';
 import deep from 'deep';
 
-export default class EchartsComponent extends React.Component {
+export default class Echarts extends React.Component {
   static echarts = echarts;
 
   render() {

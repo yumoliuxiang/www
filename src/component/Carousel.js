@@ -2,7 +2,7 @@ import React from 'react';
 import raf from 'raf';
 import moment from 'moment';
 
-export default class CarouselComponent extends React.Component {
+export default class Carousel extends React.Component {
   static defaultProps = {
     interval: 3000
   };

@@ -2,7 +2,7 @@ import React from 'react';
 import {Form, Input, Button, Breadcrumb} from 'antd';
 import {browserHistory} from 'react-router';
 import {axios, apis, qs} from '../api';
-import NoticeComponent from '../component/NoticeComponent';
+import Notice from '../component/Notice';
 
 class Login extends React.Component {
   constructor() {
@@ -99,7 +99,7 @@ class Login extends React.Component {
             </a>
           </Breadcrumb.Item>
         </Breadcrumb>
-        <NoticeComponent />
+        <Notice />
       </Form>
     );
   }

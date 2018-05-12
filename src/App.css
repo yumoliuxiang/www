@@ -10,11 +10,6 @@ body {
   margin: 0 auto;
 }
 
-body.is-home {
-  width: 1020px;
-  max-width: 100%;
-}
-
 #root {
   padding-top: 20px;
 }
@@ -69,10 +64,4 @@ textarea {
 
 .ant-breadcrumb a:hover {
   text-decoration: underline;
-}
-
-@media screen and (max-width: 768px) {
-  body.is-home {
-    width: 100%;
-  }
 }

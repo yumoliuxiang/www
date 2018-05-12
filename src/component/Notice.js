@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert} from 'antd';
 import {apis, axios} from '../api';
 
-export default class NoticeComponent extends React.Component {
+export default class Notice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -31,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-export default class AlipayComponent extends React.Component {
+export default class Alipay extends React.Component {
   componentDidMount() {
     const clipboard = new Clipboard(ReactDOM.findDOMNode(this.refs.button), {
       text: () => 'c7XYed92oO'

@@ -4,10 +4,11 @@ import {Alert, Breadcrumb, Tabs} from 'antd';
 import styled from 'styled-components';
 import {axios, apis, qs} from '../../api';
 import moment from 'moment';
-import AlipayComponent from '../../component/AlipayComponent';
-import CarouselComponent from '../../component/CarouselComponent';
-import NoticeComponent from '../../component/NoticeComponent';
-import TalkComponent from '../../component/TalkComponent';
+import Alipay from '../../component/Alipay';
+import Carousel from '../../component/Carousel';
+import Notice from '../../component/Notice';
+import Talk from '../../component/Talk';
+import Media from '../../component/Media';
 import GetHongbao from './GetHongbao';
 import Contribute from './Contribute';
 import Rules from './Rules';
@@ -20,9 +21,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
+  ${Media.mobile`display: block;`};
 `;
 
 const Column = styled.div`
@@ -33,9 +32,7 @@ const Column = styled.div`
     margin-right: 20px;
   }
 
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
+  ${Media.mobile`width: 100%;`};
 `;
 
 export default class Home extends React.Component {
@@ -80,13 +77,13 @@ export default class Home extends React.Component {
     return (
       <Container>
         <Column>
-          <CarouselComponent data={carouselRecords} />
+          <Carousel data={carouselRecords} />
           {this.renderHello()}
           {this.renderBreadcrumb()}
-          <AlipayComponent />
+          <Alipay />
           {this.renderAvailable()}
-          <NoticeComponent />
-          <TalkComponent />
+          <Notice />
+          <Talk />
         </Column>
         <Column>
           <Tabs defaultActiveKey={tab} onChange={this.onTabChange}>

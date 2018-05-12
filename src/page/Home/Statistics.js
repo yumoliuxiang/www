@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Echarts from '../../component/EchartsComponent';
+import Echarts from '../../component/Echarts';
 
 export default class Statistics extends React.Component {
   render() {

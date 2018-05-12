@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom';
 import 'gitalk/dist/gitalk.css';
 import Gitalk from 'gitalk';
 import {injectGlobal} from 'styled-components';
+import Media from './Media';
 
 injectGlobal`
-  @media screen and (max-width: 768px) {
+  ${Media.mobile`
     .gt-container {
       display: none;
     }
-  }
+  `}
 `;
 
-export default class TalkComponent extends React.Component {
+export default class Talk extends React.Component {
   componentDidMount() {
     const gitalk = new Gitalk({
       clientID: '6a4e797a25295987f8ee',
