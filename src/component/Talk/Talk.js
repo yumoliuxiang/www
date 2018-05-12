@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import 'gitalk/dist/gitalk.css';
 import Gitalk from 'gitalk';
 import {injectGlobal} from 'styled-components';
-import Media from './Media';
+import Media from '../Media';
 
 injectGlobal`
-  ${Media.mobile`
-    .gt-container {
-      display: none;
-    }
-  `}
+  .gt-container {
+    ${Media.mobile`display: none;`}
+  }
 `;
 
 export default class Talk extends React.Component {
