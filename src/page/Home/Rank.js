@@ -38,6 +38,7 @@ export default class Rank extends React.Component {
 
     return (
       <div>
+        <div style={{color: '#dd2323'}}>排行榜数据半小时更新一次</div>
         <div style={{color: '#dd2323', marginBottom: '15px'}}>排行榜玩法持续开发中，排名靠前的用户将享有特权</div>
         <div style={{paddingBottom: '15px'}}>
           贡献排行榜：

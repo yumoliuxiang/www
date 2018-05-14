@@ -10,6 +10,7 @@ export default class Statistics extends React.Component {
 
     return (
       <div>
+        <div style={{color: '#dd2323'}}>统计数据半小时更新一次</div>
         <div>成功领取最大红包的总金额（单位：千元）</div>
         <Echarts
           style={{height: '300px', width: '100%'}}
