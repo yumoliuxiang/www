@@ -14,10 +14,11 @@ const WordAnimate = keyframes`
 
 const Word = styled.div`
   position: fixed;
-  color: #f00;
+  color: #dd2323;
   pointer-events: none;
   animation: 1s ${WordAnimate} ease forwards;
   user-select: none;
+  z-index: 500;
 `;
 
 export default class Mouse extends Component {
