@@ -8,7 +8,7 @@ const WordAnimate = keyframes`
  
   100% {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-200px);
   }
 `;
 
@@ -16,7 +16,7 @@ const Word = styled.div`
   position: fixed;
   color: #dd2323;
   pointer-events: none;
-  animation: 1s ${WordAnimate} ease forwards;
+  animation: 2s ${WordAnimate} ease-out forwards;
   user-select: none;
   z-index: 500;
 `;
@@ -43,7 +43,7 @@ export default class Mouse extends Component {
         {values[this.random(0, values.length - 1)]}
       </Word>
     );
-    words = words.slice(-10);
+    words = words.slice(-20);
     this.setState({words});
   }
 
