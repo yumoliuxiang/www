@@ -13,19 +13,19 @@ class GetHongbao extends React.Component {
     };
   }
 
-  getHongbao = params => {
-    axios
-      .post(apis.getHongbao, qs.stringify(params))
-      .then(data => {
-        if (data.code === 0) {
-          this.props.callback(data.data);
-        } else {
-          alert(data.message);
-        }
-        this.setState({isGetting: false});
-        this.props.form.resetFields();
-      })
-      .catch(err => console.log(err));
+  getHongbao = async params => {
+    try {
+      const data = await axios.post(apis.getHongbao, qs.stringify(params));
+      if (data.code === 0) {
+        this.props.callback(data.data);
+      } else {
+        alert(data.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    this.setState({isGetting: false});
+    this.props.form.resetFields();
   };
 
   handleSubmit = e => {

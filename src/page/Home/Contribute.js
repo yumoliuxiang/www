@@ -12,24 +12,26 @@ class Contribute extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         this.setState({isLoading: true});
-        let params = {
-          value: values.value,
-          application: this.props.application
-        };
-        axios.post(apis.cookie, qs.stringify(params)).then(data => {
+        try {
+          const params = {
+            value: values.value,
+            application: this.props.application
+          };
+          const data = await axios.post(apis.cookie, qs.stringify(params));
           if (data.code === 0) {
             alert('贡献成功！');
             this.props.contributeCallback();
           } else {
             alert(data.message);
           }
-          this.setState({isLoading: false});
-          //清空表单
-          this.props.form.resetFields();
-        });
+        } catch (e) {
+          console.error(e);
+        }
+        this.setState({isLoading: false});
+        this.props.form.resetFields();
       }
     });
   };
