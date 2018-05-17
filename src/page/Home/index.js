@@ -4,6 +4,7 @@ import {Alert, Breadcrumb, Tabs} from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
 import {axios, apis, qs} from '../../api';
+import Ad from '../../component/Ad';
 import Alipay from '../../component/Alipay';
 import Carousel from '../../component/Carousel';
 import Notice from '../../component/Notice';
@@ -82,6 +83,7 @@ export default class Home extends React.Component {
           {this.renderBreadcrumb()}
           <Alipay />
           {this.renderAvailable()}
+          <Ad />
           <Notice />
           <Talk />
         </Column>
