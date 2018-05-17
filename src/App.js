@@ -1,6 +1,7 @@
 import React from 'react';
 import {browserHistory, Route, Router} from 'react-router';
 import './globalStyle';
+import './hmt';
 import Mouse from './component/Mouse';
 import Apply from './page/Apply';
 import Register from './page/Register';

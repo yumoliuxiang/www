@@ -23,7 +23,7 @@ export default class MiniProgram extends React.Component {
     return (
       <div style={{textAlign: 'center'}}>
         <p>请先扫描小程序码（或者搜索小程序：一键最佳）</p>
-        <img width={200} src={require('../../static/miniprogram.jpg')} alt="" />
+        <img width={200} src={require('../../static/miniprogram.jpg')} alt="小程序码" />
         <p />
         <p>
           进入之后，点击小程序内任意位置，会调起扫码功能<br />扫描以下二维码将自动登录您的账号

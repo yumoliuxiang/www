@@ -5,7 +5,7 @@ export default () => (
     <img
       style={{width: '100%', display: 'block', borderRadius: '4px'}}
       src={require('../static/ad.jpg')}
-      alt="广告底图"
+      alt="陪趣广告"
     />
   </a>
 );
