@@ -23,17 +23,19 @@ axios.interceptors.response.use(
     //10005：cookie 已存在
     //10012: 红包链接不正确
     //10017: 邮箱不存在
-    const codes = [0, 1, 4, 10003, 10004, 10005, 10012, 10017, 10010];
+    // const codes = [0, 1, 4, 10003, 10004, 10005, 10012, 10017, 10010];
 
-    if (codes.includes(data.code)) {
-      return data;
-    }
+    // if (codes.includes(data.code)) {
+    //   return data;
+    // }
+
     if (data.code === 10000) {
       localStorage.clear();
       browserHistory.push('/login');
     } else {
-      alert(data.message);
-      return new Promise(() => {});
+      return data;
+      // alert(data.message);
+      // return new Promise(() => {});
     }
   },
   err => Promise.reject(err)
