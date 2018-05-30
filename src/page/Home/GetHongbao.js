@@ -171,9 +171,10 @@ class GetHongbao extends React.Component {
       <div>
         <Collapse defaultActiveKey={['1', '2', '3']} bordered={false}>
           <Collapse.Panel header="红包链接说明" key="1">
-            1. 饿了么红包：https://h5.ele.me/hongbao/开头的链接。<br />
+            1. 饿了么红包：https://h5.ele.me/hongbao/ 开头的链接。<br />
             链接不带 lucky_number 的不是拼手气，不能用。<br />
-            2. 美团红包：https://activity.waimai.meituan.com/coupon/开头的链接。
+            2. 美团红包：https://activity.waimai.meituan.com/coupon/ 开头的链接。<br />
+            3. 短链接：https://url.cn/ 开头的链接。
           </Collapse.Panel>
           <Collapse.Panel header="如何获取拼手气红包？" key="2">
             1. 好友下单后，分享到群里的红包。<br />
