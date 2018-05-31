@@ -167,7 +167,7 @@ class Contribute extends React.Component {
   }
 
   deleteCookie = id => {
-    axios.post(apis.deleteCookie, qs.stringify({cookieId: id})).then(data => {
+    axios.delete(apis.deleteCookie + `/${id}`).then(data => {
       if (data.code === 0) {
         this.props.deleteCookieCallback(id);
         alert('删除成功');

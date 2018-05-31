@@ -3,7 +3,7 @@ import {browserHistory} from 'react-router';
 import {Alert, Breadcrumb, Tabs} from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
-import {axios, apis, qs} from '../../api';
+import {axios, apis} from '../../api';
 import Ad from '../../component/Ad';
 import Alipay from '../../component/Alipay';
 import Carousel from '../../component/Carousel';
@@ -176,7 +176,7 @@ export default class Home extends React.Component {
   };
 
   refresh = id => {
-    axios.post(apis.refresh, qs.stringify({receivingId: id})).then(res => {
+    axios.get(apis.refresh + `/${id}`).then(res => {
       let {data} = res;
       if (data.status === 0) {
         setTimeout(() => this.refresh(id), 5000);
@@ -190,10 +190,8 @@ export default class Home extends React.Component {
   };
 
   logout = e => {
-    axios.get(apis.logout).then(data => {
-      localStorage.clear();
-      browserHistory.push('/login');
-    });
+    localStorage.clear();
+    browserHistory.push('/login');
   };
 
   zhuangbi = e => {
