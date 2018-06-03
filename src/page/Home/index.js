@@ -50,7 +50,7 @@ export default class Home extends React.Component {
       historyList: [],
       createTime: 15,
       tab: localStorage.getItem('tab') || '1',
-      application: parseInt(localStorage.getItem('application') || 0, 10),
+      application: 1, // parseInt(localStorage.getItem('application') || 0, 10),
       carouselRecords: [],
       rankData: {},
       trendData: {}

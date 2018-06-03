@@ -48,7 +48,9 @@ class Contribute extends React.Component {
           或打开隐身（无痕）模式再登录小号
         </div>
         <Radio.Group onChange={onApplicationChange} value={application} style={{marginBottom: '12px'}}>
-          <Radio value={0}>美团</Radio>
+          <Radio value={0} disabled>
+            美团
+          </Radio>
           <Radio value={1}>饿了么</Radio>
         </Radio.Group>
 
