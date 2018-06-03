@@ -8,7 +8,7 @@ const apis = {
   logout: 'user/logout',
   getUser: 'user',
   cookie: 'user/cookie',
-  deleteCookie: 'cookie',
+  deleteCookie: 'user/cookie',
   getAvailableCount: 'user/available',
   getHongbao: 'user/receiving',
   getHongbaoHistory: 'user/receiving',
