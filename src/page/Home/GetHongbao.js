@@ -54,11 +54,13 @@ class GetHongbao extends React.Component {
     };
 
     let renderStatus = (text, r) => {
-      let color = {0: '', 1: '#5bab60', 2: '#dd2323'}[r.status];
+      let color = {0: '', 1: '#5bab60', 2: '#dd2323'}[
+        !r.phone && /已领取到最佳前一个红包/.test(r.message) ? 1 : r.status
+      ];
       return (
         <div>
           <div>
-            {r.application === 0 ? '美' : '饿'} {r.phone.replace(/(\d{3})(\d{4})(\d{3})/, '$1****$3')}
+            [{r.application === 0 ? '美' : '饿'}] {r.phone || '未填手机号'}
           </div>
           <div style={{color}}>{text}</div>
         </div>
@@ -131,12 +133,12 @@ class GetHongbao extends React.Component {
           {getFieldDecorator('phone', {
             rules: [
               {
-                required: true,
-                message: '请输入要领取最大红包的手机号码'
+                required: false,
+                message: '领红包的手机号码（留空可领到最大前一个）'
               }
             ],
             initialValue: this.state.mobile
-          })(<Input placeholder="请输入要领取最大红包的手机号码" maxLength={11} />)}
+          })(<Input placeholder="领红包的手机号码（留空可领到最大前一个）" maxLength={11} />)}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('url', {
