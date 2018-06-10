@@ -12,6 +12,7 @@ export default class Statistics extends React.Component {
       <div>
         <div style={{color: '#dd2323'}}>统计数据半小时更新一次</div>
         <div>成功领取最大红包的总金额（单位：千元）</div>
+        <div>因为现在支持了领取到最佳前一个, 所以那部分领取不在图表统计之中</div>
         <Echarts
           style={{height: '300px', width: '100%'}}
           option={{
