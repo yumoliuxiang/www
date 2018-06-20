@@ -97,7 +97,7 @@ class GetHongbao extends React.Component {
     let {historyList} = this.props;
 
     historyList.forEach((o, i) => {
-      o.time = moment(new Date(o.gmtCreate)).format('YYYY-MM-DD HH:mm:ss');
+      o.time = moment(new Date(o.gmtModified || o.gmtCreate)).format('YYYY-MM-DD HH:mm:ss');
       if (o.status === 1) {
         o.message = '领取成功（请以实际到账金额为准）';
         o.price = o.price <= 0 ? '未知' : o.price;
