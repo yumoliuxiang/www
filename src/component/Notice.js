@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from 'antd';
+import {Timeline} from 'antd';
 import {apis, axios} from '../api';
 
 export default class Notice extends React.Component {
@@ -29,22 +29,17 @@ export default class Notice extends React.Component {
 
   render() {
     return (
-      <div>
+      <Timeline style={{paddingTop: '20px'}}>
         {this.state.noticeList.map((notice, index) => (
-          <Alert
-            style={{margin: '15px 0'}}
-            message={
-              <div
-                dangerouslySetInnerHTML={(__html => ({
-                  __html
-                }))(notice)}
-              />
-            }
-            key={index}
-            type="warning"
-          />
+          <Timeline.Item>
+            <div
+              dangerouslySetInnerHTML={(__html => ({
+                __html
+              }))(notice)}
+            />
+          </Timeline.Item>
         ))}
-      </div>
+      </Timeline>
     );
   }
 }
