@@ -24,6 +24,6 @@ const apis = {
 };
 
 export default Object.keys(apis).reduce((obj, key) => {
-  obj[key] = domain + apis[key];
+  obj[key] = domain + apis[key] + '?fuck'; // 服务端失误操作，导致 API 缓存
   return obj;
 }, {});
