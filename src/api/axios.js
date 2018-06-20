@@ -5,6 +5,7 @@ axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
   config => {
+    config.url += config.url.indexOf('?') === -1 ? '?fuck' : '&fuck';
     config.headers.common['X-User-Token'] = localStorage.getItem('token');
     return config;
   },
