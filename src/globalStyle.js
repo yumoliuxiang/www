@@ -76,4 +76,12 @@ injectGlobal`
       text-decoration: underline;
     }
   }
+  
+  .ant-timeline-item-last {
+    padding-bottom: 0; 
+    
+    .ant-timeline-item-content {
+      min-height: auto;
+    }
+  }
 `;
