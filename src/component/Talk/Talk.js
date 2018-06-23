@@ -8,6 +8,10 @@ import Media from '../Media';
 injectGlobal`
   .gt-container {
     ${Media.mobile`display: none;`}
+    
+    .gt-meta {
+      margin-top: 0 !important;
+    }
   }
 `;
 

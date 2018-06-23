@@ -231,30 +231,19 @@ export default class Home extends React.Component {
 
   renderBreadcrumb = e => {
     return (
-      <Breadcrumb>
+      <Breadcrumb style={{margin: '15px 0'}}>
         <Breadcrumb.Item>
-          <a
-            href="https://github.com/mtdhb/mtdhb/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              margin: '12px 0'
-            }}
-          >
+          <a href="https://github.com/mtdhb" target="_blank" rel="noopener noreferrer">
+            本站开源
+          </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="https://github.com/mtdhb/mtdhb/issues" target="_blank" rel="noopener noreferrer">
             反馈问题
           </a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a
-            href="https://github.com/mtdhb/donate/blob/master/README.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              margin: '12px 0'
-            }}
-          >
+          <a href="https://github.com/mtdhb/donate/blob/master/README.md" target="_blank" rel="noopener noreferrer">
             捐赠我们
           </a>
         </Breadcrumb.Item>

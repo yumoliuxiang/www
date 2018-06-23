@@ -77,6 +77,10 @@ injectGlobal`
     }
   }
   
+  .ant-timeline {
+    padding: 10px 0;
+  }
+  
   .ant-timeline-item-last {
     padding-bottom: 0; 
     

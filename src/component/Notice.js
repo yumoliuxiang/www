@@ -29,7 +29,7 @@ export default class Notice extends React.Component {
 
   render() {
     return (
-      <Timeline style={{paddingTop: '20px'}}>
+      <Timeline>
         {this.state.noticeList.map((notice, index) => (
           <Timeline.Item>
             <div
