@@ -60,13 +60,10 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
+      this.callApi();
       this.getUserInfo();
-      this.getCookieList();
       this.getAvailableCount();
-      this.getHongbaoHistory();
       this.zhuangbi();
-      this.getRank();
-      this.getTrend();
     } else {
       browserHistory.push('/login');
     }
@@ -89,13 +86,13 @@ export default class Home extends React.Component {
         </Column>
         <Column>
           <Tabs defaultActiveKey={tab} onChange={this.onTabChange}>
-            <Tabs.TabPane tab="规则" key="1">
+            <Tabs.TabPane tab="规则" key="rule">
               <Rules />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="领取" key="2">
+            <Tabs.TabPane tab="领取" key="getHongbao">
               <GetHongbao historyList={historyList} callback={this.getHongbaoCallback} />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="贡献" key="3">
+            <Tabs.TabPane tab="贡献" key="contribute">
               <Contribute
                 contributeCallback={this.contributeCallback}
                 onApplicationChange={this.onApplicationChange}
@@ -104,16 +101,16 @@ export default class Home extends React.Component {
                 deleteCookieCallback={this.deleteCookieCallback}
               />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="排行" key="4">
+            <Tabs.TabPane tab="排行" key="rank">
               <Rank data={rankData} />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="统计" key="5">
+            <Tabs.TabPane tab="统计" key="statistics">
               <Statistics data={trendData} />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="小程序" key="6">
+            <Tabs.TabPane tab="小程序" key="mp">
               <MiniProgram />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="加群" key="7">
+            <Tabs.TabPane tab="加群" key="joinGroup">
               <JoinGroup />
             </Tabs.TabPane>
           </Tabs>
@@ -199,7 +196,27 @@ export default class Home extends React.Component {
   };
 
   onTabChange = tab => {
+    this.callApi(tab);
     localStorage.setItem('tab', tab);
+  };
+
+  callApiByTab = (tab = this.state.tab) => {
+    switch (tab) {
+      case 'getHongbao':
+        this.getHongbaoHistory();
+        break;
+      case 'contribute':
+        this.getCookieList();
+        break;
+      case 'rank':
+        this.getRank();
+        break;
+      case 'statistics':
+        this.getTrend();
+        break;
+      default:
+        break;
+    }
   };
 
   getHongbaoCallback = data => {
