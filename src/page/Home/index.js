@@ -43,9 +43,15 @@ export default class Home extends React.Component {
       user: {},
       cookies: [],
       noticeList: [],
-      available: {
-        meituan: 0,
-        ele: 0
+      number: {
+        ele: {
+          available: 0,
+          total: 0
+        },
+        meituan: {
+          available: 0,
+          total: 0
+        }
       },
       historyList: [],
       createTime: 15,
@@ -279,18 +285,20 @@ export default class Home extends React.Component {
   };
 
   renderAvailable = e => {
+    let {meituan, ele} = this.state.number;
+
     return this.state.user.mail ? (
       <Alert
         style={{margin: '15px 0'}}
         message={
           '今日剩余可消耗：美团 ' +
-          this.state.available.meituan +
+          meituan.available +
           '/' +
-          this.state.cookies.filter(o => o.application === 0).length * 5 +
+          meituan.total +
           ' 次，饿了么 ' +
-          this.state.available.ele +
+          ele.available +
           '/' +
-          this.state.cookies.filter(o => o.application === 1).length * 5 +
+          ele.total +
           ' 次'
         }
         type="info"

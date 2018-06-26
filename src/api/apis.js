@@ -10,7 +10,7 @@ const apis = {
   getUser: 'user',
   cookie: 'user/cookie',
   deleteCookie: 'user/cookie',
-  getAvailableCount: 'user/available',
+  getAvailableCount: 'user/number',
   getHongbao: 'user/receiving',
   getHongbaoHistory: 'user/receiving',
   refresh: 'user/receiving',
