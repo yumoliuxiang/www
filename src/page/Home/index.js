@@ -60,7 +60,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      this.callApi();
+      this.callApiByTab();
       this.getUserInfo();
       this.getAvailableCount();
       this.zhuangbi();
@@ -196,7 +196,7 @@ export default class Home extends React.Component {
   };
 
   onTabChange = tab => {
-    this.callApi(tab);
+    this.callApiByTab(tab);
     localStorage.setItem('tab', tab);
   };
 
