@@ -171,7 +171,7 @@ export default class Home extends React.Component {
   };
 
   getAvailableCount = e => {
-    axios.get(apis.getAvailableCount).then(data => this.setState({available: data.data}));
+    axios.get(apis.getAvailableCount).then(data => this.setState({number: data.data}));
   };
 
   getHongbaoHistory = e => {
