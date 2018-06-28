@@ -14,10 +14,13 @@ injectGlobal`
     margin: 0 auto;
     
     &.is-home {
-      width: 1020px;
+      min-width: 1020px;
       max-width: 100%;
       
-      ${Media.mobile`width: 100%;`}
+      ${Media.mobile`
+        width: 100%;
+        min-width: 290px;
+      `}
     }
   }
   

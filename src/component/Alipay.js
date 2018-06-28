@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Button} from 'antd';
 import Clipboard from 'clipboard';
 import styled from 'styled-components';
+import Media from './Media';
 
 const Image = styled.div`
   position: absolute;
@@ -18,6 +19,16 @@ const Image = styled.div`
     text-align: center;
     padding: 10px 10px 0;
   }
+`;
+
+const Image2 = styled.div`
+  position: absolute;
+  right: -335px;
+  top: -78px;
+  border-radius: 4px;
+  overflow: hidden;
+
+  ${Media.mobile`display: none;`};
 `;
 
 const Container = styled.div`
@@ -53,11 +64,14 @@ export default class Alipay extends React.Component {
           支付宝天天领红包
         </Button>
         <Image>
-          <img src={require('../static/alipayhongbao.jpg')} width="290" alt="支付宝天天领红包" />
+          <img src={require('../static/hongbao1.jpg')} width="290" alt="支付宝天天领红包" />
           <div>
             支付宝天天领红包<br />aRhixt096d
           </div>
         </Image>
+        <Image2>
+          <img src={require('../static/hongbao2.png')} width="140" alt="支付宝天天领红包" />
+        </Image2>
       </Container>
     );
   }
