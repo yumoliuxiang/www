@@ -1,5 +1,5 @@
-// const domain = 'https://api.mtdhb.com/';
-const domain = 'https://mtdhb.z.xxooweb.com/';
+const domain = 'https://api.mtdhb.com/';
+// const domain = 'https://mtdhb.z.xxooweb.com/';
 
 const apis = {
   getCaptcha: 'user/registerCaptcha',
