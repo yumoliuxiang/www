@@ -8,7 +8,6 @@ const apis = {
   getRegisterCode: 'user/registerMail',
   register: 'user/register',
   login: 'user/login',
-  logout: 'user/logout',
   getUser: 'user',
   cookie: 'user/cookie',
   deleteCookie: 'user/cookie',

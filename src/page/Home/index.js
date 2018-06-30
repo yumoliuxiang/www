@@ -1,9 +1,8 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
 import {Alert, Breadcrumb, Tabs} from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
-import {axios, apis} from '../../api';
+import {axios, apis, logout} from '../../api';
 import Ad from '../../component/Ad';
 import Alipay from '../../component/Alipay';
 import Carousel from '../../component/Carousel';
@@ -72,7 +71,7 @@ export default class Home extends React.Component {
       this.getAvailableCount();
       this.zhuangbi();
     } else {
-      browserHistory.push('/login');
+      logout();
     }
   }
 
@@ -146,9 +145,6 @@ export default class Home extends React.Component {
     axios.get(apis.getUser).then(data => {
       if (data.code === 0) {
         this.setState({user: data.data});
-      } else if (data.code === 10000) {
-        localStorage.clear();
-        browserHistory.push('/login');
       } else {
         alert(data.message);
       }
@@ -180,10 +176,10 @@ export default class Home extends React.Component {
   };
 
   refresh = id => {
-    axios.get(apis.refresh + `/${id}`).then(res => {
-      let {data} = res;
+    axios.get(`${apis.refresh}/${id}`).then(res => {
+      const {data} = res;
       if (data.status === 0) {
-        setTimeout(() => this.refresh(id), 5000);
+        setTimeout(() => this.refresh(id), 1000);
       } else {
         const {historyList} = this.state;
         historyList[0] = data;
@@ -191,11 +187,6 @@ export default class Home extends React.Component {
         this.getAvailableCount();
       }
     });
-  };
-
-  logout = e => {
-    localStorage.clear();
-    browserHistory.push('/login');
   };
 
   zhuangbi = e => {
@@ -275,7 +266,7 @@ export default class Home extends React.Component {
           <a
             onClick={e => {
               e.preventDefault();
-              this.logout();
+              logout();
             }}
           >
             退出登录
