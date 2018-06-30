@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 import {axios, apis, qs} from '../api';
 import Ad from '../component/Ad';
 import Notice from '../component/Notice';
+import Domain from '../component/Domain';
 
 class Login extends React.Component {
   constructor() {
@@ -32,7 +33,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         this.login(values);
       }
     });
@@ -44,7 +45,9 @@ class Login extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
-          <h2>登录</h2>
+          <h2>
+            登录<Domain />
+          </h2>
           <span style={{color: '#aaa'}}>每天大红包 · 一键领取手气最佳红包</span>
         </Form.Item>
         <Form.Item>

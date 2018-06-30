@@ -1,5 +1,7 @@
-const domain = 'https://api.mtdhb.com/';
-// const domain = 'https://mtdhb.z.xxooweb.com/';
+// 对应 component/Domain 选择的线路
+const list = ['https://mtdhb.z.xxooweb.com/', 'https://api.mtdhb.com/'];
+
+const domain = list[localStorage.getItem('domain') || 0];
 
 const apis = {
   getCaptcha: 'user/registerCaptcha',

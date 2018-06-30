@@ -1,6 +1,7 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
 import {Form, Input, Button} from 'antd';
+import Domain from '../component/Domain';
 import {axios, apis, qs} from '../api';
 
 class ResetPassword extends React.Component {
@@ -88,7 +89,9 @@ class ResetPassword extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
-          <h2>重置密码</h2>
+          <h2>
+            重置密码<Domain />
+          </h2>
         </Form.Item>
         <Form.Item key={2} validateStatus={passwordError ? 'error' : ''} help={passwordErrorHelp}>
           {getFieldDecorator('password', {

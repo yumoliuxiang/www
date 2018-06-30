@@ -10,6 +10,7 @@ import Carousel from '../../component/Carousel';
 import Notice from '../../component/Notice';
 import Talk from '../../component/Talk';
 import Media from '../../component/Media';
+import Domain from '../../component/Domain';
 import GetHongbao from './GetHongbao';
 import Contribute from './Contribute';
 import Rules from './Rules';
@@ -77,7 +78,6 @@ export default class Home extends React.Component {
 
   render() {
     const {application, historyList, tab, carouselRecords, cookies, rankData, trendData} = this.state;
-
     return (
       <Container>
         <Column>
@@ -85,6 +85,7 @@ export default class Home extends React.Component {
           {this.renderHello()}
           {this.renderBreadcrumb()}
           <Alipay />
+          <Domain />
           {this.renderAvailable()}
           <Ad />
           <Notice />
