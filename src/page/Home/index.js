@@ -201,15 +201,19 @@ export default class Home extends React.Component {
   callApiByTab = (tab = this.state.tab) => {
     switch (tab) {
       case 'getHongbao':
+        if (this.state.historyList.length) return;
         this.getHongbaoHistory();
         break;
       case 'contribute':
+        if (this.state.cookies.length) return;
         this.getCookieList();
         break;
       case 'rank':
+        if (Object.keys(this.state.rankData).length) return;
         this.getRank();
         break;
       case 'statistics':
+        if (Object.keys(this.state.trendData).length) return;
         this.getTrend();
         break;
       default:
