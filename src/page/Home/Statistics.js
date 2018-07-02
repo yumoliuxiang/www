@@ -12,6 +12,7 @@ export default class Statistics extends React.Component {
       <div>
         <div style={{color: '#dd2323'}}>统计数据半小时更新一次</div>
         <div>成功领取最大红包的总金额（单位：千元）</div>
+        <div>成功领取最大红包的总个数（单位：千个）</div>
         <div>因为现在支持了领取到最佳前一个, 所以那部分领取不在图表统计之中</div>
         <Echarts
           style={{height: '300px', width: '100%'}}
@@ -19,7 +20,7 @@ export default class Statistics extends React.Component {
             grid: {
               top: 30,
               bottom: 24,
-              right: 0
+              right: 40
             },
             tooltip: {
               show: true,
@@ -58,57 +59,183 @@ export default class Statistics extends React.Component {
               },
               data: ele.map(o => o.date).reverse()
             },
-            yAxis: {
-              // name: '成功领取最大红包的总金额（千元）',
-              nameTextStyle: {
-                color: '#666'
-              },
-              type: 'value',
-              axisTick: {
-                show: false
-              },
-              axisLine: {
-                lineStyle: {
-                  color: '#ccc'
+            yAxis: [
+              {
+                // name: '成功领取最大红包的总金额（千元）',
+                nameTextStyle: {
+                  color: '#666'
+                },
+                type: 'value',
+                min: 0,
+                max: 35000,
+                axisTick: {
+                  show: false
+                },
+                axisLine: {
+                  lineStyle: {
+                    color: '#ccc'
+                  }
+                },
+                axisLabel: {
+                  color: '#666',
+                  formatter: value => Number(value / 1000).toFixed(0)
+                },
+                splitLine: {
+                  lineStyle: {
+                    type: 'dashed'
+                  }
                 }
               },
-              axisLabel: {
-                color: '#666',
-                formatter: value => Number(value / 1000).toFixed(0)
-              },
-              splitLine: {
-                lineStyle: {
-                  type: 'dashed'
+              {
+                nameTextStyle: {
+                  color: '#666'
+                },
+                type: 'value',
+                min: 0,
+                max: 8000,
+                axisTick: {
+                  show: false
+                },
+                axisLine: {
+                  lineStyle: {
+                    color: '#ccc'
+                  }
+                },
+                axisLabel: {
+                  color: '#666',
+                  formatter: value => Number(value / 1000).toFixed(0)
+                },
+                splitLine: {
+                  show: false
                 }
               }
-            },
+            ],
             series: [
               {
                 data: ele.map(o => o.totalPrice).reverse(),
-                smooth: true,
-                showSymbol: false,
-                symbolSize: 0,
                 hoverAnimation: false,
                 lineStyle: {
+                  color: 'rgb(0,141,225)'
+                },
+                itemStyle: {
                   color: 'rgb(0,141,225)'
                 },
                 type: 'line'
               },
               {
                 data: meituan.map(o => o.totalPrice).reverse(),
-                smooth: true,
-                showSymbol: false,
-                symbolSize: 0,
                 hoverAnimation: false,
                 lineStyle: {
                   color: 'rgb(255,209,97)'
                 },
+                itemStyle: {
+                  color: 'rgb(255,209,97)'
+                },
                 type: 'line'
+              },
+              {
+                data: meituan.map(o => o.count).reverse(),
+                smooth: true,
+                showSymbol: false,
+                symbolSize: 0,
+                hoverAnimation: false,
+                type: 'bar',
+                barWidth: 15,
+                barCategory: 0,
+                yAxisIndex: 1,
+                itemStyle: {
+                  color: 'rgb(255,209,97)'
+                }
+              },
+              {
+                data: ele.map(o => o.count).reverse(),
+                smooth: true,
+                showSymbol: false,
+                symbolSize: 0,
+                hoverAnimation: false,
+                type: 'bar',
+                barWidth: 15,
+                barGap: '50%',
+                barCategory: 0,
+                yAxisIndex: 1,
+                itemStyle: {
+                  color: 'rgb(0,141,225)'
+                }
               }
             ]
           }}
         />
+        {this.renderPie()}
       </div>
     );
+  }
+
+  renderPie() {
+    let {pieData} = this.props;
+
+    return [
+      <Echarts
+        style={{width: '100%', height: '300px', marginTop: '24px'}}
+        key={0}
+        option={{
+          // color: ['#22559c', '#f27370', '#fa9856', '#ede862', '#51dacf', '#9e3668', '#ff7f5b', '#7aa5d2'],
+          title: {
+            text: '饿了么大红包金额分布',
+            x: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} : {b} 元<br/> 占比 : {d}%'
+          },
+          series: [
+            {
+              name: '红包金额',
+              type: 'pie',
+              radius: '55%',
+              center: ['50%', '60%'],
+              data: pieData.ele.map(o => ({value: o.proportion / 1000, name: o.price})),
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        }}
+      />,
+      <Echarts
+        style={{width: '100%', height: '300px', marginTop: '24px'}}
+        key={1}
+        option={{
+          // color: ['#22559c', '#f27370', '#fa9856', '#ede862', '#51dacf', '#9e3668', '#ff7f5b', '#7aa5d2'],
+          title: {
+            text: '美团大红包金额分布',
+            x: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} : {b} 元<br/> 占比 : {d}%'
+          },
+          series: [
+            {
+              name: '红包金额',
+              type: 'pie',
+              radius: '55%',
+              center: ['50%', '60%'],
+              data: pieData.meituan.map(o => ({value: o.proportion / 1000, name: o.price})),
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        }}
+      />
+    ];
   }
 }

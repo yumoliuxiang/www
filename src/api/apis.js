@@ -20,6 +20,7 @@ const apis = {
   resetPasswordCaptcha: 'user/resetPasswordCaptcha',
   resetPasswordMail: 'user/resetPasswordMail',
   getRank: 'rank',
+  getPie: 'pie',
   getTrend: 'trend',
   getNotice: 'notice.json' // 为了方便随时更新公告，直接在 JSON 中维护
 };

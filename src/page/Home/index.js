@@ -59,7 +59,11 @@ export default class Home extends React.Component {
       application: 1, // parseInt(localStorage.getItem('application') || 0, 10),
       carouselRecords: [],
       rankData: {},
-      trendData: {}
+      trendData: {},
+      pieData: {
+        ele: [],
+        meituan: []
+      }
     };
     document.body.classList.add('is-home');
   }
@@ -76,7 +80,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const {application, historyList, tab, carouselRecords, cookies, rankData, trendData} = this.state;
+    const {application, historyList, tab, carouselRecords, cookies, rankData, trendData, pieData} = this.state;
     return (
       <Container>
         <Column>
@@ -111,7 +115,7 @@ export default class Home extends React.Component {
               <Rank data={rankData} />
             </Tabs.TabPane>
             <Tabs.TabPane tab="统计" key="statistics">
-              <Statistics data={trendData} />
+              <Statistics data={trendData} pieData={pieData} />
             </Tabs.TabPane>
             <Tabs.TabPane tab="小程序" key="mp">
               <MiniProgram />
@@ -193,6 +197,10 @@ export default class Home extends React.Component {
     axios.get(apis.zhuangbi).then(res => this.setState({carouselRecords: res.data}));
   };
 
+  getPie = e => {
+    axios.get(apis.getPie).then(res => this.setState({pieData: res.data}));
+  };
+
   onTabChange = tab => {
     this.callApiByTab(tab);
     localStorage.setItem('tab', tab);
@@ -215,6 +223,7 @@ export default class Home extends React.Component {
       case 'statistics':
         if (Object.keys(this.state.trendData).length) return;
         this.getTrend();
+        this.getPie();
         break;
       default:
         break;
