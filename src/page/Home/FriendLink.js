@@ -13,9 +13,13 @@ const Link = styled.a.attrs({
   rel: 'noopener noreferrer'
 })`
   :after {
-    content: '/';
+    content: ' ';
     color: rgba(0, 0, 0, 0.5);
     padding: 0 5px;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -32,8 +36,9 @@ export default class FriendLink extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Icon type="usergroup-add" />&nbsp;
-        友情链接：{this.state.links.map(link => <Link href={link.href}>{link.text}</Link>)}欢迎申请
+        <Icon type="usergroup-add" />&nbsp; 友情链接：{this.state.links.map(link => (
+          <Link href={link.href}>{link.text}</Link>
+        ))}
       </Wrapper>
     );
   }
