@@ -32,9 +32,12 @@ export default class MiniProgram extends React.Component {
         <QRCode size={200} value={localStorage.getItem('token')} />
         <p />
         <p ref="copyToken" style={{color: '#1890ff', cursor: 'pointer'}}>
-          不方便扫码可以点击这里复制 token 再进入小程序<br />如果没有自动登录，可以下拉刷新小程序
+          不方便扫码可以点击这里复制 token 再进入小程序
         </p>
-        <p>（只需要操作一次，下次可直接从微信中进入）</p>
+        <p>只需要操作一次，下次可直接从微信中进入</p>
+        <p>
+          如果你有公众号想关联我们的小程序<br />AppID：wx55fe519139f48efe<br />可以在你的公众号后台发起绑定申请，原则上我们会确认同意绑定
+        </p>
       </div>
     );
   }

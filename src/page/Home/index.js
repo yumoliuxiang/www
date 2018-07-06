@@ -12,6 +12,7 @@ import Media from '../../component/Media';
 import Domain from '../../component/Domain';
 import GetHongbao from './GetHongbao';
 import Contribute from './Contribute';
+import FriendLink from './FriendLink';
 import Rules from './Rules';
 import Rank from './Rank';
 import Statistics from './Statistics';
@@ -124,6 +125,7 @@ export default class Home extends React.Component {
               <JoinGroup />
             </Tabs.TabPane>
           </Tabs>
+          <FriendLink />
         </Column>
       </Container>
     );
