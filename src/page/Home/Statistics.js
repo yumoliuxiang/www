@@ -67,7 +67,7 @@ export default class Statistics extends React.Component {
                 },
                 type: 'value',
                 min: 0,
-                max: 40000,
+                max: 30000,
                 axisTick: {
                   show: false
                 },
@@ -92,7 +92,7 @@ export default class Statistics extends React.Component {
                 },
                 type: 'value',
                 min: 0,
-                max: 10000,
+                max: 8000,
                 axisTick: {
                   show: false
                 },

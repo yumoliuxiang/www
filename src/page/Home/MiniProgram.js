@@ -11,18 +11,18 @@ export default class MiniProgram extends React.Component {
 
     clipboard.on('success', e => {
       e.clearSelection();
-      alert('复制成功，请打开 “一键最佳” 小程序');
+      alert('token 复制成功，请打开 “一键最佳” 小程序');
     });
 
     clipboard.on('error', e => {
-      alert('您的设备不支持复制');
+      alert('您的设备不支持复制，请使用扫码方式');
     });
   }
 
   render() {
     return (
       <div style={{textAlign: 'center'}}>
-        <p>请先扫描小程序码（或者搜索小程序：一键最佳）</p>
+        <p>使用微信扫描小程序码，或搜索小程序“一键最佳”</p>
         <img width={200} src={require('../../static/miniprogram.jpg')} alt="小程序码" />
         <p />
         <p>
@@ -35,9 +35,6 @@ export default class MiniProgram extends React.Component {
           不方便扫码可以点击这里复制 token 再进入小程序
         </p>
         <p>只需要操作一次，下次可直接从微信中进入</p>
-        <p>
-          如果你有公众号想关联我们的小程序<br />AppID：wx55fe519139f48efe<br />可以在你的公众号后台发起绑定申请，原则上我们会确认同意绑定
-        </p>
       </div>
     );
   }

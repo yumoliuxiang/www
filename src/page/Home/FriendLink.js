@@ -36,7 +36,7 @@ export default class FriendLink extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Icon type="usergroup-add" />&nbsp; 友情链接：{this.state.links.map(link => (
+        <Icon type="usergroup-add" />&nbsp; {this.state.links.map(link => (
           <Link href={link.href}>{link.text}</Link>
         ))}
       </Wrapper>
