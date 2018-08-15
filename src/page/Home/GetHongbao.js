@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Collapse, Form, Input, Table} from 'antd';
+import {Button, Collapse, Form, Input, Table, Checkbox} from 'antd';
 import {axios, apis, qs} from '../../api';
 import moment from 'moment';
 
@@ -15,6 +15,7 @@ class GetHongbao extends React.Component {
 
   getHongbao = async params => {
     try {
+      params.force = params.force ? 1 : 0;
       const data = await axios.post(apis.getHongbao, qs.stringify(params));
       if (data.code === 0) {
         this.props.callback(data.data);
@@ -57,10 +58,17 @@ class GetHongbao extends React.Component {
       let color = {0: '', 1: '#5bab60', 2: '#dd2323'}[
         !r.phone && /已领取到最佳前一个红包/.test(r.message) ? 1 : r.status
       ];
+      let elemeType = '';
+      if (r.application === 1 && r.type !== null) {
+        elemeType = '-' + ['拼手气', '品质联盟'][r.type] || '未知类型';
+      }
       return (
         <div>
           <div>
-            [{r.application === 0 ? '美' : '饿'}] {r.phone || '未填手机号'}
+            <a href={r.url} target="_blank">
+              [{r.application === 0 ? '美' : `饿${elemeType}`}]
+            </a>{' '}
+            {r.phone || '未填手机号'}
           </div>
           <div style={{color}}>{text}</div>
         </div>
@@ -109,17 +117,7 @@ class GetHongbao extends React.Component {
       o.key = i;
     });
 
-    return (
-      <Table
-        dataSource={this.props.historyList}
-        columns={columns}
-        pagination={{
-          pageSize: 5,
-          size: 'small',
-          total: this.props.historyList.length
-        }}
-      />
-    );
+    return <Table dataSource={this.props.historyList} columns={columns} pagination={false} />;
   };
 
   render() {
@@ -156,6 +154,15 @@ class GetHongbao extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
+          {getFieldDecorator('force', {
+            rules: [
+              {
+                required: false
+              }
+            ]
+          })(<Checkbox>强制领取（勾选将不检查该链接是否被领过）</Checkbox>)}
+        </Form.Item>
+        <Form.Item>
           <Button type="primary" disabled={isGetting} htmlType="submit" className="login-form-button">
             领取
           </Button>
@@ -172,7 +179,7 @@ class GetHongbao extends React.Component {
     return (
       <div>
         <Collapse defaultActiveKey={['1', '2', '3']} bordered={false}>
-          <Collapse.Panel header="红包链接说明" key="1">
+          <Collapse.Panel header="红包链接说明" key="1" style={{border: 0}}>
             1. 饿了么红包：https://h5.ele.me/hongbao/ 开头的链接。<br />
             链接不带 lucky_number 的不是拼手气，不能用。<br />
             2. 美团红包：https://activity.waimai.meituan.com/coupon/ 开头的链接。<br />
