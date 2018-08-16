@@ -60,7 +60,7 @@ class GetHongbao extends React.Component {
       ];
       let elemeType = '';
       if (r.application === 1 && r.type !== null) {
-        elemeType = ['拼手气', '品质联盟'][r.type] || ''; //'-' + ['拼手气', '品质联盟'][r.type] || '未知类型';
+        elemeType = ['拼手气', '品质联盟'][r.type] || '';
       }
       elemeType = elemeType ? `-${elemeType}` : '';
       return (
