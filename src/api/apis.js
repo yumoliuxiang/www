@@ -1,7 +1,6 @@
-// 对应 component/Domain 选择的线路
-const list = ['https://mtdhb.z.xxooweb.com/', 'https://api.mtdhb.com/'];
+import domains from './domains';
 
-const domain = list[localStorage.getItem('domain') || 0];
+const domain = domains[localStorage.getItem('domain') || 0].value;
 
 const apis = {
   getCaptcha: 'user/registerCaptcha',

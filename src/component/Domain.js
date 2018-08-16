@@ -1,5 +1,6 @@
 import React from 'react';
 import {Select} from 'antd';
+import {domains} from '../api';
 
 export default class Domain extends React.Component {
   state = {
@@ -9,8 +10,7 @@ export default class Domain extends React.Component {
   render() {
     return (
       <Select defaultValue={this.state.domain} style={{width: 120, marginLeft: 15}} onChange={this.handleChange}>
-        <Select.Option value={0}>国内线路</Select.Option>
-        <Select.Option value={1}>海外线路</Select.Option>
+        {domains.map((item, index) => <Select.Option value={index}>{item.name}</Select.Option>)}
       </Select>
     );
   }
