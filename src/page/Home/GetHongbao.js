@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Collapse, Form, Input, Table, Checkbox} from 'antd';
+import {Button, Collapse, Form, Input, Table, Checkbox, Tooltip} from 'antd';
 import {axios, apis, qs} from '../../api';
 import moment from 'moment';
 
@@ -65,11 +65,11 @@ class GetHongbao extends React.Component {
       elemeType = elemeType ? `-${elemeType}` : '';
       return (
         <div>
-          <div>
+          <div style={{whiteSpace: 'nowrap'}}>
             <a href={r.url} target="_blank">
               [{r.application === 0 ? '美' : `饿${elemeType}`}]
             </a>{' '}
-            {r.phone || '未填手机号'}
+            <span>{r.phone || '未填手机号'}</span>
           </div>
           <div style={{color}}>{text}</div>
         </div>
@@ -108,7 +108,7 @@ class GetHongbao extends React.Component {
     historyList.forEach((o, i) => {
       o.time = moment(new Date(o.gmtModified || o.gmtCreate)).format('YYYY-MM-DD HH:mm:ss');
       if (o.status === 1) {
-        o.message = '领取成功（请以实际到账金额为准）';
+        o.message = `领取成功（${o.price === 10 ? '卧槽！今天可以加餐了' : '请以实际到账金额为准'}）`;
         o.price = o.price <= 0 ? '未知' : o.price;
       } else if (o.status === 0) {
         o.message = `正在领取...`;
@@ -155,20 +155,26 @@ class GetHongbao extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('force', {
-            rules: [
-              {
-                required: false
-              }
-            ]
-          })(<Checkbox>强制领取（勾选将不检查该链接是否被领过）</Checkbox>)}
+          <Tooltip
+            placement="top"
+            title="如果你确定你填写的链接是新红包，而本站又提示该红包被领过时，你可以尝试勾选此项再点领取。"
+          >
+            {getFieldDecorator('force', {
+              rules: [
+                {
+                  required: false
+                }
+              ]
+            })(<Checkbox>强制领取（勾选将不检查该链接是否被领过）</Checkbox>)}
+          </Tooltip>
         </Form.Item>
         <Form.Item>
           <Button type="primary" disabled={isGetting} htmlType="submit" className="login-form-button">
-            领取
+            领取手气最佳红包
           </Button>
           {isGetting && <span style={{color: '#dd2323', marginLeft: '12px'}}>请等待上一个红包领取完成</span>}
         </Form.Item>
+        <p>领到大红包的小伙伴，扫一扫网页上的支付宝红包码，支持一下我们吧！</p>
         <p style={{color: '#dd2323'}}>最近 10 次领取记录：</p>
         {this.renderHistoryTable()}
         {this.renderDescription()}
