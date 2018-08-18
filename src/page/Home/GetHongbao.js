@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Collapse, Form, Input, Table, Checkbox, Tooltip, message} from 'antd';
+import {Button, Collapse, Form, Input, Table, Checkbox, Tooltip, message, Icon} from 'antd';
 import {axios, apis, qs} from '../../api';
 import moment from 'moment';
 
@@ -155,19 +155,21 @@ class GetHongbao extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          <Tooltip
-            placement="top"
-            title="如果你确定你填写的链接是新红包，而本站又提示该红包被领过时，你可以尝试勾选此项再点领取。"
-          >
-            {getFieldDecorator('force', {
-              rules: [
-                {
-                  required: false
-                }
-              ],
-              initialValue: false
-            })(<Checkbox>强制领取（勾选将不检查该链接是否被领过）</Checkbox>)}
-          </Tooltip>
+          {getFieldDecorator('force', {
+            rules: [
+              {
+                required: false
+              }
+            ],
+            initialValue: false
+          })(
+            <Checkbox>
+              强制领取（勾选将不检查该链接是否被领过）
+              <Tooltip title="如果你确定你填写的链接是新红包，而本站又提示该红包被领过时，你可以尝试勾选此项再点领取。">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </Checkbox>
+          )}
         </Form.Item>
         <Form.Item>
           <Button type="primary" disabled={isGetting} htmlType="submit" className="login-form-button">
