@@ -28,7 +28,7 @@ export default class FriendLink extends React.Component {
     links: [
       {
         href: 'http://wpa.qq.com/msgrd?v=3&uin=2249962820&site=qq&menu=yes',
-        text: '申请友链'
+        text: '联系管理员'
       }
     ]
   };
@@ -37,10 +37,7 @@ export default class FriendLink extends React.Component {
     return (
       <Wrapper>
         <Icon type="usergroup-add" />
-        &nbsp;{' '}
-        {this.state.links.map(link => (
-          <Link href={link.href}>{link.text}</Link>
-        ))}
+        &nbsp; {this.state.links.map(link => <Link href={link.href}>{link.text}</Link>)}
       </Wrapper>
     );
   }
