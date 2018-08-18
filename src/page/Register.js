@@ -1,6 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import {Form, Input, Button} from 'antd';
+import {Form, Input, Button, message} from 'antd';
 import Domain from '../component/Domain';
 import {axios, apis, qs} from '../api';
 
@@ -30,10 +30,10 @@ class Register extends React.Component {
           localStorage.setItem('token', data.data.token);
           browserHistory.push('/');
         } else {
-          alert(data.message);
+          message.error(data.message);
         }
       })
-      .catch(err => alert(err));
+      .catch(err => message.error(JSON.stringify(err)));
   };
 
   handleSubmit = e => {

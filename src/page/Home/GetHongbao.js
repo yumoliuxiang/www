@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Collapse, Form, Input, Table, Checkbox, Tooltip} from 'antd';
+import {Button, Collapse, Form, Input, Table, Checkbox, Tooltip, message} from 'antd';
 import {axios, apis, qs} from '../../api';
 import moment from 'moment';
 
@@ -20,7 +20,7 @@ class GetHongbao extends React.Component {
       if (data.code === 0) {
         this.props.callback(data.data);
       } else {
-        alert(data.message);
+        message.error(data.message);
       }
     } catch (e) {
       console.error(e);
@@ -108,7 +108,7 @@ class GetHongbao extends React.Component {
     historyList.forEach((o, i) => {
       o.time = moment(new Date(o.gmtModified || o.gmtCreate)).format('YYYY-MM-DD HH:mm:ss');
       if (o.status === 1) {
-        o.message = `领取成功（${o.price === 10 ? '卧槽！今天可以加餐了' : '请以实际到账金额为准'}）`;
+        o.message = `领取成功（${o.price >= 10 ? '卧槽！今天可以加餐了' : '请以实际到账金额为准'}）`;
         o.price = o.price <= 0 ? '未知' : o.price;
       } else if (o.status === 0) {
         o.message = `正在领取...`;

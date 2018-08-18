@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Button, Breadcrumb} from 'antd';
+import {Form, Input, Button, Breadcrumb, message} from 'antd';
 import {browserHistory} from 'react-router';
 import {axios, apis, qs} from '../api';
 import Ad from '../component/Ad';
@@ -23,10 +23,10 @@ class Login extends React.Component {
           localStorage.setItem('token', data.data.token);
           browserHistory.push('/');
         } else {
-          alert(data.message);
+          message.error(data.message);
         }
       })
-      .catch(err => alert(err));
+      .catch(err => message.error(JSON.stringify(err)));
   };
 
   handleSubmit = e => {

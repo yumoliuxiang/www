@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button} from 'antd';
+import {Button, message} from 'antd';
 import Clipboard from 'clipboard';
 import styled from 'styled-components';
 import Media from './Media';
@@ -47,7 +47,7 @@ export default class Alipay extends React.Component {
 
     clipboard.on('success', e => {
       e.clearSelection();
-      alert('打开支付宝即可领取红包（每天可以领一次）aRhixt096d');
+      message.success('打开支付宝即可领取红包（每天可以领一次）aRhixt096d');
     });
 
     clipboard.on('error', e => {

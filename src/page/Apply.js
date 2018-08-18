@@ -1,6 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input, message} from 'antd';
 import Domain from '../component/Domain';
 import {axios, apis, qs} from '../api';
 
@@ -32,13 +32,13 @@ class Apply extends React.Component {
             this.setState({mail: ''});
           }
           this.setState({applyFinished: false});
-          alert(data.message);
+          message.error(data.message);
         }
         this.changeCaptcha();
         this.setState({isLoading: false, captcha: ''});
       })
       .catch(err => {
-        alert(err);
+        message.error(JSON.stringify(err));
         this.changeCaptcha();
         this.setState({isLoading: false});
       });

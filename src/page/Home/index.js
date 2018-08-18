@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Breadcrumb, Tabs} from 'antd';
+import {Alert, Breadcrumb, Tabs, message} from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
 import {axios, apis, logout} from '../../api';
@@ -152,7 +152,7 @@ export default class Home extends React.Component {
       if (data.code === 0) {
         this.setState({user: data.data});
       } else {
-        alert(data.message);
+        message.error(data.message);
       }
     });
   };
@@ -168,7 +168,7 @@ export default class Home extends React.Component {
         });
         this.setState({cookies});
       } else {
-        alert(data.message);
+        message.error(data.message);
       }
     });
   };

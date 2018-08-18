@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, Input, Radio, Table, Popconfirm} from 'antd';
+import {Button, Form, Input, Radio, Table, Popconfirm, message} from 'antd';
 import {axios, apis, qs} from '../../api';
 
 class Contribute extends React.Component {
@@ -22,10 +22,10 @@ class Contribute extends React.Component {
           };
           const data = await axios.post(apis.cookie, qs.stringify(params));
           if (data.code === 0) {
-            alert('贡献成功！');
+            message.success('贡献成功！');
             this.props.contributeCallback();
           } else {
-            alert(data.message);
+            message.error(data.message);
           }
         } catch (e) {
           console.error(e);
@@ -172,9 +172,9 @@ class Contribute extends React.Component {
     axios.delete(apis.deleteCookie + `/${id}`).then(data => {
       if (data.code === 0) {
         this.props.deleteCookieCallback(id);
-        alert('删除成功');
+        message.success('删除成功');
       } else {
-        alert(data.message);
+        message.error(data.message);
       }
     });
   };

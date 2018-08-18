@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {message} from 'antd';
 import QRCode from 'qrcode.react';
 import Clipboard from 'clipboard';
 
@@ -11,11 +12,11 @@ export default class MiniProgram extends React.Component {
 
     clipboard.on('success', e => {
       e.clearSelection();
-      alert('token 复制成功，请打开 “一键最佳” 小程序');
+      message.success('token 复制成功，请打开 “一键最佳” 小程序');
     });
 
     clipboard.on('error', e => {
-      alert('您的设备不支持复制，请使用扫码方式');
+      message.error('您的设备不支持复制，请使用扫码方式');
     });
   }
 

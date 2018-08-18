@@ -1,6 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import {Form, Input, Button} from 'antd';
+import {Form, Input, Button, message} from 'antd';
 import Domain from '../component/Domain';
 import {axios, apis, qs} from '../api';
 
@@ -27,13 +27,13 @@ class ResetPassword extends React.Component {
       .post(apis.resetPassword, qs.stringify(data))
       .then(data => {
         if (data.code === 0) {
-          alert('重置成功');
+          message.success('重置成功');
           browserHistory.push('/');
         } else {
-          alert(data.message);
+          message.error(data.message);
         }
       })
-      .catch(err => alert(err));
+      .catch(err => message.error(JSON.stringify(err)));
   };
 
   handleSubmit = e => {

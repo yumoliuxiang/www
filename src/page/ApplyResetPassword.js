@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input, message} from 'antd';
 import Domain from '../component/Domain';
 import {axios, apis, qs} from '../api';
 
@@ -31,13 +31,13 @@ class ApplyResetPassword extends React.Component {
             this.setState({mail: ''});
           }
           this.setState({finished: false});
-          alert(data.message);
+          message.error(data.message);
         }
         this.changeCaptcha();
         this.setState({isLoading: false, captcha: ''});
       })
       .catch(err => {
-        alert(err);
+        console.error(err);
         this.changeCaptcha();
         this.setState({isLoading: false});
       });

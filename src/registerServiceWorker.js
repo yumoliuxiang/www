@@ -7,6 +7,7 @@
 
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
+import eventbus from './eventbus';
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -63,9 +64,7 @@ function registerValidSW(swUrl) {
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
               console.log('New content is available; please refresh.');
-              if (window.confirm('检测到有新版本，是否刷新页面？')) {
-                window.location.reload();
-              }
+              eventbus.emit('service-worker:new-version');
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
