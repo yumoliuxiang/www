@@ -26,7 +26,7 @@ class GetHongbao extends React.Component {
       console.error(e);
     }
     this.setState({isGetting: false});
-    this.props.form.resetFields();
+    this.props.form.resetFields(['url']);
   };
 
   handleSubmit = e => {
@@ -164,7 +164,8 @@ class GetHongbao extends React.Component {
                 {
                   required: false
                 }
-              ]
+              ],
+              initialValue: false
             })(<Checkbox>强制领取（勾选将不检查该链接是否被领过）</Checkbox>)}
           </Tooltip>
         </Form.Item>
