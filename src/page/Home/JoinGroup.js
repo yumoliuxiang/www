@@ -4,13 +4,12 @@ export default class JoinGroup extends React.Component {
   render() {
     return (
       <div style={{textAlign: 'center'}}>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="//shang.qq.com/wpa/qunwpa?idkey=716520d506845906eb56c91c53e3213ceaddbd99f704c4afa6c1761b388311db"
-        >
-          点击加入 QQ 3 群：617166836
-        </a>
+        <div>
+          <p>QQ1群：246080018（2000人空）&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p>QQ2群：583997433（500人满）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p>QQ3群：617166836（2000人满）&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p>QQ群：452599197（软件开发交流）</p>
+        </div>
         <div style={{margin: '12px 0 6px 0'}}>扫描下面二维码，邀请你进入微信群</div>
         <img
           style={{
