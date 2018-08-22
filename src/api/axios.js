@@ -1,9 +1,13 @@
 import axios from 'axios';
 import logout from './logout';
+import domains from './domains';
 
-axios.defaults.withCredentials = true;
+const instance = axios.create({
+  baseURL: domains[localStorage.getItem('domain') || 0].value,
+  withCredentials: true
+});
 
-axios.interceptors.request.use(
+instance.interceptors.request.use(
   config => {
     config.headers.common['X-User-Token'] = localStorage.getItem('token');
     return config;
@@ -11,7 +15,7 @@ axios.interceptors.request.use(
   err => Promise.reject(err)
 );
 
-axios.interceptors.response.use(
+instance.interceptors.response.use(
   res => {
     const {data} = res;
     if (data.code !== 10000) {
@@ -22,4 +26,4 @@ axios.interceptors.response.use(
   err => Promise.reject(err)
 );
 
-export default axios;
+export default instance;

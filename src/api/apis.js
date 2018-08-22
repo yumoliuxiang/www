@@ -1,8 +1,4 @@
-import domains from './domains';
-
-const domain = domains[localStorage.getItem('domain') || 0].value;
-
-const apis = {
+export default {
   getCaptcha: 'user/registerCaptcha',
   getRegisterCode: 'user/registerMail',
   register: 'user/register',
@@ -23,8 +19,3 @@ const apis = {
   getTrend: 'trend',
   getNotice: 'notice.json' // 为了方便随时更新公告，直接在 JSON 中维护
 };
-
-export default Object.keys(apis).reduce((obj, key) => {
-  obj[key] = domain + apis[key];
-  return obj;
-}, {});
