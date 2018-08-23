@@ -17,7 +17,7 @@ module.exports = (config, env) => {
     options.runtimeCaching = [
       {
         handler: 'cacheFirst',
-        urlPattern: /at\.alicdn\.com|cdn\.bootcss\.com|thirdqq\.qlogo\.cn|githubusercontent/
+        urlPattern: /cdn|thirdqq\.qlogo\.cn|githubusercontent/
       }
     ];
     config.plugins.splice(index, 1, new SWPrecacheWebpackPlugin(options));
