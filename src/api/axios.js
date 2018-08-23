@@ -1,9 +1,9 @@
 import axios from 'axios';
 import logout from './logout';
-import domains from './domains';
+import {domain} from './domains';
 
 const instance = axios.create({
-  baseURL: domains[localStorage.getItem('domain') || 0].value,
+  baseURL: domain,
   withCredentials: true
 });
 

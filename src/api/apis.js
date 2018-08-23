@@ -1,4 +1,6 @@
-export default {
+import {domain} from './domains';
+
+const apis = {
   getCaptcha: 'user/registerCaptcha',
   getRegisterCode: 'user/registerMail',
   register: 'user/register',
@@ -19,3 +21,9 @@ export default {
   getTrend: 'trend',
   getNotice: 'notice.json' // 为了方便随时更新公告，直接在 JSON 中维护
 };
+
+// 验证码需要完整路径
+apis.getCaptcha = domain + apis.getCaptcha;
+apis.resetPasswordCaptcha = domain + apis.resetPasswordCaptcha;
+
+export default apis;
