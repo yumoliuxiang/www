@@ -1,9 +1,7 @@
 import axios from 'axios';
 import logout from './logout';
-import {domain} from './domains';
 
 const instance = axios.create({
-  baseURL: domain,
   withCredentials: true
 });
 

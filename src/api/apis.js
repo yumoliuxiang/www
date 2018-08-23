@@ -1,4 +1,4 @@
-import {domain} from './domains';
+import domains from './domains';
 
 const apis = {
   getCaptcha: 'user/registerCaptcha',
@@ -22,8 +22,7 @@ const apis = {
   getNotice: 'notice.json' // 为了方便随时更新公告，直接在 JSON 中维护
 };
 
-// 验证码需要完整路径
-apis.getCaptcha = domain + apis.getCaptcha;
-apis.resetPasswordCaptcha = domain + apis.resetPasswordCaptcha;
+const domain = domains[localStorage.getItem('domain') || 0].value;
+Object.keys(apis).forEach(key => (apis[key] = domain + apis[key]));
 
 export default apis;

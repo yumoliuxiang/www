@@ -1,4 +1,4 @@
-const domains = [
+export default [
   {
     name: '国内线路',
     value: 'https://mtdhb.z.xxooweb.com/'
@@ -8,8 +8,3 @@ const domains = [
     value: 'https://api.mtdhb.com/'
   }
 ];
-
-const domain = domains[localStorage.getItem('domain') || 0].value;
-
-export default domains;
-export {domain};
