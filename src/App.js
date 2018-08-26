@@ -1,5 +1,5 @@
 import React from 'react';
-import {browserHistory, Route, Router} from 'react-router';
+import {browserHistory, Route, Router, Redirect} from 'react-router';
 import './globalStyle';
 import './hmt';
 import Mouse from './component/Mouse';
@@ -19,6 +19,7 @@ export default () => (
       <Route path="applyResetPassword" component={ApplyResetPassword} />
       <Route path="resetPassword" component={ResetPassword} />
       <Route path="/" component={Home} />
+      <Redirect from="*" to="/" />
     </Router>
     <Mouse />
   </div>
