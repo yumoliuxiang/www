@@ -76,18 +76,32 @@ class Contribute extends React.Component {
           </Form.Item>
           <ul>
             <li>
-              <a href="/tutorial/cookie.html" target="_blank">
-                [一键提取] 美团、饿了么 cookie 一键提取工具
+              <a
+                href="https://note.youdao.com/noteshare?id=2761e33a66c4b51a8226dd22a89e87c1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                [贡献 QQ] 如何贡献饿了么 QQ cookie
               </a>
             </li>
             <li>
-              <a href="/tutorial/meituan.html" target="_blank">
+              <a
+                href="http://note.youdao.com/noteshare?id=0290812f8131bed392ed5f037f0c3b5c"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{textDecoration: 'line-through'}}
+              >
                 [贡献微信] 如何贡献美团微信 cookie（饿了么也可以）
               </a>
             </li>
             <li>
-              <a href="/tutorial/ele.html" target="_blank">
-                [贡献 QQ] 如何贡献饿了么 QQ cookie
+              <a
+                href="https://github.com/mtdhb/cookie"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{textDecoration: 'line-through'}}
+              >
+                [一键提取] 美团、饿了么 cookie 一键提取工具
               </a>
             </li>
           </ul>

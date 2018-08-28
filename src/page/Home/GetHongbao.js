@@ -177,6 +177,17 @@ class GetHongbao extends React.Component {
           </Button>
           {isGetting && <span style={{color: '#dd2323', marginLeft: '12px'}}>请等待上一个红包领取完成</span>}
         </Form.Item>
+        <ul>
+          <li>
+            <a
+              href="https://note.youdao.com/share/?id=1a6addb66a43c56de86c26d1fa52aaa3&type=note#/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              [教程] 淘宝下单叠加品质联盟
+            </a>
+          </li>
+        </ul>
         <p>领到大红包的小伙伴，扫一扫网页上的支付宝红包码，支持一下我们吧！</p>
         <p style={{color: '#dd2323'}}>最近 10 次领取记录：</p>
         {this.renderHistoryTable()}
