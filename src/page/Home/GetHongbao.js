@@ -184,7 +184,7 @@ class GetHongbao extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              [教程] 淘宝下单叠加品质联盟
+              [教程] 饿了么双红包叠加下单
             </a>
           </li>
         </ul>
