@@ -2,7 +2,6 @@ import React from 'react';
 import {Form, Input, Button, Breadcrumb, message} from 'antd';
 import {browserHistory} from 'react-router';
 import {axios, apis, qs} from '../api';
-import Ad from '../component/Ad';
 import Notice from '../component/Notice';
 import Domain from '../component/Domain';
 
@@ -103,7 +102,6 @@ class Login extends React.Component {
             </a>
           </Breadcrumb.Item>
         </Breadcrumb>
-        <Ad />
         <Notice />
       </Form>
     );

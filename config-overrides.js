@@ -13,7 +13,6 @@ module.exports = (config, env) => {
   if (env === 'production') {
     const index = config.plugins.findIndex(plugin => plugin instanceof SWPrecacheWebpackPlugin);
     const {options} = config.plugins[index];
-    options.navigateFallbackWhitelist = [/^(?!\/__).*/];
     options.runtimeCaching = [
       {
         handler: 'cacheFirst',
