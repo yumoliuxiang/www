@@ -3,22 +3,17 @@ import {browserHistory, Route, Router, Redirect} from 'react-router';
 import './globalStyle';
 import './hmt';
 import Mouse from './component/Mouse';
-import Apply from './page/Apply';
-import Register from './page/Register';
-import Login from './page/Login';
-import Home from './page/Home';
-import ApplyResetPassword from './page/ApplyResetPassword';
-import ResetPassword from './page/ResetPassword';
+import Loadable from './component/Loadable';
 
 export default () => (
   <div>
     <Router history={browserHistory}>
-      <Route path="apply" component={Apply} />
-      <Route path="login" component={Login} />
-      <Route path="register" component={Register} />
-      <Route path="applyResetPassword" component={ApplyResetPassword} />
-      <Route path="resetPassword" component={ResetPassword} />
-      <Route path="/" component={Home} />
+      <Route path="apply" component={Loadable(() => import('./page/Apply'))} />
+      <Route path="login" component={Loadable(() => import('./page/Login'))} />
+      <Route path="register" component={Loadable(() => import('./page/Register'))} />
+      <Route path="applyResetPassword" component={Loadable(() => import('./page/ApplyResetPassword'))} />
+      <Route path="resetPassword" component={Loadable(() => import('./page/ResetPassword'))} />
+      <Route path="/" component={Loadable(() => import('./page/Home'))} />
       <Redirect from="*" to="/" />
     </Router>
     <Mouse />

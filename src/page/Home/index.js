@@ -7,7 +7,7 @@ import Ad from '../../component/Ad';
 import Alipay from '../../component/Alipay';
 import Carousel from '../../component/Carousel';
 import Notice from '../../component/Notice';
-import Talk from '../../component/Talk';
+import Loadable from '../../component/Loadable';
 import Media from '../../component/Media';
 import Domain from '../../component/Domain';
 import GetHongbao from './GetHongbao';
@@ -18,6 +18,7 @@ import Rank from './Rank';
 import Statistics from './Statistics';
 import JoinGroup from './JoinGroup';
 import MiniProgram from './MiniProgram';
+const Talk = Loadable(() => import('../../component/Talk'));
 
 const Container = styled.div`
   display: flex;

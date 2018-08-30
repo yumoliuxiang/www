@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'gitalk/dist/gitalk.css';
 import Gitalk from 'gitalk';
 import {injectGlobal} from 'styled-components';
-import Media from '../Media';
+import Media from './Media';
 
 injectGlobal`
   .gt-container {
