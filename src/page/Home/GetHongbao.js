@@ -165,7 +165,7 @@ class GetHongbao extends React.Component {
           })(
             <Checkbox>
               强制领取（勾选将不检查该链接是否被领过）
-              <Tooltip title="如果你确定你填写的链接是新红包，而本站又提示该红包被领过时，你可以尝试勾选此项再点领取。">
+              <Tooltip title="如果你填写的链接最大包还没出现，而本站又提示该红包被领过时，你可以尝试勾选此项再点领取。如果你不知道何时勾选此项，那说明你不需要，请勿勾选有利于节省你的次数。">
                 <Icon type="question-circle-o" />
               </Tooltip>
             </Checkbox>
