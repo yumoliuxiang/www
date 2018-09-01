@@ -1,19 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button, message} from 'antd';
+import {Button, message, Icon} from 'antd';
 import Clipboard from 'clipboard';
 import styled from 'styled-components';
-import Media from './Media';
+
+const Container = styled.div`
+  position: relative;
+  background: #fff;
+  display: inline-block;
+  z-index: 100;
+`;
 
 const Image = styled.div`
   position: absolute;
+  left: 0;
   margin-top: 5px;
-  z-index: 50;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 4px;
   background: #fff;
   display: none;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
 
   div {
     text-align: center;
@@ -21,21 +28,7 @@ const Image = styled.div`
   }
 `;
 
-const Image2 = styled.div`
-  position: absolute;
-  right: -335px;
-  top: -78px;
-  border-radius: 4px;
-  overflow: hidden;
-
-  ${Media.mobile`display: none;`};
-`;
-
-const Container = styled.div`
-  position: relative;
-  background: #fff;
-  display: inline-block;
-
+const RmbButton = styled(Button)`
   &:hover ${Image} {
     display: block;
   }
@@ -43,11 +36,11 @@ const Container = styled.div`
 
 export default class Alipay extends React.Component {
   componentDidMount() {
-    const clipboard = new Clipboard(ReactDOM.findDOMNode(this.refs.button), {text: () => 'aRhixt096d'});
+    const clipboard = new Clipboard(ReactDOM.findDOMNode(this.refs.alibutton), {text: () => 'aRhixt096d'});
 
     clipboard.on('success', e => {
       e.clearSelection();
-      message.success('打开支付宝即可领取红包（每天可以领一次）aRhixt096d');
+      message.info('打开支付宝即可领取红包（每天可以领一次）红包码：aRhixt096d');
     });
 
     clipboard.on('error', e => {
@@ -60,18 +53,33 @@ export default class Alipay extends React.Component {
   render() {
     return (
       <Container>
-        <Button type="primary" ref="button">
-          支付宝天天领红包
-        </Button>
-        <Image>
-          <img src={require('../static/hongbao1.jpg')} width="290" alt="支付宝天天领红包" />
-          <div>
-            支付宝天天领红包<br />aRhixt096d
-          </div>
-        </Image>
-        <Image2>
-          <img src={require('../static/hongbao2.png')} width="140" alt="支付宝天天领红包" />
-        </Image2>
+        <Button.Group>
+          <RmbButton type="primary" ref="alibutton">
+            <Icon type="alipay-circle" />红包
+            <Image>
+              <img src={require('../static/hongbao1.jpg')} width="290" alt="支付宝 每天领红包" />
+            </Image>
+          </RmbButton>
+          <RmbButton type="primary" onClick={() => message.info('如果本站对您有帮助，欢迎打赏支持我们')}>
+            <Icon type="pay-circle" />打赏
+            <Image>
+              <table>
+                <tr style={{color: '#222'}}>
+                  <th>支付宝</th>
+                  <th>微信</th>
+                </tr>
+                <tr>
+                  <td>
+                    <img src={require('../static/zfb.png')} width="190" alt="打赏 支付宝支付" />
+                  </td>
+                  <td>
+                    <img src={require('../static/wx.png')} width="190" alt="打赏 微信支付" />
+                  </td>
+                </tr>
+              </table>
+            </Image>
+          </RmbButton>
+        </Button.Group>
       </Container>
     );
   }

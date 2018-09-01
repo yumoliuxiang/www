@@ -8,7 +8,7 @@ injectGlobal`
   }
   
   body {
-    min-width: 290px;
+    min-width: 320px;
     max-width: 480px;
     padding: 0 15px;
     margin: 0 auto;

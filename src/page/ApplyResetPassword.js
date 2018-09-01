@@ -16,6 +16,7 @@ class ApplyResetPassword extends React.Component {
       finished: false,
       isLoading: false
     };
+    document.body.classList.remove('is-home');
   }
 
   resetPasswordMail = data => {

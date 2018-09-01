@@ -1,10 +1,9 @@
 import React from 'react';
-import {Alert, Breadcrumb, Tabs, message} from 'antd';
+import {Alert, Breadcrumb, Tabs, message, Carousel, Icon} from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
 import {axios, apis, logout} from '../../api';
 import Alipay from '../../component/Alipay';
-import Carousel from '../../component/Carousel';
 import Notice from '../../component/Notice';
 import Loadable from '../../component/Loadable';
 import Media from '../../component/Media';
@@ -17,6 +16,7 @@ import Rank from './Rank';
 import Statistics from './Statistics';
 import JoinGroup from './JoinGroup';
 import MiniProgram from './MiniProgram';
+import {browserHistory} from 'react-router';
 const Talk = Loadable(() => import('../../component/Talk'));
 
 const Container = styled.div`
@@ -81,11 +81,11 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const {application, historyList, tab, carouselRecords, cookies, rankData, trendData, pieData} = this.state;
+    const {application, historyList, tab, cookies, rankData, trendData, pieData} = this.state;
     return (
       <Container>
         <Column>
-          <Carousel data={carouselRecords} />
+          {this.renderCarousel()}
           {this.renderHello()}
           {this.renderBreadcrumb()}
           <Alipay />
@@ -127,6 +127,23 @@ export default class Home extends React.Component {
           <FriendLink />
         </Column>
       </Container>
+    );
+  }
+
+  renderCarousel() {
+    const {carouselRecords = []} = this.state;
+    return (
+      <div style={{height: '30px', overflow: 'hidden'}}>
+        <Carousel vertical autoplay>
+          {carouselRecords.map((o, i) => (
+            <div key={i} style={{color: '#5bab60', fontSize: '16px', whiteSpace: 'nowrap'}}>
+              {o.mail} 在 {moment(new Date(o.gmtModified)).format('HH:mm:ss')} 领到
+              <span style={{color: '#dd2323'}}>&nbsp;{o.price}&nbsp;</span>
+              元{o.application ? '饿了么' : '美团'}大红包
+            </div>
+          ))}
+        </Carousel>
+      </div>
     );
   }
 
@@ -267,8 +284,13 @@ export default class Home extends React.Component {
           </a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="https://github.com/mtdhb/donate/blob/master/README.md" target="_blank" rel="noopener noreferrer">
-            捐赠我们
+          <a
+            onClick={e => {
+              e.preventDefault();
+              browserHistory.push('/applyResetPassword');
+            }}
+          >
+            重置密码
           </a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
@@ -291,9 +313,19 @@ export default class Home extends React.Component {
       <Alert
         style={{margin: '15px 0'}}
         message={
-          this.state.user.mail
-            ? `今日剩余可消耗：美团 ${meituan.available}/${meituan.total} 次，饿了么 ${ele.available}/${ele.total} 次`
-            : '数据加载中，长时间没有响应请刷新页面'
+          this.state.user.mail ? (
+            meituan.total === 0 && ele.total === 0 ? (
+              '您还没有任何贡献，请查看规则和贡献教程'
+            ) : (
+              <div>
+                <span>{`美团 ${meituan.available}/${meituan.total} 次 `}</span>
+                <Icon type="heart" />
+                <span>{` 饿了么 ${ele.available}/${ele.total} 次`}</span>
+              </div>
+            )
+          ) : (
+            '数据加载中，长时间没有响应请刷新页面'
+          )
         }
         type="info"
       />
