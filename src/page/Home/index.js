@@ -248,15 +248,10 @@ export default class Home extends React.Component {
     localStorage.setItem('application', e.target.value);
   };
 
-  renderHello = e => {
-    return this.state.user.mail ? (
-      <h3>
-        您好 {this.state.user.mail} (uid: {this.state.user.id})
-      </h3>
-    ) : (
-      <h3>您好</h3>
-    );
-  };
+  renderHello() {
+    const {mail, id} = this.state.user;
+    return <h3>{mail ? `您好 ${mail} (uid: ${id})` : '您好'}</h3>;
+  }
 
   renderBreadcrumb = e => {
     return (
@@ -290,27 +285,18 @@ export default class Home extends React.Component {
     );
   };
 
-  renderAvailable = e => {
-    let {meituan, ele} = this.state.number;
-
-    return this.state.user.mail ? (
+  renderAvailable() {
+    const {meituan, ele} = this.state.number;
+    return (
       <Alert
         style={{margin: '15px 0'}}
         message={
-          '今日剩余可消耗：美团 ' +
-          meituan.available +
-          '/' +
-          meituan.total +
-          ' 次，饿了么 ' +
-          ele.available +
-          '/' +
-          ele.total +
-          ' 次'
+          this.state.user.mail
+            ? `今日剩余可消耗：美团 ${meituan.available}/${meituan.total} 次，饿了么 ${ele.available}/${ele.total} 次`
+            : '数据加载中，长时间没有响应请刷新页面'
         }
         type="info"
       />
-    ) : (
-      <Alert style={{margin: '15px 0'}} message="数据加载中，长时间没有响应请刷新页面" type="info" />
     );
-  };
+  }
 }
