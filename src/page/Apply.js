@@ -38,7 +38,7 @@ class Apply extends React.Component {
         this.setState({isLoading: false, captcha: ''});
       })
       .catch(err => {
-        message.error(JSON.stringify(err));
+        message.error(err.message);
         this.changeCaptcha();
         this.setState({isLoading: false});
       });

@@ -25,7 +25,7 @@ class Login extends React.Component {
           message.error(data.message);
         }
       })
-      .catch(err => message.error(JSON.stringify(err)));
+      .catch(err => message.error(err.message));
   };
 
   handleSubmit = e => {
