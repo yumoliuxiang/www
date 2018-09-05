@@ -1,5 +1,6 @@
 import React from 'react';
 import {browserHistory, Route, Router, Redirect} from 'react-router';
+import {BackTop} from 'antd';
 import './globalStyle';
 import './hmt';
 import Mouse from './component/Mouse';
@@ -16,6 +17,7 @@ export default () => (
       <Route path="/" component={Loadable(() => import('./page/Home'))} />
       <Redirect from="*" to="/" />
     </Router>
+    <BackTop />
     <Mouse />
   </div>
 );
