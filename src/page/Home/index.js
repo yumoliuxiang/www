@@ -322,9 +322,14 @@ export default class Home extends React.Component {
               '您还没有任何贡献，请查看规则和贡献教程'
             ) : (
               <div>
-                <span>{`美团 ${meituan.available}/${meituan.total} 次 `}</span>
-                <Icon type="star" />
-                <span>{` 饿了么 ${ele.available}/${ele.total} 次`}</span>
+                <span>今日剩余次数：美团</span>
+                <span style={{color: '#dd2323', padding: '0 10px 0 5px'}}>
+                  {meituan.available}/{meituan.total}
+                </span>
+                <span>饿了么</span>
+                <span style={{color: '#dd2323', padding: '0 10px 0 5px'}}>
+                  {ele.available}/{ele.total}
+                </span>
               </div>
             )
           ) : (
