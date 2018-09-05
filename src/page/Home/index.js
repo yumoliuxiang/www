@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Breadcrumb, Tabs, message, Carousel, Icon} from 'antd';
+import {Alert, Breadcrumb, Tabs, message, Carousel} from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
 import {axios, apis, logout} from '../../api';
