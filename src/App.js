@@ -20,6 +20,7 @@ export default () => (
       bordered={false}
       style={{maxWidth: 640, width: '100%', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'}}
     >
+      <p>感谢大家大半年以来的支持。</p>
       <p>由于不可描述的原因，本站正式宣布关闭。</p>
       <p>
         技术交流：<a href="https://github.com/mtdhb" target="_blank" rel="noopener noreferrer">
