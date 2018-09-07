@@ -5,6 +5,8 @@
 
 https://www.mtdhb.com 网页端
 
+关闭网站之前最后一个版本看这里 [releases](https://github.com/mtdhb/www/releases)
+
 ## 开发
 
 环境要求 Node.js 9.x
