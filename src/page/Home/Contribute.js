@@ -70,7 +70,7 @@ class Contribute extends React.Component {
             )}
           </Form.Item>
           <Form.Item>
-            <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
+            <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button" disabled>
               暂时无法贡献，敬请期待
             </Button>
           </Form.Item>
