@@ -120,8 +120,8 @@ class Apply extends React.Component {
           />
         </Form.Item>
         <Form.Item key={2}>
-          <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button" disabled>
-            暂时关闭注册
+          <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
+            申请
           </Button>
           <a
             onClick={e => {
