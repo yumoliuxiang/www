@@ -15,6 +15,7 @@ import Rules from './Rules';
 import Rank from './Rank';
 import Statistics from './Statistics';
 import JoinGroup from './JoinGroup';
+import MiniProgram from './MiniProgram';
 import {browserHistory} from 'react-router';
 const Talk = Loadable(() => import('../../component/Talk'));
 
@@ -115,6 +116,9 @@ export default class Home extends React.Component {
             </Tabs.TabPane>
             <Tabs.TabPane tab="统计" key="statistics">
               <Statistics data={trendData} pieData={pieData} />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="小程序" key="mp">
+              <MiniProgram />
             </Tabs.TabPane>
             <Tabs.TabPane tab="加群" key="joinGroup">
               <JoinGroup />
