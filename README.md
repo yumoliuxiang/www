@@ -3,7 +3,7 @@
 [![GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/mtdhb/www.svg?branch=master)](https://travis-ci.org/mtdhb/www)
 
-https://www.mtdhb.com 网页端
+https://mtdhb.org 网页端
 
 关闭网站之前最后一个版本看这里 [releases](https://github.com/mtdhb/www/releases)
 
