@@ -6,7 +6,7 @@ export default class Statistics extends React.Component {
   render() {
     let {ele = [], meituan = []} = this.props.data;
 
-    if (!ele.length) return <div style={{textAlign: 'center'}}>暂无数据</div>;
+    if (!ele.length && !meituan.length) return <div style={{textAlign: 'center'}}>暂无数据</div>;
 
     return (
       <div>
