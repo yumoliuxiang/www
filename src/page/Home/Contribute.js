@@ -45,15 +45,13 @@ class Contribute extends React.Component {
       <div>
         <div style={{color: '#dd2323', marginBottom: '15px'}}>
           贡献每一个微信需要完全退出 PC 微信进程再登录小号<br />贡献每一个 QQ 需要清除浏览器 cookie
-          或打开隐身（无痕）模式再登录小号<br />仅有老用户持有美团绝版 cookie，新号无法贡献了<br />饿了么暂时无法贡献，敬请期待
+          或打开隐身（无痕）模式再登录小号<br />仅有老用户持有美团绝版 cookie，新号无法贡献了
         </div>
         <Radio.Group onChange={onApplicationChange} value={application} style={{marginBottom: '12px'}}>
           <Radio value={0} disabled>
             美团
           </Radio>
-          <Radio value={1} disabled>
-            饿了么
-          </Radio>
+          <Radio value={1}>饿了么</Radio>
         </Radio.Group>
 
         <Form onSubmit={this.handleSubmit} className="login-form">
@@ -73,7 +71,7 @@ class Contribute extends React.Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
-              确定
+              暂时无法贡献，敬请期待
             </Button>
           </Form.Item>
           <ul>
