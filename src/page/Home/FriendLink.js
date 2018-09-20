@@ -27,7 +27,7 @@ export default class FriendLink extends React.Component {
   state = {
     links: [
       {
-        href: 'http://wpa.qq.com/msgrd?v=3&uin=2249962820&site=qq&menu=yes',
+        href: 'http://wpa.qq.com/msgrd?v=3&uin=397909414&site=qq&menu=yes',
         text: '联系管理员'
       }
     ]
