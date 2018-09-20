@@ -18,8 +18,8 @@ injectGlobal`
 export default class Talk extends React.Component {
   componentDidMount() {
     const gitalk = new Gitalk({
-      clientID: '6a4e797a25295987f8ee',
-      clientSecret: '4930afa796bddfb2533f8537f0bd5bb8259cf8c6',
+      clientID: '895c3218cb7f8c5a579d',
+      clientSecret: 'fc6daf02bda87906924018c6d753220c45c9d4b9',
       repo: 'mtdhb',
       owner: 'mtdhb',
       admin: ['zhuweiyou', 'huangdenghe', 'cooljser', 'duminghong'],
