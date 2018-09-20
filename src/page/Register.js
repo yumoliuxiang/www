@@ -117,7 +117,7 @@ class Register extends React.Component {
         </Form.Item>
         <Form.Item key={4}>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            完成注册
+            注册暂未开放
           </Button>
         </Form.Item>
       </Form>
