@@ -1,37 +1,23 @@
 import React from 'react';
-import {Card} from 'antd';
-import Alipay from './component/Alipay';
+import {browserHistory, Route, Router, Redirect} from 'react-router';
+import {BackTop} from 'antd';
 import './globalStyle';
 import './hmt';
+import Mouse from './component/Mouse';
+import Loadable from './component/Loadable';
 
 export default () => (
-  <div
-    style={{
-      background: '#eee',
-      padding: 15,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh'
-    }}
-  >
-    <Card
-      title="食堂见"
-      bordered={false}
-      style={{maxWidth: 640, width: '100%', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'}}
-    >
-      <p>感谢大家大半年以来的支持。</p>
-      <p>由于不可描述的原因，本站正式宣布关闭。</p>
-      <p>
-        技术交流：<a href="https://github.com/mtdhb" target="_blank" rel="noopener noreferrer">
-          GitHub
-        </a>
-      </p>
-      <p style={{textAlign: 'right'}}>
-        mtdhb团队 敬上<br />2018年09月06日
-      </p>
-      <div style={{border: '1px dashed #eee', marginBottom: 30}} />
-      <Alipay />
-    </Card>
+  <div>
+    <Router history={browserHistory}>
+      <Route path="apply" component={Loadable(() => import('./page/Apply'))} />
+      <Route path="login" component={Loadable(() => import('./page/Login'))} />
+      <Route path="register" component={Loadable(() => import('./page/Register'))} />
+      <Route path="applyResetPassword" component={Loadable(() => import('./page/ApplyResetPassword'))} />
+      <Route path="resetPassword" component={Loadable(() => import('./page/ResetPassword'))} />
+      <Route path="/" component={Loadable(() => import('./page/Home'))} />
+      <Redirect from="*" to="/" />
+    </Router>
+    <BackTop />
+    <Mouse />
   </div>
 );
