@@ -8,6 +8,10 @@ export default class Domain extends React.Component {
   };
 
   render() {
+    if (domains.length <= 1) {
+      return null;
+    }
+
     return (
       <Select defaultValue={this.state.domain} style={{width: 112, marginLeft: 15}} onChange={this.handleChange}>
         {domains.map((item, index) => <Select.Option value={index}>{item.name}</Select.Option>)}
