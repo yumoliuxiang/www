@@ -39,7 +39,7 @@ class Contribute extends React.Component {
   render() {
     const {getFieldDecorator} = this.props.form;
     let {isLoading} = this.state;
-    let {application, onApplicationChange} = this.props;
+    let {application, onApplicationChange, cookies} = this.props;
 
     return (
       <div>
@@ -106,23 +106,24 @@ class Contribute extends React.Component {
           </ul>
         </Form>
 
-        {application === 1 && (
-          <Button.Group style={{marginBottom: 15}}>
-            <Button onClick={() => this.downloadCookies()}>
-              <Icon type="download" theme="outlined" />下载所有失效 cookie
-            </Button>
-            <Popconfirm
-              title="删除后将无法恢复，确定要删除吗？"
-              onConfirm={() => this.deleteCookies()}
-              okText="确定"
-              cancelText="取消"
-            >
-              <Button type="danger">
-                <Icon type="delete" theme="outlined" />删除所有失效 cookie
+        {application === 1 &&
+          cookies.length > 0 && (
+            <Button.Group style={{marginBottom: 15}}>
+              <Button onClick={() => this.downloadCookies()}>
+                <Icon type="download" theme="outlined" />下载所有失效 cookie
               </Button>
-            </Popconfirm>
-          </Button.Group>
-        )}
+              <Popconfirm
+                title="删除后将无法恢复，确定要删除吗？"
+                onConfirm={() => this.deleteCookies()}
+                okText="确定"
+                cancelText="取消"
+              >
+                <Button type="danger">
+                  <Icon type="delete" theme="outlined" />删除所有失效 cookie
+                </Button>
+              </Popconfirm>
+            </Button.Group>
+          )}
 
         {this.renderTable()}
       </div>
