@@ -48,7 +48,8 @@ class Contribute extends React.Component {
           或打开隐身（无痕）模式再登录小号
         </div>
         <div style={{color: '#dd2323', marginBottom: '15px'}}>
-          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />饿了么 cookie 需要验证手机号之后再贡献，否则无效
+          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />饿了么 cookie 需要验证手机号之后再贡献（cookie
+          内容需要同时包含 snsInfo 和 SID）否则无效
         </div>
         <Radio.Group onChange={onApplicationChange} value={application} style={{marginBottom: '12px'}}>
           <Radio value={0} disabled>
