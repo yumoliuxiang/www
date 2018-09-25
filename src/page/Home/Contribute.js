@@ -132,16 +132,19 @@ class Contribute extends React.Component {
   downloadCookies() {
     const content = this.props.cookies
       .filter(o => o.application === this.props.application && !o.valid)
-      .map(o => String(o.value || '').trim())
-      .filter(o => o.value)
-      .join('\n');
+      .map(o =>
+        String(o.value || '')
+          .trim()
+          .replace(/\n/g, '')
+      )
+      .filter(o => o);
 
     // 创建隐藏的可下载链接
     const link = document.createElement('a');
-    link.download = 'cookies.txt';
+    link.download = 'cookies.json';
     link.style.display = 'none';
     // 字符内容转变成blob地址
-    const blob = new Blob([content]);
+    const blob = new Blob([JSON.stringify(content)]);
     link.href = URL.createObjectURL(blob);
     // 触发点击
     document.body.appendChild(link);
@@ -179,7 +182,10 @@ class Contribute extends React.Component {
         }}
       >
         <p>{time}</p>
-        <p>{record.nickname}</p>
+        <p>
+          {!record.valid && <span style={{color: '#dd2323'}}>[已失效]&nbsp;</span>}
+          {record.nickname}
+        </p>
       </div>
     );
 
