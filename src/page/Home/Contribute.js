@@ -48,7 +48,9 @@ class Contribute extends React.Component {
           或打开隐身（无痕）模式再登录小号
         </div>
         <div style={{color: '#dd2323', marginBottom: '15px'}}>
-          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />饿了么 cookie 需要验证手机号之后再贡献
+          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />
+          饿了么 cookie 需要验证手机号之后再贡献<br />
+          失效的 cookie 验证后想要再贡献，需要先删除
         </div>
         <Radio.Group onChange={onApplicationChange} value={application} style={{marginBottom: '12px'}}>
           <Radio value={0} disabled>
@@ -145,7 +147,7 @@ class Contribute extends React.Component {
     link.download = 'cookies.json';
     link.style.display = 'none';
     // 字符内容转变成blob地址
-    const blob = new Blob([JSON.stringify(content)]);
+    const blob = new Blob([JSON.stringify(content, null, 2)]);
     link.href = URL.createObjectURL(blob);
     // 触发点击
     document.body.appendChild(link);
@@ -192,9 +194,8 @@ class Contribute extends React.Component {
 
     let renderDeleteBtn = (text, record) => (
       <Popconfirm
-        title="删除将扣除 5 次消耗，确定要删除吗？"
+        title={record.valid ? '确定要删除吗？' : '删除将扣除 5 次消耗，确定要删除吗？'}
         onConfirm={e => onConfirm(record)}
-        onCancel={e => e}
         okText="确定"
         cancelText="取消"
       >
