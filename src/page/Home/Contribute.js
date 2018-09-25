@@ -17,7 +17,7 @@ class Contribute extends React.Component {
         this.setState({isLoading: true});
         try {
           const params = {
-            value: values.value,
+            value: `SID=${values.sid}; snsInfo[101204453]=${values.snsInfo};`,
             application: this.props.application
           };
           const data = await axios.post(apis.cookie, qs.stringify(params));
@@ -48,8 +48,7 @@ class Contribute extends React.Component {
           或打开隐身（无痕）模式再登录小号
         </div>
         <div style={{color: '#dd2323', marginBottom: '15px'}}>
-          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />饿了么 cookie 需要验证手机号之后再贡献（cookie
-          内容需要同时包含 snsInfo 和 SID）否则无效
+          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />饿了么 cookie 需要验证手机号之后再贡献
         </div>
         <Radio.Group onChange={onApplicationChange} value={application} style={{marginBottom: '12px'}}>
           <Radio value={0} disabled>
@@ -60,14 +59,14 @@ class Contribute extends React.Component {
 
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
-            {getFieldDecorator('value', {
-              rules: [{required: true, message: '请输入要贡献的 cookie'}]
-            })(
-              <Input.TextArea
-                placeholder={application ? '请输入微信或 QQ 小号的 cookie' : '请输入微信小号的 cookie'}
-                autosize={{minRows: 8, maxRows: 8}}
-              />
-            )}
+            {getFieldDecorator('sid', {
+              rules: [{required: true, message: '请输入要贡献的 Cookie SID'}]
+            })(<Input placeholder="请输入要贡献的 Cookie SID" />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('snsInfo', {
+              rules: [{required: true, message: '请输入要贡献的 Cookie snsInfo'}]
+            })(<Input.TextArea placeholder="请输入要贡献的 Cookie snsInfo" autosize={{minRows: 8, maxRows: 8}} />)}
           </Form.Item>
           <Form.Item>
             <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
