@@ -62,7 +62,7 @@ class Contribute extends React.Component {
         </div>
         <div style={{marginBottom: 5}}>以下两种方式均可贡献饿了么小号：</div>
         <Radio.Group onChange={this.changeContributeMode} value={contributeMode} style={{marginBottom: '12px'}}>
-          <Radio value="sid-and-snsInfo">贡献 sid、snsInfo</Radio>
+          <Radio value="sid-and-snsInfo">贡献 SID、snsInfo</Radio>
           <Radio value="cookie">贡献完整 cookie</Radio>
         </Radio.Group>
 
@@ -71,23 +71,23 @@ class Contribute extends React.Component {
             <div>
               <Form.Item>
                 {getFieldDecorator('sid', {
-                  rules: [{required: true, message: '请输入要贡献的 Cookie SID'}]
-                })(<Input placeholder="请输入要贡献的 Cookie SID" />)}
+                  rules: [{required: true, message: '请输入要贡献的 cookie SID'}]
+                })(<Input placeholder="请输入要贡献的 cookie SID" />)}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator('snsInfo', {
-                  rules: [{required: true, message: '请输入要贡献的 Cookie snsInfo'}]
-                })(<Input.TextArea placeholder="请输入要贡献的 Cookie snsInfo" autosize={{minRows: 8}} />)}
+                  rules: [{required: true, message: '请输入要贡献的 cookie snsInfo'}]
+                })(<Input.TextArea placeholder="请输入要贡献的 cookie snsInfo" autosize={{minRows: 8}} />)}
               </Form.Item>
             </div>
           )}
           {contributeMode === 'cookie' && (
             <Form.Item>
               {getFieldDecorator('cookie', {
-                rules: [{required: true, message: '请输入要贡献的完整 Cookie，需同时包含 sid 和 snsInfo'}]
+                rules: [{required: true, message: '请输入要贡献的完整 cookie，需同时包含 SID 和 snsInfo'}]
               })(
                 <Input.TextArea
-                  placeholder="请输入要贡献的完整 Cookie，需同时包含 sid 和 snsInfo"
+                  placeholder="请输入要贡献的完整 cookie，需同时包含 SID 和 snsInfo"
                   autosize={{minRows: 10}}
                 />
               )}
