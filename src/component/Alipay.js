@@ -54,12 +54,6 @@ export default class Alipay extends React.Component {
     return (
       <Container>
         <Button.Group>
-          <RmbButton type="primary" ref="alibutton">
-            <Icon type="alipay-circle" />红包
-            <Image>
-              <img src={require('../static/hongbao1.jpg')} width="290" alt="支付宝 每天领红包" />
-            </Image>
-          </RmbButton>
           <RmbButton type="primary" onClick={() => message.info('如果本站对您有帮助，欢迎打赏支持我们')}>
             <Icon type="pay-circle" />打赏
             <Image>
@@ -77,6 +71,12 @@ export default class Alipay extends React.Component {
                   </td>
                 </tr>
               </table>
+            </Image>
+          </RmbButton>
+          <RmbButton type="primary" ref="alibutton">
+            <Icon type="alipay-circle" />红包
+            <Image>
+              <img src={require('../static/hongbao1.jpg')} width="290" alt="支付宝 每天领红包" />
             </Image>
           </RmbButton>
         </Button.Group>

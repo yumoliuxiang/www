@@ -6,7 +6,8 @@ class Contribute extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false
+      isLoading: false,
+      contributeMode: localStorage.getItem('contributeMode') || 'sid-and-snsInfo'
     };
   }
 
@@ -17,7 +18,10 @@ class Contribute extends React.Component {
         this.setState({isLoading: true});
         try {
           const params = {
-            value: `SID=${values.sid}; snsInfo[101204453]=${values.snsInfo};`,
+            value:
+              this.state.contributeMode === 'sid-and-snsInfo'
+                ? `SID=${values.sid}; snsInfo[101204453]=${values.snsInfo};`
+                : values.cookie,
             application: this.props.application
           };
           const data = await axios.post(apis.cookie, qs.stringify(params));
@@ -29,47 +33,66 @@ class Contribute extends React.Component {
           }
         } catch (e) {
           console.error(e);
+        } finally {
+          this.setState({isLoading: false});
+          this.props.form.resetFields();
         }
-        this.setState({isLoading: false});
-        this.props.form.resetFields();
       }
     });
   };
 
+  changeContributeMode = event => {
+    const contributeMode = event.target.value;
+    this.setState({contributeMode});
+    localStorage.setItem('contributeMode', contributeMode);
+  };
+
   render() {
     const {getFieldDecorator} = this.props.form;
-    let {isLoading} = this.state;
-    let {application, onApplicationChange, cookies} = this.props;
+    let {isLoading, contributeMode} = this.state;
+    let {application, cookies} = this.props;
 
     return (
       <div>
-        <div style={{marginBottom: '15px'}}>
-          贡献每一个微信需要完全退出 PC 微信进程再登录小号<br />贡献每一个 QQ 需要清除浏览器 cookie
-          或打开隐身（无痕）模式再登录小号
+        <div style={{color: '#dd2323', marginBottom: 15}}>
+          1、仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />
+          2、饿了么 cookie 需要验证手机号之后再贡献<br />
+          3、失效的 cookie 验证后想要再贡献，需要先删除<br />
+          4、贡献每一个 QQ，需要清除浏览器 cookie 或打开隐身（无痕）模式再登录小号
         </div>
-        <div style={{color: '#dd2323', marginBottom: '15px'}}>
-          仅有老用户持有美团绝版 cookie，新号无法贡献美团了<br />
-          饿了么 cookie 需要验证手机号之后再贡献<br />
-          失效的 cookie 验证后想要再贡献，需要先删除
-        </div>
-        <Radio.Group onChange={onApplicationChange} value={application} style={{marginBottom: '12px'}}>
-          <Radio value={0} disabled>
-            美团
-          </Radio>
-          <Radio value={1}>饿了么</Radio>
+        <div style={{marginBottom: 5}}>以下两种方式均可贡献饿了么小号：</div>
+        <Radio.Group onChange={this.changeContributeMode} value={contributeMode} style={{marginBottom: '12px'}}>
+          <Radio value="sid-and-snsInfo">贡献 sid、snsInfo</Radio>
+          <Radio value="cookie">贡献完整 cookie</Radio>
         </Radio.Group>
 
         <Form onSubmit={this.handleSubmit} className="login-form">
-          <Form.Item>
-            {getFieldDecorator('sid', {
-              rules: [{required: true, message: '请输入要贡献的 Cookie SID'}]
-            })(<Input placeholder="请输入要贡献的 Cookie SID" />)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('snsInfo', {
-              rules: [{required: true, message: '请输入要贡献的 Cookie snsInfo'}]
-            })(<Input.TextArea placeholder="请输入要贡献的 Cookie snsInfo" autosize={{minRows: 8, maxRows: 8}} />)}
-          </Form.Item>
+          {contributeMode === 'sid-and-snsInfo' && (
+            <div>
+              <Form.Item>
+                {getFieldDecorator('sid', {
+                  rules: [{required: true, message: '请输入要贡献的 Cookie SID'}]
+                })(<Input placeholder="请输入要贡献的 Cookie SID" />)}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator('snsInfo', {
+                  rules: [{required: true, message: '请输入要贡献的 Cookie snsInfo'}]
+                })(<Input.TextArea placeholder="请输入要贡献的 Cookie snsInfo" autosize={{minRows: 8}} />)}
+              </Form.Item>
+            </div>
+          )}
+          {contributeMode === 'cookie' && (
+            <Form.Item>
+              {getFieldDecorator('cookie', {
+                rules: [{required: true, message: '请输入要贡献的完整 Cookie，需同时包含 sid 和 snsInfo'}]
+              })(
+                <Input.TextArea
+                  placeholder="请输入要贡献的完整 Cookie，需同时包含 sid 和 snsInfo"
+                  autosize={{minRows: 10}}
+                />
+              )}
+            </Form.Item>
+          )}
           <Form.Item>
             <Button type="primary" loading={isLoading} htmlType="submit" className="login-form-button">
               贡献饿了么小号 cookie
@@ -110,21 +133,24 @@ class Contribute extends React.Component {
 
         {application === 1 &&
           cookies.length > 0 && (
-            <Button.Group style={{marginBottom: 15}}>
-              <Button onClick={() => this.downloadCookies()}>
-                <Icon type="download" theme="outlined" />下载所有失效 cookie
-              </Button>
-              <Popconfirm
-                title="删除后将无法恢复，确定要删除吗？"
-                onConfirm={() => this.deleteCookies()}
-                okText="确定"
-                cancelText="取消"
-              >
-                <Button type="danger">
-                  <Icon type="delete" theme="outlined" />删除所有失效 cookie
+            <div>
+              <Button.Group style={{marginBottom: 15}}>
+                <Button onClick={() => this.downloadCookies()}>
+                  <Icon type="download" theme="outlined" />下载所有失效 cookie
                 </Button>
-              </Popconfirm>
-            </Button.Group>
+                <Popconfirm
+                  title="删除后将无法恢复，确定要删除吗？"
+                  onConfirm={() => this.deleteCookies()}
+                  okText="确定"
+                  cancelText="取消"
+                >
+                  <Button type="danger">
+                    <Icon type="delete" theme="outlined" />删除所有失效 cookie
+                  </Button>
+                </Popconfirm>
+              </Button.Group>
+              <div style={{marginBottom: 15}}>如果下载无反应，请尝试使用 Chrome 或 FireFox 等浏览器</div>
+            </div>
           )}
 
         {this.renderTable()}
