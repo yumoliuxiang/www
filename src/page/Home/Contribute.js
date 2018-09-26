@@ -166,14 +166,15 @@ class Contribute extends React.Component {
           .trim()
           .replace(/\n/g, '')
       )
-      .filter(o => o);
+      .filter(o => o)
+      .join('\n');
 
     // 创建隐藏的可下载链接
     const link = document.createElement('a');
-    link.download = 'cookies.json';
+    link.download = 'cookies.txt';
     link.style.display = 'none';
     // 字符内容转变成blob地址
-    const blob = new Blob([JSON.stringify(content, null, 2)]);
+    const blob = new Blob([content]);
     link.href = URL.createObjectURL(blob);
     // 触发点击
     document.body.appendChild(link);
