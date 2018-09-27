@@ -128,7 +128,9 @@ class GetHongbao extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <div style={{color: '#dd2323', paddingBottom: '10px'}}>
-          请先仔细阅读规则再来领取，以免浪费次数<br />领取饿了么时会忽略填写的手机号码，只领到最大前一个
+          1、请先仔细阅读规则再来领取，以免浪费次数<br />
+          2、领取饿了么时会忽略填写的手机号码，只领到最大前一个<br />
+          3、部分饿了么链接无法获取 lucky_number 了，请尽量保证你填写的链接没有瞎改参数，否则可能会领错
         </div>
         <Form.Item>
           {getFieldDecorator('phone', {
